@@ -1,35 +1,20 @@
 using UnityEngine;
 using System.ComponentModel;
 
-public class InventoryViewModel: INotifyPropertyChanged
+public class InventoryViewModel
 {
     private readonly InventoryModel _model;
 
     public InventoryViewModel(InventoryModel model)
     {
         _model = model;
-        _model.OnInventoryUpdated += () => {
-            OnPropertyChanged(nameof(Inventory));
-        };
     }
 
-    // Expose data for the UI
-    public bool[] Inventory => _model.Inventory;
+    public CardModel[] Inventory => _model.Inventory;
 
-    // Trigger Model actions and notify the UI
-    public void OnAddToInventory(int index)
+    public void OnAddToInventory(CardModel card)
     {
-        _model.AddToInventory(index);
-        OnPropertyChanged(nameof(Inventory));
-    }
-
-    // INotifyPropertyChanged implementation
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        _model.AddToInventory(card);
     }
 }
 

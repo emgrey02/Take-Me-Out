@@ -6,9 +6,9 @@ public class InventoryModel
 {
     public event System.Action OnInventoryUpdated;
 
-    private bool[] _inventory;
+    private CardModel[] _inventory;
 
-    public bool[] Inventory { 
+    public CardModel[] Inventory { 
         get => _inventory;
         set
         {
@@ -19,13 +19,19 @@ public class InventoryModel
 
     public InventoryModel()
     {
-        Inventory = new bool[7];
+        Inventory = new CardModel[7];
     }
 
-    public void AddToInventory(int index)
+    public void AddToInventory(CardModel card)
     {
-        Inventory[index] = true;
+        Inventory[card.InventoryIndex] = card;
         OnInventoryUpdated?.Invoke();
+    }
+
+    public CardModel GetCardFromIndex(int index)
+    {
+        CardModel card = Inventory[index];
+        return card;
     }
 
 }
