@@ -16,6 +16,8 @@ public class FirstPersonCamera : MonoBehaviour
     [Tooltip("The player's body transform for rotation'")]
     public Transform playerTransform;
 
+    Quaternion originalRotation;
+
     // track's camera's x-axis rotation
     private float xRotation = 0f;
 
@@ -26,7 +28,18 @@ public class FirstPersonCamera : MonoBehaviour
     void Start()
     {
         lookAction = InputSystem.actions.FindAction("Look");
-        cam = Camera.main;
+
+        originalRotation = transform.localRotation;
+        
+        #if UNITY_STANDALONE
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        #endif
+        #if UNITY_EDITOR
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+        #endif
+        
 
     }
 
@@ -34,6 +47,15 @@ public class FirstPersonCamera : MonoBehaviour
     void Update()
     {
         if (!InventoryMenu.activeSelf) {
+            #if UNITY_STANDALONE
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            #endif
+            #if UNITY_EDITOR
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = false;
+            #endif
+
             Vector2 playerLook = lookAction.ReadValue<Vector2>();
             float lookX = playerLook.x * lookSensitivity * Time.deltaTime;
             float lookY = playerLook.y * lookSensitivity * Time.deltaTime;
@@ -46,6 +68,11 @@ public class FirstPersonCamera : MonoBehaviour
 
             // rotate player around yAxis (turn left & right)
             playerTransform.Rotate(Vector3.up * lookX);
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }

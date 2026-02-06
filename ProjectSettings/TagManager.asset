@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Inventory
   - Clickable
+  - UIManager
   layers:
   - Default
   - TransparentFX
