@@ -8,7 +8,6 @@ public class PlayerInteract : MonoBehaviour
     public InventoryPresenter invPresenter;
     public UIManager uiManager;
     public GameObject[] PickupCards;
-    public SceneController sceneController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,15 +29,6 @@ public class PlayerInteract : MonoBehaviour
                 uiManager.HidePrompt("Pickup");
                 PickupCards[card.CardIndex].SetActive(false);
             }
-        }
-
-        if (uiManager.getActiveState("First Scene Prompt") && Interact.triggered)
-        {
-
-            Debug.Log("Send to first scene experience");
-            sceneController.MoveToScene(2);
-            // scene transition
-            // change scene
         }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class CardView : MonoBehaviour
 {
+    public InputAction Interact;
+
     public UIManager uiManager;
     public Card Card;
 
@@ -13,6 +15,7 @@ public class CardView : MonoBehaviour
     void Start()
     {
         Card = new Card(CardIndex);
+        Interact = InputSystem.actions.FindAction("Interact");
     }
 
     void OnTriggerEnter(Collider player)
