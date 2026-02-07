@@ -1,34 +1,33 @@
 using UnityEngine;
 using System;
 
+public class InvUpdatedEventArgs : EventArgs {
+    public Card[] Cards { get; }
+    public InvUpdatedEventArgs(Card[] cards)
+    {
+        Cards = cards;
+    }
+}
+
 public class InventoryPresenter : MonoBehaviour
 {
-    private Inventory inventory;
-    public UIManager uiManager;
+    public event EventHandler<InvUpdatedEventArgs> InventoryUpdated;
 
- 
-    void OnDisable()
-    {
-        //inventory.InventoryUpdated -= UpdateInventoryUI;
-    }
+    private Inventory inventory;
 
     void Start()
     {
         inventory = new Inventory();
-        //inventory.InventoryUpdated += UpdateInventoryUI;
     }
 
     public void PickUpCard(CardView cardView)
     {
         inventory.AddCard(cardView.Card);
-        uiManager.UpdateInventoryUI(inventory.Cards);
+        OnInventoryUpdated(new InvUpdatedEventArgs(inventory.Cards));
     }
 
-    /**
-    private void UpdateInventoryUI(object sender, EventArgs e)
+    protected virtual void OnInventoryUpdated(InvUpdatedEventArgs e)
     {
-        
+        InventoryUpdated?.Invoke(this, e);
     }
-   **/
-  
 }
