@@ -9,6 +9,7 @@ public class PlayerInteract : MonoBehaviour
     public UIManager uiManager;
     public GameObject[] PickupCards;
     public SceneController sceneController;
+    public Transform player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,6 +27,7 @@ public class PlayerInteract : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 3f))
             {
                 CardView card = hit.collider.GetComponent<CardView>();
+                Debug.Log(card);
                 invPresenter.PickUpCard(card);
                 uiManager.HidePrompt("Pickup");
                 PickupCards[card.CardIndex].SetActive(false);
@@ -36,6 +38,9 @@ public class PlayerInteract : MonoBehaviour
         {
 
             Debug.Log("Send to first scene experience");
+            player.transform.rotation = new Quaternion(0, 130f, 0, 0);
+            player.position = new Vector3 (0, 1.05f, 0);
+            Physics.SyncTransforms();
             sceneController.MoveToScene(2);
             // scene transition
             // change scene

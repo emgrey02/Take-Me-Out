@@ -9,10 +9,15 @@ public class InventoryAccess : MonoBehaviour
 
     public GameObject inventoryMenu;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inventoryToggle = InputSystem.actions.FindAction("InventoryToggle");
+        inventoryToggle = InputSystem.actions.FindAction("InventoryToggle");    
     }
 
     void Update()

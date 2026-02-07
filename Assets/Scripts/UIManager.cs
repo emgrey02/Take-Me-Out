@@ -11,6 +11,11 @@ public class UIManager : MonoBehaviour
 
     private InventoryPresenter invPresenter;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void OnEnable()
     {
         invPresenter = InventoryMenu.GetComponent<InventoryPresenter>();

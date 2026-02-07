@@ -15,9 +15,10 @@ public class InventoryPresenter : MonoBehaviour
 
     private Inventory inventory;
 
-    void Start()
+    void Awake()
     {
         inventory = new Inventory();
+        DontDestroyOnLoad(gameObject);
     }
 
     public void PickUpCard(CardView cardView)
