@@ -39,7 +39,7 @@ public class PlayerInteract : MonoBehaviour
 
             Debug.Log("Send to first scene experience");
             player.transform.rotation = new Quaternion(0, 130f, 0, 0);
-            player.position = new Vector3 (0, 1.05f, 0);
+            player.position = new Vector3 (0, 1f, 0);
             Physics.SyncTransforms();
             sceneController.MoveToScene(2);
             // scene transition
