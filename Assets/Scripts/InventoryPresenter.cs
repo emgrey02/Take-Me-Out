@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public class InvUpdatedEventArgs : EventArgs {
     public Card[] Cards { get; }
@@ -15,10 +16,27 @@ public class InventoryPresenter : MonoBehaviour
 
     private Inventory inventory;
 
+    public InputAction inventoryToggle;
+
+    public GameObject inventoryMenu;
+
     void Awake()
     {
         inventory = new Inventory();
         DontDestroyOnLoad(gameObject);
+    }
+
+    void Start()
+    {
+        inventoryToggle = InputSystem.actions.FindAction("InventoryToggle");  
+    }
+
+    void Update()
+    {
+        if (inventoryToggle.triggered)
+        {
+            inventoryMenu.SetActive(!inventoryMenu.activeSelf);
+        }
     }
 
     public void PickUpCard(CardView cardView)

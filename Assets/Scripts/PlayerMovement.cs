@@ -33,8 +33,11 @@ public class PlayerMovement : MonoBehaviour
             Vector2 moveVector = moveAction.ReadValue<Vector2>() * moveSpeed;
             Vector3 move = (moveVector.y * transform.forward) + (moveVector.x * transform.right);
 
-            //Combine add movement spped and gravity
-            //Vector3 finalMove = (move * moveSpeed);
+            //Combine movement and gravity
+            if (controller.isGrounded && velocity.y < 0)
+            {
+                velocity.y = -2f;
+            }
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
             controller.Move(move * Time.deltaTime);

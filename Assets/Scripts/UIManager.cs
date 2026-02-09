@@ -3,9 +3,6 @@ using System;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject PickupPrompt;
-    public GameObject FirstScenePrompt;
-
     public GameObject[] CardImages;
     public GameObject InventoryMenu;
 
@@ -44,46 +41,5 @@ public class UIManager : MonoBehaviour
             }
         }
         
-    }
-
-    public void ShowPrompt(string prompt)
-    {
-        switch (prompt)
-        {
-            case "Pickup":
-                PickupPrompt.SetActive(true);
-                break;
-            case "FirstScene":
-                FirstScenePrompt.SetActive(true);
-                break;
-        }  
-    }
-
-    public void HidePrompt(string prompt)
-    {
-        switch (prompt)
-        {
-            case "Pickup":
-                PickupPrompt.SetActive(false);
-                break;
-            case "FirstScene":
-                FirstScenePrompt.SetActive(false);
-                break;
-        }
-        
-    }
-
-    public bool getActiveState(string name)
-    {
-        switch (name)
-        {
-            case "Inventory Menu":
-                return InventoryMenu.activeSelf;
-            case "Pickup Prompt":
-                return PickupPrompt.activeSelf;
-            case "First Scene Prompt":
-                return FirstScenePrompt.activeSelf;
-        }
-        return false;
     }
 }
