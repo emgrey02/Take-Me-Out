@@ -13,11 +13,9 @@ public class InvUpdatedEventArgs : EventArgs {
 public class InventoryPresenter : MonoBehaviour
 {
     public event EventHandler<InvUpdatedEventArgs> InventoryUpdated;
-
     private Inventory inventory;
 
     public InputAction inventoryToggle;
-
     public GameObject inventoryMenu;
 
     void Awake()
@@ -41,6 +39,7 @@ public class InventoryPresenter : MonoBehaviour
 
     public void PickUpCard(CardView cardView)
     {
+        Debug.Log("Picking up card");
         inventory.AddCard(cardView.Card);
         OnInventoryUpdated(new InvUpdatedEventArgs(inventory.Cards));
     }

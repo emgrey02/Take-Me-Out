@@ -1,10 +1,10 @@
 using UnityEngine;
 using System;
 
-public class UIManager : MonoBehaviour
+public class InventoryView : MonoBehaviour
 {
     public GameObject[] CardImages;
-    public GameObject InventoryMenu;
+    public GameObject InventoryCanvas;
 
     private InventoryPresenter invPresenter;
 
@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
 
     void OnEnable()
     {
-        invPresenter = InventoryMenu.GetComponent<InventoryPresenter>();
+        invPresenter = InventoryCanvas.GetComponent<InventoryPresenter>();
         invPresenter.InventoryUpdated += UpdateInventoryUI;
     }
 

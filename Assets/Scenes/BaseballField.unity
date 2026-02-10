@@ -693,7 +693,6 @@ GameObject:
   - component: {fileID: 367049917}
   - component: {fileID: 367049916}
   - component: {fileID: 367049915}
-  - component: {fileID: 367049919}
   - component: {fileID: 367049920}
   m_Layer: 5
   m_Name: Inventory Canvas
@@ -785,28 +784,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &367049919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367049914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0edea3ea1cb567d46b740fe83c30aca0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryAccess
-  inventoryToggle:
-    m_Name: Inventory Toggle
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 9247dd82-2343-4687-bf30-fdf048f3b169
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  inventoryMenu: {fileID: 944709501}
 --- !u!114 &367049920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -829,79 +806,6 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   inventoryMenu: {fileID: 944709501}
---- !u!1 &408858949 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1729920221054101192, guid: 533f04ffa9525804e9cb86f8c3c3d304, type: 3}
-  m_PrefabInstance: {fileID: 839307862}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &426095728 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1729920221054101192, guid: 533f04ffa9525804e9cb86f8c3c3d304, type: 3}
-  m_PrefabInstance: {fileID: 2507310388016384861}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &510185229
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 510185231}
-  - component: {fileID: 510185230}
-  m_Layer: 0
-  m_Name: InteractionManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &510185230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 510185229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 564b0fbc9dc51574cb44711038cc3e56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
-  Interact:
-    m_Name: Interact
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d835976d-a6f5-4955-9e8b-3d88dfa845b7
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  invPresenter: {fileID: 367049920}
-  uiManager: {fileID: 1423325432}
-  PickupCards:
-  - {fileID: 426095728}
-  - {fileID: 765487345}
-  - {fileID: 408858949}
-  sceneController: {fileID: 19786634}
-  player: {fileID: 987076441}
-  layerMask:
-    m_Bits: 0
---- !u!4 &510185231
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 510185229}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.25092, y: 0.1, z: -18.07339}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &517807296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1156,11 +1060,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762090045}
   m_CullTransparentMesh: 1
---- !u!1 &765487345 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1729920221054101192, guid: 533f04ffa9525804e9cb86f8c3c3d304, type: 3}
-  m_PrefabInstance: {fileID: 517807296}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &839307862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1749,7 +1648,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 80
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1776,7 +1675,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.581, z: 0}
+  m_LocalPosition: {x: 0, y: 0.75000024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1824,14 +1723,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987076438}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &987076442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1853,7 +1752,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  moveSpeed: 3
+  moveSpeed: 2
   gravity: -9.81
   InventoryMenu: {fileID: 944709501}
 --- !u!143 &987076443
@@ -1877,7 +1776,7 @@ CharacterController:
   m_Height: 1.8
   m_Radius: 0.4
   m_SlopeLimit: 20
-  m_StepOffset: 0.2
+  m_StepOffset: 0.05
   m_SkinWidth: 0.06
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -2354,7 +2253,7 @@ GameObject:
   - component: {fileID: 1423325433}
   - component: {fileID: 1423325432}
   m_Layer: 0
-  m_Name: UIManager
+  m_Name: InventoryManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2380,7 +2279,7 @@ MonoBehaviour:
   - {fileID: 2127714590}
   - {fileID: 76203398}
   - {fileID: 1264215160}
-  InventoryMenu: {fileID: 367049914}
+  InventoryCanvas: {fileID: 367049914}
 --- !u!4 &1423325433
 Transform:
   m_ObjectHideFlags: 0
@@ -3391,4 +3290,3 @@ SceneRoots:
   - {fileID: 1423325433}
   - {fileID: 19786635}
   - {fileID: 7974781776174530256}
-  - {fileID: 510185231}
