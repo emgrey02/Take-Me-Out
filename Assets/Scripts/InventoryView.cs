@@ -26,7 +26,7 @@ public class InventoryView : MonoBehaviour
 
     private void UpdateInventoryUI(object sender, InvUpdatedEventArgs e)
     {
-        Debug.Log("updating ui from ui manager");
+        Debug.Log("updating inventory from InventoryView");
         foreach (GameObject img in CardImages)
         {
             img.SetActive(false);
