@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7915618074277259713
+--- !u!114 &-5528538914077086378
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,18 +20,20 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: chalk board
+  m_Name: dirt
   m_Shader: {fileID: 4800000, guid: 7fbdcac5db7be7041abe20744b071f5f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _LIGHTINGTYPE_VERTEX
+  - _LIGHTINGTYPE_TEXEL
   - _TEXTUREFILTERING_NEAREST
   m_InvalidKeywords:
   - _DITHERAMBIENT_ON
+  - _DITHERDIFFUSE_ON
+  - _DITHERSPEC_ON
   - _ENABLEMASKMAP_ON
   - _REFLECTIONS_ON
-  - _SPECULARTYPE_BLINN_PHONG
+  - _SPECULARTYPE_COOKTORRANCE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -138,8 +140,8 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DitherAmbient: 1
-    - _DitherDiffuse: 0
-    - _DitherSpec: 0
+    - _DitherDiffuse: 1
+    - _DitherSpec: 1
     - _DoubleSizeDither: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
@@ -147,35 +149,33 @@ Material:
     - _EnableMaskMap: 1
     - _EnvironmentReflections: 1
     - _Extras: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
     - _HalfLambert: 0
     - _Lighting: 0
-    - _LightingType: 1
+    - _LightingType: 2
     - _LightmapEmissionStr: 1
     - _MaskNote1: 0
     - _MaskNote2: 0
     - _MaskTint: 0
     - _Metallic: 0
-    - _Mode: 0
     - _NormalStrength: 1
     - _OcclusionStrength: 1
-    - _Parallax: 0.02
+    - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Reflections: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularType: 2
+    - _SpecularType: 0
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _TextureFiltering: 0
     - _TintNote: 0
     - _ToonShading: 0
-    - _UVSec: 0
     - _VColEmissive: 0
     - _VColSmoothness: 0
     - _VertexEmissiveStr: 1
@@ -188,8 +188,8 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.061943766, g: 0.4528302, b: 0.12918115, a: 1}
-    - _Color: {r: 0.31746176, g: 0.7735849, b: 0.31746176, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.9433962, g: 0.49956316, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SmoothRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SmoothRemapVCol: {r: 0, g: 1, b: 0, a: 0}

@@ -31,6 +31,7 @@ Material:
   - _DITHERAMBIENT_ON
   - _DITHERDIFFUSE_ON
   - _DITHERSPEC_ON
+  - _DOUBLESIZEDITHER_ON
   - _ENABLEMASKMAP_ON
   - _NORMALMAP
   - _PARALLAXMAP
@@ -143,7 +144,7 @@ Material:
     - _DitherAmbient: 1
     - _DitherDiffuse: 1
     - _DitherSpec: 1
-    - _DoubleSizeDither: 0
+    - _DoubleSizeDither: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _Emission: 0
@@ -192,8 +193,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.509434, g: 0.4541652, b: 0.4541652, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SmoothRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SmoothRemapVCol: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

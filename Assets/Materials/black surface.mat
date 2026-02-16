@@ -33,11 +33,12 @@ Material:
   - _DITHERSPEC_ON
   - _DOUBLESIZEDITHER_ON
   - _ENABLEMASKMAP_ON
+  - _HALFLAMBERT_ON
+  - _REFLECTIONS_ON
   - _SPECULARTYPE_BLINN_PHONG
-  - _VCOLEMISSIVE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses:
@@ -153,7 +154,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HalfLambert: 0
+    - _HalfLambert: 1
     - _Lighting: 0
     - _LightingType: 0
     - _LightmapEmissionStr: 1
@@ -167,7 +168,7 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Reflections: 0
+    - _Reflections: 1
     - _Smoothness: 0.235
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -179,7 +180,7 @@ Material:
     - _TintNote: 0
     - _ToonShading: 0
     - _UVSec: 0
-    - _VColEmissive: 1
+    - _VColEmissive: 0
     - _VColSmoothness: 0
     - _VertexEmissiveStr: 1
     - _VertexJitter: 0
