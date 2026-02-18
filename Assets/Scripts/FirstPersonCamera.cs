@@ -8,6 +8,7 @@ public class FirstPersonCamera : MonoBehaviour
     public InputAction lookAction; //Vector2
     
     public GameObject InventoryMenu;
+    public GameObject MainMenu;
     
     [Header("Mouse Look Settings")]
     [Tooltip("Sensitivity of mouse movement")]
@@ -15,8 +16,6 @@ public class FirstPersonCamera : MonoBehaviour
 
     [Tooltip("The player's body transform for rotation'")]
     public Transform playerTransform;
-
-    Quaternion originalRotation;
 
     // track's camera's x-axis rotation
     private float xRotation = 0f;
@@ -28,8 +27,6 @@ public class FirstPersonCamera : MonoBehaviour
     void Start()
     {
         lookAction = InputSystem.actions.FindAction("Look");
-
-        originalRotation = transform.localRotation;
         
         #if UNITY_STANDALONE
             Cursor.lockState = CursorLockMode.Locked;
@@ -46,7 +43,6 @@ public class FirstPersonCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!InventoryMenu.activeSelf) {
             #if UNITY_STANDALONE
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
@@ -68,11 +64,9 @@ public class FirstPersonCamera : MonoBehaviour
 
             // rotate player around yAxis (turn left & right)
             playerTransform.Rotate(Vector3.up * lookX);
-        }
-        else
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
+        
+        //Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
+        
     }
 }

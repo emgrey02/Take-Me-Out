@@ -9,10 +9,13 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float gravity = -9.81f;
     private CharacterController controller;
+    
     public GameObject InventoryMenu;
+    public GameObject MainMenu;
+
+    public bool DisableMvmt = false;
 
     private Vector3 velocity;
-
 
     private void Awake()
     {
@@ -29,19 +32,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!InventoryMenu.activeSelf) {
-            Vector2 moveVector = moveAction.ReadValue<Vector2>() * moveSpeed;
-            Vector3 move = (moveVector.y * transform.forward) + (moveVector.x * transform.right);
+        Vector2 moveVector = moveAction.ReadValue<Vector2>() * moveSpeed;
+        Vector3 move = (moveVector.y * transform.forward) + (moveVector.x * transform.right);
 
-            //Combine movement and gravity
-            if (controller.isGrounded && velocity.y < 0)
-            {
-                velocity.y = -2f;
-            }
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
-            controller.Move(move * Time.deltaTime);
+        //Combine movement and gravity
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
         }
-        
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+        controller.Move(move * Time.deltaTime);
+
     }
 }

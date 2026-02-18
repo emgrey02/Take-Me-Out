@@ -1,21 +1,36 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
+using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 public class InventoryView : MonoBehaviour
 {
-    public GameObject[] CardImages;
-    public GameObject InventoryCanvas;
+    public List<VisualElement> Cards = new List<VisualElement>();
+    public GameObject InventoryManager;
+
+    public InputAction inventoryToggle;
+    public VisualElement invPanel;
 
     private InventoryPresenter invPresenter;
 
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        invPanel = GetComponent<UIDocument>().rootVisualElement;
+
+        Cards = invPanel.Query(className: "unity-button").ToList();
+        invPanel.AddToClassList("hide");
+    }
+
+    void Start()
+    {
+        inventoryToggle = InputSystem.actions.FindAction("InventoryToggle");  
     }
 
     void OnEnable()
     {
-        invPresenter = InventoryCanvas.GetComponent<InventoryPresenter>();
+        invPresenter = InventoryManager.GetComponent<InventoryPresenter>();
         invPresenter.InventoryUpdated += UpdateInventoryUI;
     }
 
@@ -27,9 +42,9 @@ public class InventoryView : MonoBehaviour
     private void UpdateInventoryUI(object sender, InvUpdatedEventArgs e)
     {
         Debug.Log("updating inventory from InventoryView");
-        foreach (GameObject img in CardImages)
+        foreach (VisualElement btn in Cards)
         {
-            img.SetActive(false);
+            btn.AddToClassList("hide");
         }
         
         foreach (Card card in e.Cards)
@@ -37,9 +52,18 @@ public class InventoryView : MonoBehaviour
             if (card != null)
             {
                 Debug.Log(card.index);
-                CardImages[card.index].SetActive(true);
+                Cards[card.index].RemoveFromClassList("hide");
             }
         }
-        
+          
+    }
+
+    void Update()
+    {
+        if (inventoryToggle.triggered)
+        {
+            Debug.Log("inventory toggle triggered");
+            invPanel.ToggleInClassList("hide");
+        }
     }
 }

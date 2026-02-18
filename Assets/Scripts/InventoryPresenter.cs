@@ -15,9 +15,6 @@ public class InventoryPresenter : MonoBehaviour
     public event EventHandler<InvUpdatedEventArgs> InventoryUpdated;
     private Inventory inventory;
 
-    public InputAction inventoryToggle;
-    public GameObject inventoryMenu;
-
     void Awake()
     {
         inventory = new Inventory();
@@ -26,15 +23,7 @@ public class InventoryPresenter : MonoBehaviour
 
     void Start()
     {
-        inventoryToggle = InputSystem.actions.FindAction("InventoryToggle");  
-    }
-
-    void Update()
-    {
-        if (inventoryToggle.triggered)
-        {
-            inventoryMenu.SetActive(!inventoryMenu.activeSelf);
-        }
+        OnInventoryUpdated(new InvUpdatedEventArgs(inventory.Cards));
     }
 
     public void PickUpCard(CardView cardView)
