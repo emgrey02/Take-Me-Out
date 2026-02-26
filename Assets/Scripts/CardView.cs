@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 
 public class CardView : MonoBehaviour
 {
-    public InputAction Interact;
+    
+    [SerializeField] InputReader inputReader;
+
     public GameObject pickupText;
     public InventoryPresenter invPresenter;
     public Card Card;
@@ -16,7 +18,7 @@ public class CardView : MonoBehaviour
     void Start()
     {
         Card = new Card(CardIndex);
-        Interact = InputSystem.actions.FindAction("Interact");
+        inputReader.InteractEvent += OnInteract;
     }
 
     void OnTriggerEnter(Collider player)
@@ -26,9 +28,9 @@ public class CardView : MonoBehaviour
         inCardArea = true;
     }
 
-    void Update()
+    private void OnInteract(bool Interacted)
     {
-        if (Interact.triggered && inCardArea)
+        if (Interacted && inCardArea)
         {
             Debug.Log("player pressed E within card area");
             invPresenter.PickUpCard(gameObject.GetComponent<CardView>());

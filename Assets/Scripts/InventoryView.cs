@@ -6,10 +6,14 @@ using UnityEngine.InputSystem;
 
 public class InventoryView : MonoBehaviour
 {
+    [SerializeField] InputReader inputReader;
+
     public List<VisualElement> Cards = new List<VisualElement>();
     public GameObject InventoryManager;
 
-    public InputAction inventoryToggle;
+    public GameObject MainMenu;
+    private VisualElement mmPanel;
+
     public VisualElement invPanel;
 
     private InventoryPresenter invPresenter;
@@ -18,6 +22,7 @@ public class InventoryView : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         invPanel = GetComponent<UIDocument>().rootVisualElement;
+        mmPanel = MainMenu.GetComponent<UIDocument>().rootVisualElement;
 
         Cards = invPanel.Query(className: "unity-button").ToList();
         invPanel.AddToClassList("hide");
@@ -25,7 +30,7 @@ public class InventoryView : MonoBehaviour
 
     void Start()
     {
-        inventoryToggle = InputSystem.actions.FindAction("InventoryToggle");  
+        inputReader.InventoryToggleEvent += OnInventoryToggle;
     }
 
     void OnEnable()
@@ -58,12 +63,25 @@ public class InventoryView : MonoBehaviour
           
     }
 
-    void Update()
+    void OnInventoryToggle(bool InventoryToggled)
     {
-        if (inventoryToggle.triggered)
+        if (InventoryToggled && mmPanel.ClassListContains("hide"))
         {
             Debug.Log("inventory toggle triggered");
             invPanel.ToggleInClassList("hide");
+
+            if (invPanel.ClassListContains("hide"))
+            {
+                inputReader.EnablePlayerControls();
+            }
+            else {
+                inputReader.DisablePlayerControls();
+            }
         }
+    }
+
+    void Update()
+    {
+        Debug.Log("Inventory:" + inputReader.PlayerControlsStatus());   
     }
 }

@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4803534d808552f499367626e09afe2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
+  inputReader: {fileID: 11400000, guid: 5c299cab03cdbb24db081619bb1e1da9, type: 2}
   InventoryManager: {fileID: 1423325431}
   MainMenu: {fileID: 1683894667}
 --- !u!1001 &226500283
@@ -5949,6 +5949,7 @@ GameObject:
   - component: {fileID: 987076441}
   - component: {fileID: 987076443}
   - component: {fileID: 987076442}
+  - component: {fileID: 987076444}
   - component: {fileID: 987076446}
   m_Layer: 0
   m_Name: Player
@@ -6017,6 +6018,18 @@ CharacterController:
   m_SkinWidth: 0.06
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &987076444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987076438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2aae6d928694f4cada93210617b1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstPersonCamera
 --- !u!114 &987076446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7940,7 +7953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1c71391b8a95f4691e603f45a8ca83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryController
-  inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
+  inputReader: {fileID: 11400000, guid: 5c299cab03cdbb24db081619bb1e1da9, type: 2}
   Inventory: {fileID: 198711675}
 --- !u!1 &1686056846
 GameObject:

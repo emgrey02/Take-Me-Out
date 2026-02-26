@@ -57,11 +57,13 @@
     -unity-font-definition: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=f005909a0ab2da84192c2c5c01d36fae&type=3#NotInter-Regular");
     -unity-font-style: bold;
     background-color: rgba(255, 255, 255, 0.64);
-    transition-property: scale;
-    transition-duration: 0.2s;
+    transition-property: scale, background-color;
+    transition-duration: 0.2s, 0.2s;
 }
 
 .unity-button:hover {
     background-color: rgb(226, 172, 25);
     scale: 1.1 1.1;
+    transition-property: scale, background-color;
+    transition-duration: 0.2s, 0.2s;
 }

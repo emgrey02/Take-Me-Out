@@ -5,7 +5,10 @@ using UnityEngine.InputSystem;
 
 public class MenuController : MonoBehaviour
 {
-    public InputAction mainmenuToggle;
+    [SerializeField] InputReader inputReader;
+
+    public GameObject Inventory;
+    private VisualElement invPanel;
 
     public VisualElement ui;
 
@@ -37,7 +40,7 @@ public class MenuController : MonoBehaviour
 
     void Start()
     {
-        mainmenuToggle = InputSystem.actions.FindAction("MainMenuToggle");
+        inputReader.MainMenuToggleEvent += OnMainMenuToggle;
         ui.AddToClassList("hide");
     }
 
@@ -65,9 +68,9 @@ public class MenuController : MonoBehaviour
         ui.AddToClassList("hide");
     }
 
-    void Update()
+    void OnMainMenuToggle(bool MainMenuToggled)
     {
-        if (mainmenuToggle.triggered)
+        if (MainMenuToggled && ui.ClassListContains("hide"))
         {
             Debug.Log("main menu toggle triggered");
             ui.ToggleInClassList("hide");

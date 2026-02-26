@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Base : MonoBehaviour
 {
-    public InputAction Interact;
+    public InputReader inputReader;
+
     public int baseNum;
     public GameObject EnterScenePrompt;
     public bool inBaseArea = false;
@@ -11,12 +12,12 @@ public class Base : MonoBehaviour
 
     void Start()
     {
-        Interact = InputSystem.actions.FindAction("Interact");
+        inputReader.InteractEvent += OnInteract;
     }
 
-    void Update()
+    void OnInteract(bool Interacted)
     {
-        if (Interact.triggered & inBaseArea)
+        if (Interacted & inBaseArea)
         {
             Debug.Log("Send to first scene experience");
             Transform player = GameObject.FindWithTag("Player").GetComponent<Transform>();

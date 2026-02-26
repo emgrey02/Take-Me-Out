@@ -1302,9 +1302,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4803534d808552f499367626e09afe2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
   InventoryManager: {fileID: 1423325431}
   MainMenu: {fileID: 1683894667}
+  inventoryToggle:
+    m_Name: Inventory Toggle
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3593022e-69d5-4e97-ba05-38466d9e089c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1001 &226500283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3188,10 +3196,6 @@ PrefabInstance:
       value: PIckupCard (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3249763096866785225, guid: 533f04ffa9525804e9cb86f8c3c3d304, type: 3}
-      propertyPath: inputReader
-      value: 
-      objectReference: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
-    - target: {fileID: 3249763096866785225, guid: 533f04ffa9525804e9cb86f8c3c3d304, type: 3}
       propertyPath: invPresenter
       value: 
       objectReference: {fileID: 1423325434}
@@ -5069,10 +5073,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 839307863}
     - target: {fileID: 3249763096866785225, guid: 533f04ffa9525804e9cb86f8c3c3d304, type: 3}
-      propertyPath: inputReader
-      value: 
-      objectReference: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
-    - target: {fileID: 3249763096866785225, guid: 533f04ffa9525804e9cb86f8c3c3d304, type: 3}
       propertyPath: invPresenter
       value: 
       objectReference: {fileID: 1423325434}
@@ -5806,7 +5806,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194229}
-  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -5894,50 +5893,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
   nonRigidbodyVelocity: 0
   attenuationObject: {fileID: 0}
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
-  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
-  m_Version: 2
 --- !u!1 &987076438
 GameObject:
   m_ObjectHideFlags: 0
@@ -5949,6 +5904,7 @@ GameObject:
   - component: {fileID: 987076441}
   - component: {fileID: 987076443}
   - component: {fileID: 987076442}
+  - component: {fileID: 987076444}
   - component: {fileID: 987076446}
   m_Layer: 0
   m_Name: Player
@@ -5985,13 +5941,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae3b59a1e638e947b39d4d30d53b3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: 7d598e2a-ece8-41b5-b7da-ead53e27b308
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   moveSpeed: 6
   gravity: -9.81
   InventoryMenu: {fileID: 198711675}
   MainMenu: {fileID: 1683894667}
-  lookSensitivity: 60
-  cam: {fileID: 963194227}
 --- !u!143 &987076443
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6017,6 +5979,32 @@ CharacterController:
   m_SkinWidth: 0.06
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &987076444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987076438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2aae6d928694f4cada93210617b1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstPersonCamera
+  lookAction:
+    m_Name: Look
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: b722ef27-2d44-4534-b44e-d0760b8c5b61
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  InventoryMenu: {fileID: 198711675}
+  MainMenu: {fileID: 1683894667}
+  lookSensitivity: 100
+  playerTransform: {fileID: 987076441}
+  cam: {fileID: 963194227}
 --- !u!114 &987076446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6432,7 +6420,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e507273a9e389844bf3d330c4075608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Base
-  inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
+  Interact:
+    m_Name: Interact
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c8a16ec7-3d80-40d0-b44e-db3001dec2cb
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   baseNum: 1
   EnterScenePrompt: {fileID: 1278290506}
   inBaseArea: 0
@@ -7940,7 +7936,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1c71391b8a95f4691e603f45a8ca83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryController
-  inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
+  mainmenuToggle:
+    m_Name: Mainmenu Toggle
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0be35aa0-b355-41f6-8724-849141591021
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   Inventory: {fileID: 198711675}
 --- !u!1 &1686056846
 GameObject:
@@ -15281,10 +15285,6 @@ PrefabInstance:
       propertyPath: CardIndex
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3249763096866785225, guid: 533f04ffa9525804e9cb86f8c3c3d304, type: 3}
-      propertyPath: inputReader
-      value: 
-      objectReference: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
     - target: {fileID: 3249763096866785225, guid: 533f04ffa9525804e9cb86f8c3c3d304, type: 3}
       propertyPath: invPresenter
       value: 

@@ -1,21 +1,35 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Input Actions")]
-    public InputAction moveAction; // Vector2
     
+    [SerializeField] InputReader inputReader;
+    
+    [Header("Player Movement Settings")]
     public float moveSpeed = 5f;
     public float gravity = -9.81f;
     private CharacterController controller;
+    private Vector3 _velocity;
+    private Vector3 _moveVector;
     
+    [Header("Menu Game Objects")]
     public GameObject InventoryMenu;
     public GameObject MainMenu;
 
-    public bool DisableMvmt = false;
+    private VisualElement invPanel;
+    private VisualElement mmPanel;
 
-    private Vector3 velocity;
+    [Header("Mouse Look Settings")]
+    [Tooltip("Sensitivity of mouse movement")]
+    public float lookSensitivity = 100f;
+    // track's camera's x-axis rotation
+    private float xRotation = 0f;
+
+    [Tooltip("Camera component attached to player")]
+    public Camera cam;
 
     private void Awake()
     {
@@ -23,26 +37,67 @@ public class PlayerMovement : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        moveAction = InputSystem.actions.FindAction("Move");
+        inputReader.MoveEvent += OnMove;
+        inputReader.LookEvent += OnLook;
+
+        invPanel = InventoryMenu.GetComponent<UIDocument>().rootVisualElement;
+        mmPanel = MainMenu.GetComponent<UIDocument>().rootVisualElement;
     }
 
-    // Update is called once per frame
+    private void OnMove(Vector2 movement)
+    {
+        if (invPanel.ClassListContains("hide") && mmPanel.ClassListContains("hide")) {
+
+            _moveVector = movement * moveSpeed; 
+        }
+    }
+    
+    private void OnLook(Vector2 playerLook)
+    {
+        if (invPanel.ClassListContains("hide") && mmPanel.ClassListContains("hide")) {
+            #if UNITY_STANDALONE
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                UnityEngine.Cursor.visible = false;
+            #endif
+            #if UNITY_EDITOR
+                UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+                UnityEngine.Cursor.visible = false;
+            #endif
+
+            float lookX = playerLook.x * lookSensitivity * Time.deltaTime;
+            float lookY = playerLook.y * lookSensitivity * Time.deltaTime;
+
+            xRotation -= lookY;
+            xRotation = Math.Clamp(xRotation, -90f, 90f);
+
+            // rotate camera around xAxis (look up & down)
+            Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+            // rotate player around yAxis (turn left & right)
+            transform.Rotate(Vector3.up * lookX);
+        }
+        else {
+            UnityEngine.Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
     void Update()
     {
-        Vector2 moveVector = moveAction.ReadValue<Vector2>() * moveSpeed;
-        Vector3 move = (moveVector.y * transform.forward) + (moveVector.x * transform.right);
-
-        //Combine movement and gravity
-        if (controller.isGrounded && velocity.y < 0)
+        Debug.Log("PlayerMovement:" + inputReader.PlayerControlsStatus());  
+        if (inputReader.PlayerControlsStatus())
         {
-            velocity.y = -2f;
+            Vector3 move = (_moveVector.y * transform.forward) + (_moveVector.x * transform.right);
+            //Combine movement and gravity
+            if (controller.isGrounded && _velocity.y < 0)
+            {
+                _velocity.y = -2f;
+            }
+            _velocity.y += gravity * Time.deltaTime;
+            controller.Move(_velocity * Time.deltaTime);
+            controller.Move(move * Time.deltaTime);
         }
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-        controller.Move(move * Time.deltaTime);
-
     }
 }
