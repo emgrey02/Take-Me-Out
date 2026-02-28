@@ -1,17 +1,18 @@
 using UnityEngine;
 using System;
 
+[System.Serializable]
 public class Inventory
 {
-    public Card[] Cards;
+    public bool[] Cards;
 
     public Inventory()
     {
-        Cards = new Card[7];
+        Cards = new bool[7];
     }
 
     public void AddCard(Card newCard)
     {
-        Cards[newCard.index] = newCard;
+        Cards[newCard.index] = true;
     }
 }

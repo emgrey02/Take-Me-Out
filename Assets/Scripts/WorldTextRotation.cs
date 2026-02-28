@@ -11,7 +11,7 @@ public class WorldTextRotation : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         text.transform.rotation = Camera.main.transform.rotation;
     }

@@ -9,6 +9,7 @@ TagManager:
   - UIManager
   - CardObj
   - MainMenu
+  - SaveManager
   layers:
   - Default
   - TransparentFX

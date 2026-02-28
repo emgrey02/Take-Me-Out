@@ -10,38 +10,73 @@ public class MenuController : MonoBehaviour
     private GameObject Inventory;
     private VisualElement invPanel;
 
-    public VisualElement ui;
+    private SaveManager SaveManager;
 
-    public Button continueButton;
-    public Button graphicsButton;
-    public Button audioButton;
+    public VisualElement mm;
+
+    public Button playButton;
+    public Button settingsButton;
+    public Button saveButton;
     public Button quitButton;
 
     void Awake()
     {
-        ui = GetComponent<UIDocument>().rootVisualElement;
+        mm = GetComponent<UIDocument>().rootVisualElement; 
+
+        
+        
     }
 
     void OnEnable()
     {
-        continueButton = ui.Q<Button>("ContinueButton");
-        continueButton.clicked += OnContinueButtonClicked;
+        // get buttons and subscribe to click events
+        playButton = mm.Q<Button>("PlayButton");
+        playButton.clicked += OnPlayButtonClicked;
 
-        graphicsButton = ui.Q<Button>("GraphicsButton");
-        graphicsButton.clicked += OnGraphicsButtonClicked;
+        settingsButton = mm.Q<Button>("SettingsButton");
+        settingsButton.clicked += OnSettingsButtonClicked;
 
-        audioButton = ui.Q<Button>("AudioButton");
-        audioButton.clicked += OnAudioButtonClicked;
+        saveButton = mm.Q<Button>("SaveButton");
+        saveButton.clicked += OnSaveButtonClicked;
 
-        quitButton = ui.Q<Button>("QuitButton");
+        quitButton = mm.Q<Button>("QuitButton");
         quitButton.clicked += OnQuitButtonClicked;
+ 
     }
 
     void Start()
     {
+        // get save manager
+        SaveManager = GameObject.FindWithTag("SaveManager").GetComponent<SaveManager>();
+
+        // get inventory ui
         Inventory = GameObject.FindWithTag("Inventory");
+        invPanel = Inventory.GetComponent<UIDocument>().rootVisualElement;
+
+        // subscribe to main menu toggle event
         inputReader.MainMenuToggleEvent += OnMainMenuToggle;
-        ui.AddToClassList("hide");
+
+        // hide main menu if not first scene
+        if (GameManager.Instance.GetSceneId() != 0)
+        {
+            mm.AddToClassList("hide");
+        }
+
+        // if first scene and we have save data
+        if (GameManager.Instance.GetSceneId() == 0 && SaveManager.LoadPlayerData() != null)
+        {
+            playButton.text = "Continue";
+        }
+        else if (GameManager.Instance.GetSceneId() == 0 && SaveManager.LoadPlayerData() == null)
+        {
+            // we dont have save data in first scene
+            playButton.text = "New Game";
+        }
+        else 
+        {
+            playButton.text = "Continue";
+        }
+
     }
 
     private void OnQuitButtonClicked()
@@ -52,32 +87,48 @@ public class MenuController : MonoBehaviour
         #endif
     }
 
-    private void OnGraphicsButtonClicked()
+    private void OnSettingsButtonClicked()
     {
-        Debug.Log("Graphics Options");
+        Debug.Log("Settings");
     }
 
-    private void OnAudioButtonClicked()
+    private void OnSaveButtonClicked()
     {
-        Debug.Log("Audio Options");
+        Debug.Log("Save Game");
+        SaveManager.SavePlayerData();
     }
 
-    private void OnContinueButtonClicked()
+    private void OnPlayButtonClicked()
     {
-        Debug.Log("Disabling Main Menu");
-        ui.AddToClassList("hide");
+        if (GameManager.Instance.GetSceneId() == 0 && playButton.text == "New Game")
+        {
+            GameManager.Instance.MoveToScene(1);
+        }
+        else if (GameManager.Instance.GetSceneId() == 0 && playButton.text == "Continue")
+        {
+            GameManager.Instance.MoveToScene(SaveManager.LoadPlayerData().sceneNum);
+        }
+        else
+        {
+            // hide main menu
+            mm.AddToClassList("hide");
+
+        }
+
+        // enable player controls
         inputReader.EnablePlayerControls();
     }
 
     void OnMainMenuToggle(bool MainMenuToggled)
     {
-        if (MainMenuToggled && ui.ClassListContains("hide"))
+        // if we toggled opened main menu with ESC and inventory isnt open
+        if (MainMenuToggled && invPanel.ClassListContains("hide"))
         {
             Debug.Log("main menu toggle triggered");
-            ui.ToggleInClassList("hide");
+            mm.ToggleInClassList("hide");
 
-            // disable/enable player controls if inventory on screen or not
-            if (ui.ClassListContains("hide"))
+            // disable/enable player controls if main menu is on screen or not
+            if (mm.ClassListContains("hide"))
             {
                 inputReader.EnablePlayerControls();
             }

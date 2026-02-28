@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMove(Vector2 movement)
     {
-        Debug.Log("player moving");
+        //Debug.Log("player moving");
         _moveVector = movement * moveSpeed; 
         
     }
@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void OnLook(Vector2 playerLook)
     {
-        Debug.Log("player looking");
+        //Debug.Log("player looking");
         #if UNITY_STANDALONE
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("PlayerMovement:" + inputReader.PlayerControlsStatus());  
+        //Debug.Log("PlayerMovement:" + inputReader.PlayerControlsStatus());  
         if (inputReader.PlayerControlsStatus())
         {
             Vector3 move = (_moveVector.y * transform.forward) + (_moveVector.x * transform.right);

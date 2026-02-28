@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &215017549558419220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -150,17 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3754d0f3c752b4397d48a2c5cd6f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardView
-  Interact:
-    m_Name: Interact
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 57dbae47-065b-424d-9f7f-623eee38e750
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 1
+  inputReader: {fileID: 0}
   pickupText: {fileID: 1612775281667562381}
-  invPresenter: {fileID: 0}
   inCardArea: 0
   CardIndex: 1
 --- !u!65 &2606093853999561826

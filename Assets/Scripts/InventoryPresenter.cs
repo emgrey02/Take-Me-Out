@@ -3,8 +3,8 @@ using System;
 using UnityEngine.InputSystem;
 
 public class InvUpdatedEventArgs : EventArgs {
-    public Card[] Cards { get; }
-    public InvUpdatedEventArgs(Card[] cards)
+    public bool[] Cards { get; }
+    public InvUpdatedEventArgs(bool[] cards)
     {
         Cards = cards;
     }
@@ -14,17 +14,27 @@ public class InventoryPresenter : MonoBehaviour
 {
     public event EventHandler<InvUpdatedEventArgs> InventoryUpdated;
     private Inventory inventory;
+    private SaveManager SaveManager;
 
     void Awake()
     {
-        if (inventory == null)
-        {
-            inventory = new Inventory();
-        }
+        // get save manager
+        SaveManager = GameObject.FindWithTag("SaveManager").GetComponent<SaveManager>();
     }
 
     void Start()
     {
+        inventory = SaveManager.LoadInventory();
+        if (inventory == null)
+        {
+            Debug.Log("Creating new inventory");
+            inventory = new Inventory();
+        }
+        else 
+        {
+            Debug.Log("Populated inventory from save");
+        }
+
         // update inventory at start
         OnInventoryUpdated(new InvUpdatedEventArgs(inventory.Cards));
     }
@@ -34,6 +44,9 @@ public class InventoryPresenter : MonoBehaviour
         Debug.Log("Picking up card");
         // tell inventory to add ths card
         inventory.AddCard(cardView.Card);
+
+        // save inventory on card PickUpCard
+        SaveManager.SaveInventory(inventory);
 
         // emit event to listeners (InventoryView)
         OnInventoryUpdated(new InvUpdatedEventArgs(inventory.Cards));

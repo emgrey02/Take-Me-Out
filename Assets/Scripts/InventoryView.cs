@@ -3,13 +3,17 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class InventoryView : MonoBehaviour
 {
     [SerializeField] InputReader inputReader;
 
+    // card slots in inventory
     public List<VisualElement> Cards = new List<VisualElement>();
-    private InventoryPresenter InventoryManager;
+
+    // card gameobjects on baseball field
+    //public GameObject cardObjPrefab;
 
     private GameObject MainMenu;
     private VisualElement mmPanel;
@@ -43,7 +47,9 @@ public class InventoryView : MonoBehaviour
         mmPanel = MainMenu.GetComponent<UIDocument>().rootVisualElement;
 
         // subscribe to inventory toggle event
-        inputReader.InventoryToggleEvent += OnInventoryToggle;
+        inputReader.InventoryToggleEvent += OnInventoryToggle; 
+
+        
     }
 
 
@@ -56,22 +62,24 @@ public class InventoryView : MonoBehaviour
     private void UpdateInventoryUI(object sender, InvUpdatedEventArgs e)
     {
         Debug.Log("updating inventory from InventoryView");
+        
         // hide all the cards
         foreach (VisualElement btn in Cards)
         {
             btn.AddToClassList("hide");
         }
         
-        // only show cards we have
-        foreach (Card card in e.Cards)
+        // only show cards we have in inventory
+        for (int i = 0; i < 6; i++)
         {
-            if (card != null)
+            if (e.Cards[i])
             {
-                Debug.Log(card.index);
-                Cards[card.index].RemoveFromClassList("hide");
+                Cards[i].RemoveFromClassList("hide");
             }
         }
-          
+
+        // only instantiate card prefabs we can still pickup
+        // so when we go back to baseball field, correct ones still there
     }
 
     void OnInventoryToggle(bool InventoryToggled)
@@ -94,8 +102,8 @@ public class InventoryView : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        Debug.Log("Inventory:" + inputReader.PlayerControlsStatus());   
-    }
+    //void Update()
+    //{
+    //    Debug.Log("Inventory:" + inputReader.PlayerControlsStatus());   
+    //}
 }

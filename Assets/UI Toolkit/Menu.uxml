@@ -5,9 +5,9 @@
             <ui:Label text="Take Me Out" selectable="true" focusable="true" style="font-size: 60px; color: rgb(255, 255, 255); -unity-font-style: bold-and-italic; -unity-text-outline-width: 5px; -unity-text-outline-color: rgb(0, 0, 0);"/>
             <ui:VisualElement name="Logo" style="flex-grow: 1;"/>
             <ui:VisualElement name="Container" class="menu" style="translate: 0 0;">
-                <ui:Button text="Continue" name="ContinueButton" parse-escape-sequences="false" style="translate: 150px 0;"/>
-                <ui:Button text="Graphics" parse-escape-sequences="true" name="GraphicsButton" style="translate: 100px 0;"/>
-                <ui:Button text="Audio" name="AudioButton" style="translate: 50px 0;"/>
+                <ui:Button text="Continue" name="PlayButton" parse-escape-sequences="false" style="translate: 150px 0;"/>
+                <ui:Button text="Settings" parse-escape-sequences="true" name="SettingsButton" style="translate: 100px 0;"/>
+                <ui:Button text="Save" name="SaveButton" style="translate: 50px 0;"/>
                 <ui:Button text="Quit" name="QuitButton"/>
             </ui:VisualElement>
         </ui:VisualElement>
