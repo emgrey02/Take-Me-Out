@@ -36,6 +36,11 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    public void ClearInventory()
+    {
+        File.WriteAllText(saveFilePath, "");
+    }
+
     public void SavePlayerData()
     {
         Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;

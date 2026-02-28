@@ -81,6 +81,7 @@ public class MenuController : MonoBehaviour
 
     private void OnQuitButtonClicked()
     {
+        SaveManager.ClearInventory();
         Application.Quit();
         #if UNITY_EDITOR
             EditorApplication.isPlaying = false;

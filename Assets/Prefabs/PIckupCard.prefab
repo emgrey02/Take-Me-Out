@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 7946916071854485351}
   - component: {fileID: 5707759572242968778}
   - component: {fileID: 2341757014230287719}
+  - component: {fileID: 7081368128846215129}
   m_Layer: 0
   m_Name: Pickup Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &215017549558419220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -102,6 +103,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7081368128846215129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612775281667562381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebe0e9dd21117746b0048319c8ffd18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldTextRotation
+  text: {fileID: 1651214054887191716}
 --- !u!1 &1729920221054101192
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3754d0f3c752b4397d48a2c5cd6f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardView
-  inputReader: {fileID: 0}
+  inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
   pickupText: {fileID: 1612775281667562381}
   inCardArea: 0
   CardIndex: 1

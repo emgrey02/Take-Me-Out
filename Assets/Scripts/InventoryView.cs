@@ -13,7 +13,10 @@ public class InventoryView : MonoBehaviour
     public List<VisualElement> Cards = new List<VisualElement>();
 
     // card gameobjects on baseball field
-    //public GameObject cardObjPrefab;
+    public GameObject cardObjPrefab;
+
+    // card object scriptable objects
+    public CardObjectSO[] cardSpawnValues;
 
     private GameObject MainMenu;
     private VisualElement mmPanel;
@@ -48,8 +51,6 @@ public class InventoryView : MonoBehaviour
 
         // subscribe to inventory toggle event
         inputReader.InventoryToggleEvent += OnInventoryToggle; 
-
-        
     }
 
 
@@ -63,22 +64,32 @@ public class InventoryView : MonoBehaviour
     {
         Debug.Log("updating inventory from InventoryView");
         
-        // hide all the cards
+        // hide all the cards in inventory
         foreach (VisualElement btn in Cards)
         {
             btn.AddToClassList("hide");
         }
         
         // only show cards we have in inventory
+        // only instantiate card prefabs we can still pickup
         for (int i = 0; i < 6; i++)
         {
             if (e.Cards[i])
             {
                 Cards[i].RemoveFromClassList("hide");
             }
+            else 
+            {
+                if (GameObject.Find(cardSpawnValues[i].name) == null && GameManager.Instance.GetSceneId() == 1)
+                {
+                    GameObject c = Instantiate(cardObjPrefab, cardSpawnValues[i].spawnPoint, Quaternion.identity);
+                    c.name = cardSpawnValues[i].name;
+                    c.GetComponent<CardView>().CardIndex = cardSpawnValues[i].cardIndex;
+                }
+            }
         }
 
-        // only instantiate card prefabs we can still pickup
+        
         // so when we go back to baseball field, correct ones still there
     }
 

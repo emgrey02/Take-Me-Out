@@ -1,13 +1,11 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Base : MonoBehaviour
+public class BacktoBaseballField : MonoBehaviour
 {
     public InputReader inputReader;
 
-    public int baseNum;
     public GameObject EnterScenePrompt;
-    public bool inBaseArea = false;
+    public bool inArea = false;
 
     void Start()
     {
@@ -16,29 +14,29 @@ public class Base : MonoBehaviour
 
     void OnInteract(bool Interacted)
     {
-        if (Interacted & inBaseArea)
+        if (Interacted & inArea)
         {
-            Debug.Log("Send to first scene experience");
+            Debug.Log("Send to baseball field");
             //Transform player = GameObject.FindWithTag("Player").GetComponent<Transform>();
             //player.rotation = new Quaternion(0, 130f, 0, 0);
             //player.position = new Vector3 (0, .9f, 0);
             //Physics.SyncTransforms();
-            GameManager.Instance.MoveToScene(baseNum + 1);
+            GameManager.Instance.MoveToScene(1);
         }
     }
 
     void OnTriggerEnter(Collider player)
     {
-        Debug.Log("Player entered area around base");
+        Debug.Log("Player entered area");
         EnterScenePrompt.SetActive(true);
-        inBaseArea = true;
+        inArea = true;
     }
 
     void OnTriggerExit(Collider player)
     {
-        Debug.Log("Player left area around base");
+        Debug.Log("Player left area");
         EnterScenePrompt.SetActive(false);
-        inBaseArea = false;
+        inArea = false;
     }
 
     void OnDisable()

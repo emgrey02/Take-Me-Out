@@ -70,6 +70,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
+  cardObjPrefab: {fileID: 1729920221054101192, guid: 533f04ffa9525804e9cb86f8c3c3d304, type: 3}
+  cardSpawnValues:
+  - {fileID: 11400000, guid: 008af89df8be0d948bc1ace130bbdc0e, type: 2}
+  - {fileID: 11400000, guid: 9d93f73650d9bb34684a79b72059433a, type: 2}
+  - {fileID: 11400000, guid: 4847e17173bf9c8438afbeb9d04a7c59, type: 2}
+  - {fileID: 11400000, guid: 5cf940b2d9fb63f45835cf01d91d3bdb, type: 2}
+  - {fileID: 11400000, guid: f5e5d4d1b516a3e4ebdf36e5346a731f, type: 2}
+  - {fileID: 11400000, guid: d4c656163d5895347908b7896f7e94b0, type: 2}
 --- !u!114 &6824334642773575839
 MonoBehaviour:
   m_ObjectHideFlags: 0

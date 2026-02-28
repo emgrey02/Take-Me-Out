@@ -12,6 +12,7 @@ public class CardView : MonoBehaviour
     public Card Card;
     public bool inCardArea = false;
 
+
     public int CardIndex;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

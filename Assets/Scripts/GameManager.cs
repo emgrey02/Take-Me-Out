@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
             case 2:
                 // the burren
                 pos = new Vector3(-8f, 1f, 0);
-                rot = Quaternion.Euler(0, -20, 0);
+                rot = Quaternion.Euler(0, 100, 0);
                 break;
             default:
                 pos = new Vector3(0, 0, 0);
