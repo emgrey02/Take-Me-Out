@@ -8,7 +8,6 @@ public class Base : MonoBehaviour
     public int baseNum;
     public GameObject EnterScenePrompt;
     public bool inBaseArea = false;
-    public SceneController sceneController;
 
     void Start()
     {
@@ -20,11 +19,11 @@ public class Base : MonoBehaviour
         if (Interacted & inBaseArea)
         {
             Debug.Log("Send to first scene experience");
-            Transform player = GameObject.FindWithTag("Player").GetComponent<Transform>();
-            player.rotation = new Quaternion(0, 130f, 0, 0);
-            player.position = new Vector3 (0, .9f, 0);
-            Physics.SyncTransforms();
-            sceneController.MoveToScene(baseNum + 1);
+            //Transform player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+            //player.rotation = new Quaternion(0, 130f, 0, 0);
+            //player.position = new Vector3 (0, .9f, 0);
+            //Physics.SyncTransforms();
+            GameManager.Instance.MoveToScene(baseNum + 1);
         }
     }
 

@@ -7,7 +7,7 @@ public class MenuController : MonoBehaviour
 {
     [SerializeField] InputReader inputReader;
 
-    public GameObject Inventory;
+    private GameObject Inventory;
     private VisualElement invPanel;
 
     public VisualElement ui;
@@ -19,7 +19,6 @@ public class MenuController : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         ui = GetComponent<UIDocument>().rootVisualElement;
     }
 
@@ -40,6 +39,7 @@ public class MenuController : MonoBehaviour
 
     void Start()
     {
+        Inventory = GameObject.FindWithTag("Inventory");
         inputReader.MainMenuToggleEvent += OnMainMenuToggle;
         ui.AddToClassList("hide");
     }
@@ -66,6 +66,7 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("Disabling Main Menu");
         ui.AddToClassList("hide");
+        inputReader.EnablePlayerControls();
     }
 
     void OnMainMenuToggle(bool MainMenuToggled)
@@ -74,6 +75,15 @@ public class MenuController : MonoBehaviour
         {
             Debug.Log("main menu toggle triggered");
             ui.ToggleInClassList("hide");
+
+            // disable/enable player controls if inventory on screen or not
+            if (ui.ClassListContains("hide"))
+            {
+                inputReader.EnablePlayerControls();
+            }
+            else {
+                inputReader.DisablePlayerControls();
+            }
         }
     }
     

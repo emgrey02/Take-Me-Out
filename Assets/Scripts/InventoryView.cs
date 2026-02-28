@@ -9,49 +9,60 @@ public class InventoryView : MonoBehaviour
     [SerializeField] InputReader inputReader;
 
     public List<VisualElement> Cards = new List<VisualElement>();
-    public GameObject InventoryManager;
+    private InventoryPresenter InventoryManager;
 
-    public GameObject MainMenu;
+    private GameObject MainMenu;
     private VisualElement mmPanel;
 
     public VisualElement invPanel;
 
     private InventoryPresenter invPresenter;
-
-    void Awake()
+    
+    void OnEnable()
     {
-        DontDestroyOnLoad(gameObject);
-        invPanel = GetComponent<UIDocument>().rootVisualElement;
-        mmPanel = MainMenu.GetComponent<UIDocument>().rootVisualElement;
+        // get inv presenter component for event subscription
+        invPresenter = GetComponent<InventoryPresenter>();
 
-        Cards = invPanel.Query(className: "unity-button").ToList();
-        invPanel.AddToClassList("hide");
+        // listen for any inventory updates from inv presenter
+        invPresenter.InventoryUpdated += UpdateInventoryUI;
     }
 
     void Start()
     {
+        // get ui doc for inventory
+        invPanel = GetComponent<UIDocument>().rootVisualElement;
+
+        // fill list with ui cards
+        Cards = invPanel.Query(className: "unity-button").ToList();
+
+        // hide inventory
+        invPanel.AddToClassList("hide");
+        
+        // get main menu ui 
+        GameObject MainMenu = GameObject.FindWithTag("MainMenu");
+        mmPanel = MainMenu.GetComponent<UIDocument>().rootVisualElement;
+
+        // subscribe to inventory toggle event
         inputReader.InventoryToggleEvent += OnInventoryToggle;
     }
 
-    void OnEnable()
-    {
-        invPresenter = InventoryManager.GetComponent<InventoryPresenter>();
-        invPresenter.InventoryUpdated += UpdateInventoryUI;
-    }
 
     void OnDisable()
-    {
+    {   
+        // unsubscribe to inventory toggle event
         invPresenter.InventoryUpdated -= UpdateInventoryUI;
     }
 
     private void UpdateInventoryUI(object sender, InvUpdatedEventArgs e)
     {
         Debug.Log("updating inventory from InventoryView");
+        // hide all the cards
         foreach (VisualElement btn in Cards)
         {
             btn.AddToClassList("hide");
         }
         
+        // only show cards we have
         foreach (Card card in e.Cards)
         {
             if (card != null)
@@ -65,11 +76,14 @@ public class InventoryView : MonoBehaviour
 
     void OnInventoryToggle(bool InventoryToggled)
     {
+        // if we toggled inventory with TAB and main menu isnt open
         if (InventoryToggled && mmPanel.ClassListContains("hide"))
         {
             Debug.Log("inventory toggle triggered");
+            // toggle hide class
             invPanel.ToggleInClassList("hide");
 
+            // disable/enable player controls if inventory on screen or not
             if (invPanel.ClassListContains("hide"))
             {
                 inputReader.EnablePlayerControls();

@@ -8,6 +8,7 @@ TagManager:
   - Clickable
   - UIManager
   - CardObj
+  - MainMenu
   layers:
   - Default
   - TransparentFX

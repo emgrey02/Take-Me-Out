@@ -8,7 +8,7 @@ public class CardView : MonoBehaviour
     [SerializeField] InputReader inputReader;
 
     public GameObject pickupText;
-    public InventoryPresenter invPresenter;
+    private InventoryPresenter invPresenter;
     public Card Card;
     public bool inCardArea = false;
 
@@ -18,6 +18,7 @@ public class CardView : MonoBehaviour
     void Start()
     {
         Card = new Card(CardIndex);
+        invPresenter = GameObject.FindWithTag("Inventory").GetComponent<InventoryPresenter>();
         inputReader.InteractEvent += OnInteract;
     }
 
@@ -43,5 +44,10 @@ public class CardView : MonoBehaviour
         Debug.Log("Player left area around card");
         pickupText.SetActive(false);
         inCardArea = false;
+    }
+
+    void OnDisable()
+    {
+        inputReader.InteractEvent -= OnInteract;
     }
 }

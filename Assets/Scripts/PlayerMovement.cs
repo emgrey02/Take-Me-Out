@@ -14,10 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private Vector3 _velocity;
     private Vector3 _moveVector;
-    
-    [Header("Menu Game Objects")]
-    public GameObject InventoryMenu;
-    public GameObject MainMenu;
 
     private VisualElement invPanel;
     private VisualElement mmPanel;
@@ -28,19 +24,21 @@ public class PlayerMovement : MonoBehaviour
     // track's camera's x-axis rotation
     private float xRotation = 0f;
 
-    [Tooltip("Camera component attached to player")]
-    public Camera cam;
-
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
-        DontDestroyOnLoad(gameObject);
+
+        // Subscribe to input events
+        inputReader.MoveEvent += OnMove;
+        inputReader.LookEvent += OnLook;
     }
 
     void Start()
     {
-        inputReader.MoveEvent += OnMove;
-        inputReader.LookEvent += OnLook;
+
+        // get ui gameobjects & ui elements
+        GameObject InventoryMenu = GameObject.FindWithTag("Inventory");
+        GameObject MainMenu = GameObject.FindWithTag("MainMenu");
 
         invPanel = InventoryMenu.GetComponent<UIDocument>().rootVisualElement;
         mmPanel = MainMenu.GetComponent<UIDocument>().rootVisualElement;
@@ -48,40 +46,47 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMove(Vector2 movement)
     {
-        if (invPanel.ClassListContains("hide") && mmPanel.ClassListContains("hide")) {
+        Debug.Log("player moving");
+        _moveVector = movement * moveSpeed; 
+        
+    }
 
-            _moveVector = movement * moveSpeed; 
-        }
+    void OnDisable()
+    {
+        // unsubscribe on destroy
+        inputReader.MoveEvent -= OnMove;
+        inputReader.LookEvent -= OnLook;
     }
     
     private void OnLook(Vector2 playerLook)
     {
-        if (invPanel.ClassListContains("hide") && mmPanel.ClassListContains("hide")) {
-            #if UNITY_STANDALONE
-                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-                UnityEngine.Cursor.visible = false;
-            #endif
-            #if UNITY_EDITOR
-                UnityEngine.Cursor.lockState = CursorLockMode.Confined;
-                UnityEngine.Cursor.visible = false;
-            #endif
+        Debug.Log("player looking");
+        #if UNITY_STANDALONE
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+        #endif
+        #if UNITY_EDITOR
+            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            UnityEngine.Cursor.visible = false;
+        #endif
 
-            float lookX = playerLook.x * lookSensitivity * Time.deltaTime;
-            float lookY = playerLook.y * lookSensitivity * Time.deltaTime;
+        // up down
+        float lookX = playerLook.x * lookSensitivity * Time.deltaTime;
 
-            xRotation -= lookY;
-            xRotation = Math.Clamp(xRotation, -90f, 90f);
+        // left right
+        float lookY = playerLook.y * lookSensitivity * Time.deltaTime;
 
-            // rotate camera around xAxis (look up & down)
-            Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        // up down
+        xRotation -= lookY;
+        xRotation = Math.Clamp(xRotation, -90f, 90f);
 
-            // rotate player around yAxis (turn left & right)
-            transform.Rotate(Vector3.up * lookX);
-        }
-        else {
-            UnityEngine.Cursor.visible = true;
-            UnityEngine.Cursor.lockState = CursorLockMode.None;
-        }
+        // rotate camera around xAxis (look up & down)
+        Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+        // rotate player around yAxis (turn left & right)
+        transform.Rotate(Vector3.up * lookX);
+        
+        
     }
 
     void Update()
