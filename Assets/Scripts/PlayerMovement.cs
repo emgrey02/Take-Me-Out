@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
         // get ui gameobjects & ui elements
         GameObject InventoryMenu = GameObject.FindWithTag("Inventory");
         GameObject MainMenu = GameObject.FindWithTag("MainMenu");
@@ -103,6 +102,10 @@ public class PlayerMovement : MonoBehaviour
             _velocity.y += gravity * Time.deltaTime;
             controller.Move(_velocity * Time.deltaTime);
             controller.Move(move * Time.deltaTime);
+        }
+        else
+        {
+            UnityEngine.Cursor.visible = true;
         }
     }
 }

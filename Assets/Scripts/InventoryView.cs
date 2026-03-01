@@ -9,20 +9,21 @@ public class InventoryView : MonoBehaviour
 {
     [SerializeField] InputReader inputReader;
 
-    // card slots in inventory
+    // ui inventory & card slots
+    public VisualElement invPanel;
     public List<VisualElement> Cards = new List<VisualElement>();
 
-    // card gameobjects on baseball field
+    // card gameobject prefab to instantiate
     public GameObject cardObjPrefab;
 
     // card object scriptable objects
     public CardObjectSO[] cardSpawnValues;
 
+    // main menu ui
     private GameObject MainMenu;
     private VisualElement mmPanel;
-
-    public VisualElement invPanel;
-
+    
+    // inventory presenter - to talk to Inventory class
     private InventoryPresenter invPresenter;
     
     void OnEnable()
@@ -42,7 +43,7 @@ public class InventoryView : MonoBehaviour
         // fill list with ui cards
         Cards = invPanel.Query(className: "unity-button").ToList();
 
-        // hide inventory
+        // hide inventory on start
         invPanel.AddToClassList("hide");
         
         // get main menu ui 
@@ -52,7 +53,6 @@ public class InventoryView : MonoBehaviour
         // subscribe to inventory toggle event
         inputReader.InventoryToggleEvent += OnInventoryToggle; 
     }
-
 
     void OnDisable()
     {   
@@ -70,7 +70,7 @@ public class InventoryView : MonoBehaviour
             btn.AddToClassList("hide");
         }
         
-        // only show cards we have in inventory
+        // only show ui cards we have in inventory
         // only instantiate card prefabs we can still pickup
         for (int i = 0; i < 6; i++)
         {
@@ -80,17 +80,16 @@ public class InventoryView : MonoBehaviour
             }
             else 
             {
+                // if we are in baseball field scene and card doesnt already exist in scene
                 if (GameObject.Find(cardSpawnValues[i].name) == null && GameManager.Instance.GetSceneId() == 1)
                 {
+                    // use corresponding SO spawn point, name, and card index
                     GameObject c = Instantiate(cardObjPrefab, cardSpawnValues[i].spawnPoint, Quaternion.identity);
                     c.name = cardSpawnValues[i].name;
                     c.GetComponent<CardView>().CardIndex = cardSpawnValues[i].cardIndex;
                 }
             }
         }
-
-        
-        // so when we go back to baseball field, correct ones still there
     }
 
     void OnInventoryToggle(bool InventoryToggled)
@@ -112,9 +111,4 @@ public class InventoryView : MonoBehaviour
             }
         }
     }
-
-    //void Update()
-    //{
-    //    Debug.Log("Inventory:" + inputReader.PlayerControlsStatus());   
-    //}
 }

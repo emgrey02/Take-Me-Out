@@ -21,10 +21,7 @@ public class MenuController : MonoBehaviour
 
     void Awake()
     {
-        mm = GetComponent<UIDocument>().rootVisualElement; 
-
-        
-        
+        mm = GetComponent<UIDocument>().rootVisualElement;
     }
 
     void OnEnable()
@@ -82,6 +79,7 @@ public class MenuController : MonoBehaviour
     private void OnQuitButtonClicked()
     {
         SaveManager.ClearInventory();
+
         Application.Quit();
         #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
