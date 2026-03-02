@@ -3,27 +3,29 @@ using System.IO;
 
 public class SaveManager : MonoBehaviour
 {
-    private string saveFilePath;
+    private string inventorySaveFilePath;
+    private string playerSaveFilePath;
 
     void Awake()
     {
-        saveFilePath = Path.Combine(Application.persistentDataPath, "inventoryData.json");
+        inventorySaveFilePath = Path.Combine(Application.persistentDataPath, "inventoryData.json");
+        playerSaveFilePath = Path.Combine(Application.persistentDataPath, "playerData.json");
     }
 
     public void SaveInventory(Inventory inv)
     {
         string json = JsonUtility.ToJson(inv, true); // 'true' for pretty print
-        File.WriteAllText(saveFilePath, json);
-        Debug.Log("Inventory Saved to " + saveFilePath);
+        File.WriteAllText(inventorySaveFilePath, json);
+        Debug.Log("Inventory Saved to " + inventorySaveFilePath);
     }
 
     public Inventory LoadInventory()
     {
-        Debug.Log("Seeing if file exists at " + saveFilePath);
-        Debug.Log(saveFilePath);
-        if (File.Exists(saveFilePath))
+        Debug.Log("Seeing if file exists at " + inventorySaveFilePath);
+        Debug.Log(inventorySaveFilePath);
+        if (File.Exists(inventorySaveFilePath))
         {
-            string json = File.ReadAllText(saveFilePath);
+            string json = File.ReadAllText(inventorySaveFilePath);
             Debug.Log("printing json read from file: " + json);
             Inventory data = JsonUtility.FromJson<Inventory>(json);
             Debug.Log("Inventory Loaded");
@@ -38,25 +40,45 @@ public class SaveManager : MonoBehaviour
 
     public void ClearInventory()
     {
-        File.WriteAllText(saveFilePath, "");
+        File.WriteAllText(inventorySaveFilePath, "");
     }
 
-    public void SavePlayerData()
+    public void SaveGraphicsQuality(int qualityLevel)
     {
-        Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
-        string posJson = JsonUtility.ToJson(playerPos, true);
-
-        PlayerSaveData data = new PlayerSaveData(GameManager.Instance.GetSceneId(), playerPos);
-        string json = JsonUtility.ToJson(data, true);
-        PlayerPrefs.SetString("PlayerData", json);
+        PlayerPrefs.SetInt("GraphicsQuality", qualityLevel);
         PlayerPrefs.Save();
+        Debug.Log("Graphics Quality Saved");
+    }
+
+    public int LoadGraphicsQuality()
+    {
+        if (PlayerPrefs.HasKey("GraphicsQuality"))
+        {
+            Debug.Log("Graphics Quality found in player prefs");
+            Debug.Log("Set Graphics Qual index: " + PlayerPrefs.GetInt("GraphicsQuality"));
+            return PlayerPrefs.GetInt("GraphicsQuality");
+        }
+        else
+        {
+            Debug.LogWarning("No graphics quality saved to player prefs");
+            return 12;
+        }
+    }
+
+    public void SavePlayerData(int ls, int ms)
+    {
+        PlayerSaveData data = new PlayerSaveData(ls, ms);
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(playerSaveFilePath, json);
+        Debug.Log("Player Data Saved to:" + playerSaveFilePath);
     }
 
     public PlayerSaveData LoadPlayerData()
     {
-        if (PlayerPrefs.HasKey("PlayerData"))
+        if (File.Exists(playerSaveFilePath))
         {
-            string json = PlayerPrefs.GetString("PlayerData");
+            string json = File.ReadAllText(playerSaveFilePath);
+            Debug.Log("printing json read from file: " + json);
             PlayerSaveData data = JsonUtility.FromJson<PlayerSaveData>(json);
             return data;
         }

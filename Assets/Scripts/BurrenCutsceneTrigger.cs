@@ -38,7 +38,6 @@ public class BurrenCutsceneTrigger : MonoBehaviour
             EnterCutscenePrompt.SetActive(false);
             Cutscene.SetActive(true);
             Camera.main.GetComponent<CinemachineBrain>().enabled = true;
-            //GameManager.Instance.MoveToScene(baseNum + 1);
         }
     }
 

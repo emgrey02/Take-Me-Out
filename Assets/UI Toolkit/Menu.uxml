@@ -3,12 +3,30 @@
     <ui:VisualElement name="Panel" class="panel" style="flex-grow: 1;">
         <ui:VisualElement name="InnerPanel" class="panel" style="flex-grow: 1; align-items: stretch; align-self: stretch; background-color: rgba(123, 52, 49, 0); border-top-width: 27px; border-right-width: 27px; border-bottom-width: 27px; border-left-width: 27px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 62px; padding-right: 62px; padding-bottom: 62px; padding-left: 62px; border-top-left-radius: 93px; border-bottom-right-radius: 1008px;">
             <ui:Label text="Take Me Out" selectable="true" focusable="true" style="font-size: 60px; color: rgb(255, 255, 255); -unity-font-style: bold-and-italic; -unity-text-outline-width: 5px; -unity-text-outline-color: rgb(0, 0, 0);"/>
-            <ui:VisualElement name="Logo" style="flex-grow: 1;"/>
-            <ui:VisualElement name="Container" class="menu" style="translate: 0 0;">
-                <ui:Button text="Continue" name="PlayButton" parse-escape-sequences="false" style="translate: 150px 0;"/>
-                <ui:Button text="Settings" parse-escape-sequences="true" name="SettingsButton" style="translate: 100px 0;"/>
-                <ui:Button text="Save" name="SaveButton" style="translate: 50px 0;"/>
-                <ui:Button text="Quit" name="QuitButton"/>
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: flex-end; width: 100%; height: 100%; align-self: auto;">
+                <ui:VisualElement name="initialMenu" class="menu" style="height: 70%; justify-content: flex-start; align-items: flex-start; align-content: flex-end; width: 90%;">
+                    <ui:Button text="Continue" name="PlayButton" parse-escape-sequences="false" style="translate: 150px 0;"/>
+                    <ui:Button text="Settings" parse-escape-sequences="true" name="SettingsButton" style="translate: 100px 0;"/>
+                    <ui:Button text="Quit" name="QuitButton"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="settingsMenu" class="menu remove" style="height: auto;">
+                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-self: auto; align-items: flex-start; align-content: auto; height: 100%;">
+                        <ui:VisualElement style="flex-grow: 1; margin-right: 20px; height: auto; width: 50%;">
+                            <ui:Label text="Volume&#10;" class="big-label"/>
+                            <ui:SliderInt label="Music" value="42" high-value="100" name="musicvol" fill="true" show-input-field="true" class="input-field"/>
+                            <ui:SliderInt label="SFX" value="42" high-value="100" name="sfxvol" fill="true" show-input-field="true" class="input-field"/>
+                            <ui:SliderInt label="Master" value="42" high-value="100" name="mastervol" fill="true" show-input-field="true" class="input-field"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; width: 50%; margin-left: 20px;">
+                            <ui:Label text="Graphics" name="Label" class="big-label"/>
+                            <ui:DropdownField label="Quality" name="quality" class="dropdown input-field"/>
+                            <ui:Label text="Other" name="Label" class="big-label"/>
+                            <ui:SliderInt label="Look Sensitivity" value="42" high-value="100" name="lookSensitivity" fill="true" show-input-field="true" inverted="false" class="input-field"/>
+                            <ui:SliderInt label="Walk Speed" value="3" high-value="8" name="walkSpeed" fill="true" show-input-field="true" inverted="false" class="input-field"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:Button text="Save" name="SaveButton" style="align-items: auto; align-self: center;"/>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

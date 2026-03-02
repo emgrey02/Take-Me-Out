@@ -28,6 +28,11 @@ public class InputReader : ScriptableObject, IPlayerActions, IUIActions
     {
         return controls.Player.enabled;
     }
+
+    public bool UIControlsStatus()
+    {
+        return controls.UI.enabled;
+    }
     
     void OnEnable()
     {

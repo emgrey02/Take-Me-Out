@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public GameObject inventoryPrefab;
     public GameObject mainmenuPrefab;
 
+    private SaveManager SaveManager;
+    private PlayerMovement PlayerController;
+
     private GameObject player;
     
     private static GameManager _instance;
@@ -25,19 +28,31 @@ public class GameManager : MonoBehaviour
             return;
         }
         _instance = this;
-        
-        // instantiate prefabs based on scene num
-        int sceneID = SceneManager.GetActiveScene().buildIndex;
 
-        // change player location in baseball field depending on which scene they came from
+        // get save manager
+        SaveManager = GameObject.FindWithTag("SaveManager").GetComponent<SaveManager>();
+        
+        InstantiatePrefabs();
+
+        // get player controller
+        PlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        
+    }
+
+    // Instantiate prefabs for the current scene
+    private void InstantiatePrefabs()
+    {
+        // get current & previous scene id
+        int sceneID = SceneManager.GetActiveScene().buildIndex;
         int prevSceneID = PlayerPrefs.GetInt("PrevSceneNum", 6);
+
+        // set player prefab position and rotation based on scene number
         Vector3 pos;
         Quaternion rot;
-
         switch (sceneID)
         {
+            // change player location in baseball field depending on which scene they came from
             case 1:
-                // baseball field
                 switch (prevSceneID)
                 {
                     // from main menu
@@ -71,8 +86,8 @@ public class GameManager : MonoBehaviour
                         break;
                 }
                 break;
+            // the burren
             case 2:
-                // the burren
                 pos = new Vector3(-8f, 1f, 0);
                 rot = Quaternion.Euler(0, 100, 0);
                 break;
@@ -82,18 +97,74 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
+        // dont need player in first scene - its the main menu
+        Instantiate(playerPrefab, pos, rot);
+        Instantiate(inventoryPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(mainmenuPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        
+    }
+
+    void Start()
+    {
+        int sceneID = SceneManager.GetActiveScene().buildIndex;
         if (sceneID == 0)
         {
-            // main menu
-            Instantiate(mainmenuPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            Instantiate(inventoryPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            // set initial data
+            SetInitGraphicsQuality();
+            SetInitPlayerData();
+        }
+    }
+
+    private void SetInitPlayerData()
+    {
+        PlayerSaveData saveData = SaveManager.LoadPlayerData();
+        if (saveData != null)
+        {   
+            Debug.Log("Setting Init Player Data");
+            Debug.Log("look sensitivity: " + saveData.lookSensitivity);
+            Debug.Log("move speed: " + saveData.moveSpeed);
+            PlayerController.lookSensitivity = saveData.lookSensitivity;
+            PlayerController.moveSpeed = saveData.moveSpeed;
         }
         else
         {
-            player = Instantiate(playerPrefab, pos, rot);
-            Instantiate(inventoryPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            Instantiate(mainmenuPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            PlayerController.lookSensitivity = 20;
+            PlayerController.moveSpeed = 4;
         }
+    }
+
+    private void SetInitGraphicsQuality()
+    {
+        int graphicsQualIndex = SaveManager.LoadGraphicsQuality(); 
+        if (graphicsQualIndex != 12)
+        {
+            Debug.Log("Setting initial graphics quality from Game Manager");
+            QualitySettings.SetQualityLevel(graphicsQualIndex, true);
+        }
+    }
+
+    // set graphics quality from menu
+    public void SetGraphicsQuality(int graphicsQual)
+    {
+        QualitySettings.SetQualityLevel(graphicsQual, false);
+
+        // save it
+        SaveManager.SaveGraphicsQuality(graphicsQual);
+    }
+
+    // set player data from menu
+    public void SetPlayerData(int ls, int ms)
+    {
+        PlayerController.lookSensitivity = ls;
+        PlayerController.moveSpeed = ms;
+        
+        // save it
+        SaveManager.SavePlayerData(ls, ms);
+    }
+
+    public PlayerSaveData GetPlayerData()
+    {
+        return SaveManager.LoadPlayerData();
     }
 
     public void MoveToScene(int sceneID, float[] playerPos = null)
@@ -104,6 +175,11 @@ public class GameManager : MonoBehaviour
 
         // load scene
         SceneManager.LoadScene(sceneID);
+    }
+
+    public void ClearInventory()
+    {
+        SaveManager.ClearInventory();
     }
 
     public int GetSceneId()

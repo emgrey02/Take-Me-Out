@@ -9,7 +9,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] InputReader inputReader;
     
     [Header("Player Movement Settings")]
-    public float moveSpeed = 5f;
+    [SerializeField]
+    private int _moveSpeed;
+    public int moveSpeed
+    {
+        get
+        {
+            return _moveSpeed;
+        }
+        set
+        {
+            Debug.Log("setting move speed: " + value);
+            _moveSpeed = value;
+        }
+    }
     public float gravity = -9.81f;
     private CharacterController controller;
     private Vector3 _velocity;
@@ -20,7 +33,20 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Mouse Look Settings")]
     [Tooltip("Sensitivity of mouse movement")]
-    public float lookSensitivity = 100f;
+    [SerializeField]
+    private int _lookSensitivity;
+    public int lookSensitivity 
+    {
+        get
+        {
+            return _lookSensitivity;
+        }
+        set
+        {
+            Debug.Log("setting look sensitivity: " + value);
+            _lookSensitivity = value;
+        }
+    }
     // track's camera's x-axis rotation
     private float xRotation = 0f;
 
@@ -41,12 +67,13 @@ public class PlayerMovement : MonoBehaviour
 
         invPanel = InventoryMenu.GetComponent<UIDocument>().rootVisualElement;
         mmPanel = MainMenu.GetComponent<UIDocument>().rootVisualElement;
+
     }
 
     private void OnMove(Vector2 movement)
     {
         //Debug.Log("player moving");
-        _moveVector = movement * moveSpeed; 
+        _moveVector = movement * _moveSpeed; 
         
     }
 
@@ -70,10 +97,10 @@ public class PlayerMovement : MonoBehaviour
         #endif
 
         // up down
-        float lookX = playerLook.x * lookSensitivity * Time.deltaTime;
+        float lookX = playerLook.x * _lookSensitivity * Time.deltaTime;
 
         // left right
-        float lookY = playerLook.y * lookSensitivity * Time.deltaTime;
+        float lookY = playerLook.y * _lookSensitivity * Time.deltaTime;
 
         // up down
         xRotation -= lookY;
@@ -106,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             UnityEngine.Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
         }
     }
 }

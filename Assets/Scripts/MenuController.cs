@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class MenuController : MonoBehaviour
 {
@@ -9,64 +10,92 @@ public class MenuController : MonoBehaviour
 
     private GameObject Inventory;
     private VisualElement invPanel;
+    private VisualElement settingsMenu;
+    private VisualElement initialMenu;
+    private VisualElement mm;
 
-    private SaveManager SaveManager;
-
-    public VisualElement mm;
-
+    // buttons
     public Button playButton;
     public Button settingsButton;
-    public Button saveButton;
     public Button quitButton;
+    public Button saveButton;
+
+    public DropdownField qualityDropdown;
+    public SliderInt masterVolSlider;
+    public SliderInt musicVolSlider;
+    public SliderInt sfxVolSlider;
+    public SliderInt lookSenSlider;
+    public SliderInt walkSpeedSlider;
 
     void Awake()
     {
+        // get visual elements
         mm = GetComponent<UIDocument>().rootVisualElement;
+        settingsMenu = mm.Q<VisualElement>("settingsMenu");
+        initialMenu = mm.Q<VisualElement>("initialMenu");
+
+        // get buttons
+        playButton = mm.Q<Button>("PlayButton");
+        settingsButton = mm.Q<Button>("SettingsButton");
+        saveButton = mm.Q<Button>("SaveButton");
+        quitButton = mm.Q<Button>("QuitButton");
+
+        // get dropdowns and sliders
+        qualityDropdown = mm.Q<DropdownField>("quality");
+        masterVolSlider = mm.Q<SliderInt>("mastervol");
+        musicVolSlider = mm.Q<SliderInt>("musicvol");
+        sfxVolSlider = mm.Q<SliderInt>("sfxvol");
+        lookSenSlider = mm.Q<SliderInt>("lookSensitivity");
+        walkSpeedSlider = mm.Q<SliderInt>("walkSpeed");
+        
+        // populate enum dropdown
+        qualityDropdown.choices = QualitySettings.names.ToList();
+  
     }
 
     void OnEnable()
     {
-        // get buttons and subscribe to click events
-        playButton = mm.Q<Button>("PlayButton");
+        // subscribe to click events
         playButton.clicked += OnPlayButtonClicked;
-
-        settingsButton = mm.Q<Button>("SettingsButton");
         settingsButton.clicked += OnSettingsButtonClicked;
-
-        saveButton = mm.Q<Button>("SaveButton");
-        saveButton.clicked += OnSaveButtonClicked;
-
-        quitButton = mm.Q<Button>("QuitButton");
+        saveButton.clicked += OnSaveButtonClicked;       
         quitButton.clicked += OnQuitButtonClicked;
- 
+
+        // subscribe to main menu toggle event
+        inputReader.MainMenuToggleEvent += OnMainMenuToggle;
+    }
+
+    void OnDisable()
+    {
+        // unsubscribe to click events
+        playButton.clicked -= OnPlayButtonClicked;
+        settingsButton.clicked -= OnSettingsButtonClicked;
+        saveButton.clicked -= OnSaveButtonClicked;       
+        quitButton.clicked -= OnQuitButtonClicked;
+
+        // unsubscribe to main menu toggle event
+        inputReader.MainMenuToggleEvent -= OnMainMenuToggle;
     }
 
     void Start()
     {
-        // get save manager
-        SaveManager = GameObject.FindWithTag("SaveManager").GetComponent<SaveManager>();
 
         // get inventory ui
         Inventory = GameObject.FindWithTag("Inventory");
         invPanel = Inventory.GetComponent<UIDocument>().rootVisualElement;
 
-        // subscribe to main menu toggle event
-        inputReader.MainMenuToggleEvent += OnMainMenuToggle;
-
-        // hide main menu if not first scene
+        // hide menu if not scene 0
         if (GameManager.Instance.GetSceneId() != 0)
         {
             mm.AddToClassList("hide");
+        } else
+        {
+            inputReader.DisablePlayerControls();
         }
 
-        // if first scene and we have save data
-        if (GameManager.Instance.GetSceneId() == 0 && SaveManager.LoadPlayerData() != null)
+        // set play button text depending on scene num
+        if (GameManager.Instance.GetSceneId() == 0 )
         {
-            playButton.text = "Continue";
-        }
-        else if (GameManager.Instance.GetSceneId() == 0 && SaveManager.LoadPlayerData() == null)
-        {
-            // we dont have save data in first scene
             playButton.text = "New Game";
         }
         else 
@@ -74,11 +103,27 @@ public class MenuController : MonoBehaviour
             playButton.text = "Continue";
         }
 
+        
+        // set current graphics quality level
+        qualityDropdown.index = QualitySettings.GetQualityLevel();
+
+        // set current look sensitivity & walk speed
+        PlayerSaveData data = GameManager.Instance.GetPlayerData();
+        if (data != null)
+        {
+            lookSenSlider.value = data.lookSensitivity;
+            walkSpeedSlider.value = data.moveSpeed; 
+        }
+        else {
+            lookSenSlider.value = 20;
+            walkSpeedSlider.value = 4;
+        }
+
     }
 
     private void OnQuitButtonClicked()
     {
-        SaveManager.ClearInventory();
+        GameManager.Instance.ClearInventory();
 
         Application.Quit();
         #if UNITY_EDITOR
@@ -89,29 +134,36 @@ public class MenuController : MonoBehaviour
     private void OnSettingsButtonClicked()
     {
         Debug.Log("Settings");
+        initialMenu.AddToClassList("remove");
+        settingsMenu.RemoveFromClassList("remove");
     }
 
     private void OnSaveButtonClicked()
     {
         Debug.Log("Save Game");
-        SaveManager.SavePlayerData();
+        settingsMenu.AddToClassList("remove");
+        initialMenu.RemoveFromClassList("remove");
+
+        // set graphics quality
+        GameManager.Instance.SetGraphicsQuality(qualityDropdown.index);
+
+        // set volumes
+        // implement here
+
+        // set player data
+        GameManager.Instance.SetPlayerData(lookSenSlider.value, walkSpeedSlider.value);
     }
 
     private void OnPlayButtonClicked()
     {
-        if (GameManager.Instance.GetSceneId() == 0 && playButton.text == "New Game")
+        if (GameManager.Instance.GetSceneId() == 0)
         {
             GameManager.Instance.MoveToScene(1);
-        }
-        else if (GameManager.Instance.GetSceneId() == 0 && playButton.text == "Continue")
-        {
-            GameManager.Instance.MoveToScene(SaveManager.LoadPlayerData().sceneNum);
         }
         else
         {
             // hide main menu
             mm.AddToClassList("hide");
-
         }
 
         // enable player controls
