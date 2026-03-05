@@ -1,0 +1,9 @@
+:root {
+}
+
+.hide {
+    visibility: visible;
+    transition-property: opacity;
+    opacity: 0;
+    transition-duration: 0.5s;
+}

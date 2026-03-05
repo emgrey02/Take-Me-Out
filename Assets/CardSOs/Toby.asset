@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9630b3c4d024a48838e7d0125fd5ea, type: 3}
   m_Name: Toby
   m_EditorClassIdentifier: Assembly-CSharp::CardObjectSO
-  name: Toby
+  cardName: Toby
   spawnPoint: {x: 24.570023, y: 0, z: 4.7687283}
   cardIndex: 1

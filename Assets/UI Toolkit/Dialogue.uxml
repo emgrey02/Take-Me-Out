@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/dialogueBox.uss?fileID=7433441132597879392&amp;guid=29abb1de46fa713439b76588de91b6a1&amp;type=3#dialogueBox"/>
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(192, 192, 192, 0); background-size: 100% 100%; width: 100%; height: 100%; align-items: center; justify-content: flex-end; align-self: auto; align-content: auto; position: relative; bottom: 10px; left: auto; right: auto; transition-property: opacity; transition-duration: 0.5s;">
+        <ui:VisualElement style="flex-grow: 1; position: relative; width: 1000px; height: 300px; max-height: 300px; margin-bottom: 50px; background-color: rgba(202, 202, 202, 0.76); border-bottom-left-radius: 40px; border-top-right-radius: 90px; border-top-width: 13px; border-right-width: 13px; border-bottom-width: 13px; border-left-width: 13px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+            <ui:Label text="Name" name="speakerName" style="font-size: 24px; margin-top: 30px; margin-right: 30px; margin-bottom: 7px; margin-left: 30px; -unity-font-style: bold;"/>
+            <ui:Label text="Dialogue Text!" name="dialogueText" style="font-size: 24px; margin-top: 30px; margin-right: 30px; margin-bottom: 30px; margin-left: 30px;"/>
+            <ui:Button text="&gt;" selectable="false" focusable="true" name="nextLine" style="align-self: flex-end; margin-top: 18px; margin-right: 18px; margin-bottom: 18px; margin-left: 18px; justify-content: flex-end; position: absolute; bottom: 0; right: 0;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

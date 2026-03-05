@@ -1,9 +1,9 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CardPrefab", menuName = "Scriptable Objects/CardPrefab")]
-public class CardObjectSO : ScriptableObject
+[CreateAssetMenu(fileName = "Card Object", menuName = "Scriptable Objects/Card Object")]
+public class CardObject : ScriptableObject
 {
-    public string name;
+    public string cardName;
     public Vector3 spawnPoint;
     public int cardIndex;
 }

@@ -8,17 +8,32 @@ public class BurrenCutsceneTrigger : MonoBehaviour
 
     public GameObject EnterCutscenePrompt;
     public bool inTableArea = false;
-    public GameObject Cutscene;
-    public PlayableDirector director;
+
+    public GameObject cameraMove;
+    public GameObject sipAndFinishAnimation;
+
+    public PlayableDirector firstDirector;
+    public PlayableDirector secondDirector;
+    public DialogueAsset dialogue;
 
     void OnEnable()
     {
-        director.stopped += OnPlayableDirectorStopped;
+        firstDirector.paused += OnFirstDirectorPaused;
+        secondDirector.stopped += OnSecondDirectorStopped;
+        DialogueBoxController.OnDialogueEnded += LeaveConversation;
     }
 
-    void OnPlayableDirectorStopped(PlayableDirector aDirector)
+    void OnFirstDirectorPaused(PlayableDirector aDirector)
     {
-        if (director == aDirector)
+        if (firstDirector == aDirector)
+        {
+            DialogueBoxController.instance.StartDialogue(dialogue.dialogue, dialogue.speaker);
+        }
+    }
+
+    void OnSecondDirectorStopped(PlayableDirector aDirector)
+    {
+        if (secondDirector == aDirector)
         {
             // go back to baseball field
             GameManager.Instance.MoveToScene(1);
@@ -36,7 +51,7 @@ public class BurrenCutsceneTrigger : MonoBehaviour
         {
             // trigger cutscene
             EnterCutscenePrompt.SetActive(false);
-            Cutscene.SetActive(true);
+            cameraMove.SetActive(true);
             Camera.main.GetComponent<CinemachineBrain>().enabled = true;
         }
     }
@@ -55,9 +70,16 @@ public class BurrenCutsceneTrigger : MonoBehaviour
         inTableArea = false;
     }
 
+    void LeaveConversation()
+    {
+        sipAndFinishAnimation.SetActive(true);
+    }
+
     void OnDisable()
     {
         inputReader.InteractEvent -= OnInteract;
-        director.stopped -= OnPlayableDirectorStopped;
+        firstDirector.paused -= OnFirstDirectorPaused;
+        secondDirector.stopped -= OnSecondDirectorStopped;
+        DialogueBoxController.OnDialogueEnded -= LeaveConversation;
     }
 }

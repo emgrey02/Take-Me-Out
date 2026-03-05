@@ -81,11 +81,11 @@ public class InventoryView : MonoBehaviour
             else 
             {
                 // if we are in baseball field scene and card doesnt already exist in scene
-                if (GameObject.Find(cardSpawnValues[i].name) == null && GameManager.Instance.GetSceneId() == 1)
+                if (GameObject.Find(cardSpawnValues[i].cardName) == null && GameManager.Instance.GetSceneId() == 1)
                 {
                     // use corresponding SO spawn point, name, and card index
                     GameObject c = Instantiate(cardObjPrefab, cardSpawnValues[i].spawnPoint, Quaternion.identity);
-                    c.name = cardSpawnValues[i].name;
+                    c.name = cardSpawnValues[i].cardName;
                     c.GetComponent<CardView>().CardIndex = cardSpawnValues[i].cardIndex;
                 }
             }

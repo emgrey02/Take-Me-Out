@@ -32,11 +32,10 @@ public class GameManager : MonoBehaviour
         // get save manager
         SaveManager = GameObject.FindWithTag("SaveManager").GetComponent<SaveManager>();
         
-        InstantiatePrefabs();
+        InstantiatePrefabs();   
 
         // get player controller
         PlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
-        
     }
 
     // Instantiate prefabs for the current scene
@@ -97,7 +96,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        // dont need player in first scene - its the main menu
+        // instantiate prefabs
         Instantiate(playerPrefab, pos, rot);
         Instantiate(inventoryPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         Instantiate(mainmenuPrefab, new Vector3(0, 0, 0), Quaternion.identity);
@@ -106,12 +105,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // set initial data
         int sceneID = SceneManager.GetActiveScene().buildIndex;
+        SetInitPlayerData();
+
         if (sceneID == 0)
-        {
-            // set initial data
+        {   
             SetInitGraphicsQuality();
-            SetInitPlayerData();
         }
     }
 

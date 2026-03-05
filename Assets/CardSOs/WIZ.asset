@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9630b3c4d024a48838e7d0125fd5ea, type: 3}
   m_Name: WIZ
   m_EditorClassIdentifier: Assembly-CSharp::CardObjectSO
-  name: WIZ
+  cardName: William Irving Zorowitz
   spawnPoint: {x: 13.938023, y: 0, z: 14.862729}
   cardIndex: 5

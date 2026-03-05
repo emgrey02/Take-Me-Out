@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9630b3c4d024a48838e7d0125fd5ea, type: 3}
   m_Name: Jasper
   m_EditorClassIdentifier: Assembly-CSharp::CardObjectSO
-  name: Jasper
+  cardName: Jasper
   spawnPoint: {x: 1.2240219, y: 0, z: 31.76273}
   cardIndex: 4
