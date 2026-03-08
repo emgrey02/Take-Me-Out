@@ -5,7 +5,7 @@ public class Base : MonoBehaviour
 {
     public InputReader inputReader;
 
-    public int baseNum;
+    public int baseNum { get; set; }
     public GameObject EnterScenePrompt;
     public bool inBaseArea = false;
 

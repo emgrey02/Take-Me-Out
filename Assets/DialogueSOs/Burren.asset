@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   dialogue:
   - Yay! You're here!
+  - Testing another line of dialogue!
+  - Okay let's go back to the baseball field now. I think I've had enough of you...
+    maybe this is it for us. Lol jk I love you I think we're going to end up getting
+    married or something idk lol.
   speaker: Alison

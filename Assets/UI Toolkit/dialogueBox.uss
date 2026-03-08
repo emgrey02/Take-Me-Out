@@ -1,9 +1,33 @@
 :root {
+    transition-property: opacity;
 }
 
 .hide {
     visibility: visible;
     transition-property: opacity;
     opacity: 0;
+    transition-duration: 0.5s;
+}
+
+.button {
+    align-self: flex-end;
+    margin-top: 18px;
+    margin-right: 18px;
+    margin-bottom: 18px;
+    margin-left: 18px;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 40px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.button:hover {
+    background-color: rgb(236, 227, 95);
+    transition-property: background-color;
     transition-duration: 0.5s;
 }

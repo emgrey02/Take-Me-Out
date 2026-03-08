@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject inventoryPrefab;
     public GameObject mainmenuPrefab;
+    public GameObject basePrefab;
 
     private SaveManager SaveManager;
     private PlayerMovement PlayerController;
@@ -58,6 +59,8 @@ public class GameManager : MonoBehaviour
                     case 0:
                         pos = new Vector3(0, 1.1f, 0);
                         rot = Quaternion.Euler(0, 45, 0);
+                        // add first base
+                        Instantiate(basePrefab, new Vector3(27.2f, .05f, .2f), Quaternion.identity);
                         break;
                     // from first base exp
                     case 2:
@@ -89,6 +92,11 @@ public class GameManager : MonoBehaviour
             case 2:
                 pos = new Vector3(-8f, 1f, 0);
                 rot = Quaternion.Euler(0, 100, 0);
+                break;
+            // somerville theater
+            case 3:
+                pos = new Vector3(2f, 1f, 2f);
+                rot = Quaternion.Euler(0, 45, 0);
                 break;
             default:
                 pos = new Vector3(0, 0, 0);

@@ -14,6 +14,9 @@ public class DialogueBoxController : MonoBehaviour
     public Label dialogueText;
     public Button nextButton;
 
+    // typewriter effect
+    float charactersPerSecond = 60;
+
     bool nextLineTriggered = false;
 
     public static event Action OnDialogueEnded;
@@ -28,6 +31,7 @@ public class DialogueBoxController : MonoBehaviour
             Destroy(this);
         }
 
+        // get ui elements
         dialogueBox = GetComponent<UIDocument>().rootVisualElement;
         speakerName = dialogueBox.Q<Label>("speakerName");
         dialogueText = dialogueBox.Q<Label>("dialogueText");
@@ -39,7 +43,11 @@ public class DialogueBoxController : MonoBehaviour
     void OnEnable()
     {
         nextButton.clicked += OnNextButtonClicked;
-        inputReader.InteractEvent += OnInteract;
+    }
+
+    void OnDisable()
+    {
+        nextButton.clicked -= OnNextButtonClicked;
     }
 
     public void StartDialogue(string[] dialogue, string name)
@@ -66,7 +74,8 @@ public class DialogueBoxController : MonoBehaviour
 
         for(int i = startPosition; i < dialogue.Length; i++)
         {
-            dialogueText.text = dialogue[i];
+            StartCoroutine(TypeText(dialogue[i]));
+           
             while (nextLineTriggered == false)
             {
                 // Wait for the current line to be skipped
@@ -79,17 +88,34 @@ public class DialogueBoxController : MonoBehaviour
         EndDialogue();
     }
 
+    IEnumerator TypeText(string line)
+    {
+        float timer = 0;
+        float interval = 1 / charactersPerSecond;
+        string textBuffer = null;
+        char[] chars = line.ToCharArray();
+        int i = 0;
+
+        while (i < chars.Length)
+        {
+            if (timer < Time.deltaTime)
+            {
+                textBuffer += chars[i];
+                dialogueText.text = textBuffer;
+                timer += interval;
+                i++;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+                yield return null;
+            }
+        }
+    }
+
     private void OnNextButtonClicked()
     {
         nextLineTriggered = true;
-    }
-
-    private void OnInteract(bool Interacted)
-    {
-        if (Interacted)
-        {
-            nextLineTriggered = true;
-        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -9,11 +9,17 @@ public class BurrenCutsceneTrigger : MonoBehaviour
     public GameObject EnterCutscenePrompt;
     public bool inTableArea = false;
 
+    // objects with timelines
     public GameObject cameraMove;
     public GameObject sipAndFinishAnimation;
 
+    // director that controls cameraMove timeline
     public PlayableDirector firstDirector;
+
+    // director that controls sipandFinishAnimation timeline
     public PlayableDirector secondDirector;
+
+    // SO dialogue asset
     public DialogueAsset dialogue;
 
     void OnEnable()

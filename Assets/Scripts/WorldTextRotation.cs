@@ -6,8 +6,7 @@ public class WorldTextRotation : MonoBehaviour
     public TextMeshProUGUI text;
 
     // Update is called once per frame
-    // late update to match camera movement
-    void LateUpdate()
+    void Update()
     {
         text.transform.rotation = Camera.main.transform.rotation;
     }
