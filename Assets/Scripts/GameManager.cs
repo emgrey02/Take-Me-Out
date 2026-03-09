@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private SaveManager SaveManager;
     private PlayerMovement PlayerController;
 
-    private GameObject player;
+    private GameObject baseObj;
     
     private static GameManager _instance;
 
@@ -60,12 +60,18 @@ public class GameManager : MonoBehaviour
                         pos = new Vector3(0, 1.1f, 0);
                         rot = Quaternion.Euler(0, 45, 0);
                         // add first base
-                        Instantiate(basePrefab, new Vector3(27.2f, .05f, .2f), Quaternion.identity);
+                        baseObj = Instantiate(basePrefab, new Vector3(27.2f, .05f, .2f), Quaternion.identity);
+                        baseObj.name = "First Base";
+                        baseObj.GetComponent<Base>().baseNum = 1;
                         break;
                     // from first base exp
                     case 2:
                         pos = new Vector3(27.2f, 1.1f, 1.6f);
                         rot = Quaternion.Euler(0, 0, 0);
+                        // add second base
+                        baseObj = Instantiate(basePrefab, new Vector3(27.2f, .05f, 27.2f), Quaternion.identity);
+                        baseObj.name = "Second Base";
+                        baseObj.GetComponent<Base>().baseNum = 2;
                         break;
                     // from second base exp
                     case 3:

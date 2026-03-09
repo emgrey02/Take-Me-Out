@@ -230,6 +230,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 4505024426423766142, guid: 600af310228b3564597003f3de193357, type: 3}
   inventoryPrefab: {fileID: 8059058072478843465, guid: 0c38789c80a73694dbe5d25f61d5ab4d, type: 3}
   mainmenuPrefab: {fileID: 7159213012179969672, guid: c558fc3df935ef5449c8e5c435f59398, type: 3}
+  basePrefab: {fileID: 7538073852501981743, guid: 2f75c44551740764d921e598e8ba46a0, type: 3}
 --- !u!4 &747875831
 Transform:
   m_ObjectHideFlags: 0

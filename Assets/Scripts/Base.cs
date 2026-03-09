@@ -5,7 +5,19 @@ public class Base : MonoBehaviour
 {
     public InputReader inputReader;
 
-    public int baseNum { get; set; }
+    [SerializeField]
+    private int _baseNum;
+    public int baseNum
+    { 
+        get
+        {
+            return _baseNum;
+        }
+        set
+        {
+            _baseNum = value;
+        }
+    }
     public GameObject EnterScenePrompt;
     public bool inBaseArea = false;
 
