@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FirstBase.unity
     guid: 231d1363f64ec4a409c87f8cf865b6d7
+  - enabled: 1
+    path: Assets/Scenes/SomervilleTheater.unity
+    guid: 9dff8cb90a84d624f88bd7a2eafc680f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

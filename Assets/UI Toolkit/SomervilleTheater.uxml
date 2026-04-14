@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/somervilletheater.uss?fileID=7433441132597879392&amp;guid=250ee40a7b5da94439149b4b0276bc87&amp;type=3#somervilletheater"/>
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Label text="SOMERVILLE THEATRE" name="Label" style="-unity-material: url(&quot;&quot;); color: rgb(185, 0, 0);"/>
+    </ui:VisualElement>
+</ui:UXML>

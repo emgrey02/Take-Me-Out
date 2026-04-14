@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/theatertext.uss?fileID=7433441132597879392&amp;guid=5fe97abf2c7e7a545811e46b471f4971&amp;type=3#theatertext"/>
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Label text="Everything Everywhere All At Once"/>
+        <ui:Label text="Casablanca"/>
+        <ui:Label text="Aftersun" parse-escape-sequences="false"/>
+        <ui:Label text="The Boy And The Heron" parse-escape-sequences="false"/>
+    </ui:VisualElement>
+</ui:UXML>
