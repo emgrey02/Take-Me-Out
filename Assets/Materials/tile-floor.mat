@@ -25,7 +25,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _LIGHTINGTYPE_TEXEL
+  - _LIGHTINGTYPE_PIXEL
   - _TEXTUREFILTERING_NEAREST
   m_InvalidKeywords:
   - _DITHERAMBIENT_ON
@@ -35,6 +35,7 @@ Material:
   - _ENABLEMASKMAP_ON
   - _REFLECTIONS_ON
   - _SPECULARTYPE_BLINN_PHONG
+  - _VCOLEMISSIVE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -155,7 +156,7 @@ Material:
     - _GlossyReflections: 0
     - _HalfLambert: 0
     - _Lighting: 0
-    - _LightingType: 2
+    - _LightingType: 0
     - _LightmapEmissionStr: 1
     - _MaskNote1: 0
     - _MaskNote2: 0
@@ -177,7 +178,7 @@ Material:
     - _TextureFiltering: 0
     - _TintNote: 0
     - _ToonShading: 0
-    - _VColEmissive: 0
+    - _VColEmissive: 1
     - _VColSmoothness: 0
     - _VertexEmissiveStr: 1
     - _VertexJitter: 0
@@ -190,7 +191,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.9716981, g: 0.8269505, b: 0.5454343, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SmoothRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SmoothRemapVCol: {r: 0, g: 1, b: 0, a: 0}

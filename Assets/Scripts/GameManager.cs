@@ -101,8 +101,8 @@ public class GameManager : MonoBehaviour
                 break;
             // somerville theater
             case 3:
-                pos = new Vector3(2f, 1f, 2f);
-                rot = Quaternion.Euler(0, 45, 0);
+                pos = new Vector3(10f, 1f, -1f);
+                rot = Quaternion.Euler(0, -68f, 0);
                 break;
             default:
                 pos = new Vector3(0, 0, 0);

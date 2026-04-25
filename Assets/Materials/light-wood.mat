@@ -12,7 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _LIGHTINGTYPE_TEXEL
+  - _LIGHTINGTYPE_VERTEX
   - _TEXTUREFILTERING_NEAREST
   m_InvalidKeywords:
   - _DITHERAMBIENT_ON
@@ -142,7 +142,7 @@ Material:
     - _GlossyReflections: 0
     - _HalfLambert: 0
     - _Lighting: 0
-    - _LightingType: 2
+    - _LightingType: 1
     - _LightmapEmissionStr: 1
     - _MaskNote1: 0
     - _MaskNote2: 0
