@@ -33,7 +33,7 @@ public class BurrenCutsceneTrigger : MonoBehaviour
     {
         if (firstDirector == aDirector)
         {
-            DialogueBoxController.instance.StartDialogue(dialogue.dialogue, dialogue.speaker);
+            DialogueBoxController.instance.StartDialogue(dialogue);
         }
     }
 

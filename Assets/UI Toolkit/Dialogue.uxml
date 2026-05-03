@@ -2,9 +2,15 @@
     <Style src="project://database/Assets/UI%20Toolkit/dialogueBox.uss?fileID=7433441132597879392&amp;guid=29abb1de46fa713439b76588de91b6a1&amp;type=3#dialogueBox"/>
     <ui:VisualElement style="flex-grow: 1; background-color: rgba(192, 192, 192, 0); background-size: 100% 100%; width: 100%; height: 100%; align-items: center; justify-content: flex-end; align-self: auto; align-content: auto; position: relative; bottom: 10px; left: auto; right: auto; transition-property: opacity; transition-duration: 0.5s;">
         <ui:VisualElement style="flex-grow: 1; position: relative; width: 1000px; height: 300px; max-height: 300px; margin-bottom: 50px; background-color: rgba(202, 202, 202, 0.76); border-bottom-left-radius: 40px; border-top-right-radius: 90px; border-top-width: 13px; border-right-width: 13px; border-bottom-width: 13px; border-left-width: 13px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-            <ui:Label text="Name" name="speakerName" style="font-size: 24px; margin-top: 30px; margin-right: 30px; margin-bottom: 7px; margin-left: 30px; -unity-font-style: bold;"/>
-            <ui:Label text="Dialogue Text! " name="dialogueText" style="font-size: 24px; margin-top: 30px; margin-right: 30px; margin-bottom: 30px; margin-left: 30px; flex-wrap: wrap; flex-basis: initial; height: auto; white-space: normal; -unity-paragraph-spacing: 10px;"/>
-            <ui:Button text="&gt;" selectable="false" focusable="true" name="nextLine" class="button"/>
+            <ui:Label text="Name" name="speakerName" style="font-size: 24px; margin-top: 10px; margin-right: 30px; margin-bottom: 7px; margin-left: 30px; -unity-font-style: bold;"/>
+            <ui:Label text="Dialogue Text! " name="dialogueText" style="font-size: 24px; margin-top: 10px; margin-right: 30px; margin-bottom: 20px; margin-left: 30px; flex-wrap: wrap; flex-basis: initial; height: auto; white-space: normal; -unity-paragraph-spacing: 10px;"/>
+            <ui:VisualElement name="option-container" style="flex-grow: 1; flex-direction: column; align-items: flex-start; justify-content: flex-start; padding-left: 27px;">
+                <ui:Button text="Button" name="option1" view-data-key="0" class="option"/>
+                <ui:Button text="Button" name="option2" view-data-key="1" class="option"/>
+                <ui:Button text="Button" name="option3" view-data-key="2" class="option"/>
+                <ui:Button text="Button" name="option4" view-data-key="3" enabled="true" class="option"/>
+            </ui:VisualElement>
+            <ui:Button text="&gt;" selectable="false" focusable="true" name="nextLine" class="button" style="margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; font-size: 50px; padding-right: 20px; padding-left: 20px;"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7c6c3c4355ec4a4b91e229a8af6a9bb, type: 3}
+  m_Name: alloptions-buytickets
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
+  speaker: 0300000005000000
+  dialogue:
+  - Good choice! That'll be $24 total for 2 adult tickets.
+  options:
+  - Search for a $20 and uncrumple 4 dollar bills in your back pocket.
+  - Hand her your credit card, gimme those points.
+  - Use your apple wallet and tap, then when that doesn't work, use your credit card.
+  option1: {fileID: 11400000, guid: 74b4f68e421dc594b991256017583294, type: 2}
+  option2: {fileID: 11400000, guid: 74b4f68e421dc594b991256017583294, type: 2}
+  option3: {fileID: 11400000, guid: 74b4f68e421dc594b991256017583294, type: 2}
+  option4: {fileID: 0}

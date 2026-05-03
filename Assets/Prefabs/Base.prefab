@@ -365,8 +365,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.912909, y: 14.604256, z: 5.6886196}
-  m_Center: {x: 0.3188016, y: 6.802126, z: -0.23201962}
+  m_Size: {x: 10.912909, y: 25.282238, z: 10.365669}
+  m_Center: {x: 0.31880185, y: 12.141115, z: -0.23202184}
 --- !u!114 &1552404748615122066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +380,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Base
   inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
-  baseNum: 1
+  _baseNum: 0
   EnterScenePrompt: {fileID: 998776839200804407}
   inBaseArea: 0

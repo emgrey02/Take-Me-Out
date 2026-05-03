@@ -1,0 +1,38 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/theaterscreen.uss?fileID=7433441132597879392&amp;guid=e7c8a4e56e9433546bb07840275ec6c8&amp;type=3#theaterscreen"/>
+    <ui:VisualElement style="flex-grow: 0; flex-direction: column; align-self: center; align-content: auto; justify-content: flex-start; align-items: auto; width: auto; height: auto; transition-property: opacity; transition-duration: 2s;">
+        <ui:VisualElement style="flex-grow: 1; width: 1200px; height: 850px; margin-top: 140px; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+            <ui:VisualElement name="VisualElement" style="flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-color: rgb(159, 68, 68); height: 200px;">
+                <ui:Label text="SOMERVILLE THEATRE" name="Title" style="font-size: 60px; align-items: stretch; -unity-text-align: upper-center; margin-top: 30px;"/>
+                <ui:Label text="TRIVIA" name="Title" style="font-size: 60px; align-items: stretch; -unity-text-align: upper-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="question-ctn" class="remove" style="flex-grow: 1; justify-content: flex-start; height: 600px;">
+                <ui:Label text="What is the most important date in November?" name="question" class="main-text" style="flex-wrap: wrap; -unity-text-align: upper-center;"/>
+                <ui:VisualElement style="flex-grow: 1; align-items: flex-start; width: 300px; align-self: center; align-content: flex-start; flex-direction: row;">
+                    <ui:VisualElement class="answer" style="flex-grow: 0; flex-direction: column; align-items: flex-start;">
+                        <ui:Label text="a." name="number" style="font-size: 30px; flex-direction: row;"/>
+                        <ui:Label text="b." name="number" style="font-size: 30px; flex-direction: row;"/>
+                        <ui:Label text="c." name="number" style="font-size: 30px; flex-direction: row;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="answer" style="flex-grow: 0; flex-direction: column; align-items: flex-start; align-self: flex-start;">
+                        <ui:Button text="Answer" name="" class="button-answer choice"/>
+                        <ui:Button text="Answer" name="" class="button-answer choice"/>
+                        <ui:Button text="Answer" name="" class="button-answer choice"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="answer-ctn" class="remove" style="flex-grow: 1; height: 600px; justify-content: space-between; flex-wrap: wrap;">
+                <ui:Label text="Label" name="answer" class="main-text" style="margin-top: 15px; margin-bottom: 9px; -unity-text-align: upper-center; flex-wrap: wrap; align-items: center; align-self: center;"/>
+                <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; height: auto; max-height: 400px; align-items: center; flex-wrap: nowrap; align-content: auto; align-self: auto; justify-content: center;">
+                    <ui:Image source="project://database/Assets/Resources/alison-3.png?fileID=2800000&amp;guid=078482728c03c954b84ce33e9b40b727&amp;type=3#alison-3" scale-mode="ScaleAndCrop" name="image" data-source-path="" uv="0,0,1,1" style="width: auto; align-items: stretch; align-self: center; height: auto; flex-grow: 1; flex-wrap: wrap; flex-shrink: 0; flex-basis: 400px;"/>
+                    <ui:Label text="Label" name="info-text" style="font-size: 24px; align-content: stretch; justify-content: flex-start; align-items: flex-start; margin-left: 47px; flex-wrap: wrap; flex-grow: 1; flex-shrink: 0; white-space: normal; flex-basis: 300px;"/>
+                </ui:VisualElement>
+                <ui:Button text="Try Again" class="button" style="margin-bottom: 10px;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="finalscreen-ctn" style="flex-grow: 1; height: 600px; justify-content: flex-start; flex-wrap: wrap; align-items: center; align-self: center; align-content: center; flex-direction: column; -unity-text-align: upper-left; transition-property: opacity; transition-duration: 1s;">
+                <ui:Label text="That&apos;s all for trivia!" name="answer" class="main-text" style="margin-top: 15px; margin-bottom: 9px; -unity-text-align: upper-center; flex-wrap: wrap; justify-content: space-around; align-content: stretch; font-size: 80px; white-space: normal; flex-shrink: 1;"/>
+                <ui:Label text="ENJOY THE MOVIE" name="answer" selectable="true" focusable="true" class="main-text" style="margin-top: 15px; margin-bottom: 9px; -unity-text-align: middle-center; flex-wrap: wrap; justify-content: space-around; align-content: stretch; font-size: 100px; white-space: normal; -unity-font-style: bold; flex-grow: 1;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
