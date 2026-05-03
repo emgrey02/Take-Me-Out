@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SomervilleTheater.unity
     guid: 9dff8cb90a84d624f88bd7a2eafc680f
+  - enabled: 1
+    path: Assets/Scenes/EchoLake.unity
+    guid: da88204ddfe31de4c9a205d8d69a4c0a
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

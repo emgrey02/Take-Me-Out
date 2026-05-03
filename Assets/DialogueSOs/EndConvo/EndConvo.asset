@@ -16,7 +16,7 @@ MonoBehaviour:
   dialogue:
   - That movie was awesome!
   - I had a great time with you :)
-  - But I think you have someplace else to be, better be on your way now...
+  - But I think you have someplace else to be. Better be on your way now...
   options: []
   option1: {fileID: 0}
   option2: {fileID: 0}

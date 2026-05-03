@@ -77,6 +77,9 @@ public class GameManager : MonoBehaviour
                     case 3:
                         pos = new Vector3(26.5f, 1.1f, 27.3f);
                         rot = Quaternion.Euler(0, -88, 0);
+                        baseObj = Instantiate(basePrefab, new Vector3(0.2f, .05f, 27.2f), Quaternion.identity);
+                        baseObj.name = "Third Base";
+                        baseObj.GetComponent<Base>().baseNum = 3;
                         break;
                     // from third base exp
                     case 4:
@@ -103,6 +106,10 @@ public class GameManager : MonoBehaviour
             case 3:
                 pos = new Vector3(10f, 1.2f, -1f);
                 rot = Quaternion.Euler(0, -68f, 0);
+                break;
+            case 4:
+                pos = new Vector3(0f, 1.2f, 0f);
+                rot = Quaternion.Euler(0, 0, 0);
                 break;
             default:
                 pos = new Vector3(0, 0, 0);
