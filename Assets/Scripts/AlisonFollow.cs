@@ -7,13 +7,13 @@ public class AlisonFollow : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-        transform.rotation= new Quaternion(0f,-90f, 0f, 0f);
+        transform.rotation= new Quaternion(0f, 0f, 0f, 0f);
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         transform.position = player.transform.position + new Vector3(.5f, -1f, -.5f);
-        transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, -player.transform.eulerAngles.y, transform.rotation.eulerAngles.z));
+        transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, -player.transform.eulerAngles.y + 90, transform.rotation.eulerAngles.z));
     }
 }

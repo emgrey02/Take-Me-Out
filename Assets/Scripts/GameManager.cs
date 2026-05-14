@@ -107,8 +107,9 @@ public class GameManager : MonoBehaviour
                 pos = new Vector3(10f, 1.2f, -1f);
                 rot = Quaternion.Euler(0, -68f, 0);
                 break;
+            // echo lake
             case 4:
-                pos = new Vector3(0f, 1.2f, 0f);
+                pos = new Vector3(-2f, 1.2f, -2f);
                 rot = Quaternion.Euler(0, 0, 0);
                 break;
             default:

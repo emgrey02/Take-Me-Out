@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private Vector3 _velocity;
     private Vector3 _moveVector;
+    private Vector3 _playerLook;
 
     private VisualElement invPanel;
     private VisualElement mmPanel;
@@ -86,36 +87,11 @@ public class PlayerMovement : MonoBehaviour
     
     private void OnLook(Vector2 playerLook)
     {
-        //Debug.Log("player looking");
-        #if UNITY_STANDALONE
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-            UnityEngine.Cursor.visible = false;
-        #endif
-        #if UNITY_EDITOR
-            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
-            UnityEngine.Cursor.visible = false;
-        #endif
 
-        // up down
-        float lookX = playerLook.x * _lookSensitivity * Time.deltaTime;
-
-        // left right
-        float lookY = playerLook.y * _lookSensitivity * Time.deltaTime;
-
-        // up down
-        xRotation -= lookY;
-        xRotation = Math.Clamp(xRotation, -90f, 90f);
-
-        // rotate camera around xAxis (look up & down)
-        Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-        // rotate player around yAxis (turn left & right)
-        transform.Rotate(Vector3.up * lookX);
-        
-        
+        _playerLook = playerLook;
     }
 
-    void Update()
+    void LateUpdate()
     {
         //Debug.Log("PlayerMovement:" + inputReader.PlayerControlsStatus());  
         if (inputReader.PlayerControlsStatus())
@@ -129,6 +105,32 @@ public class PlayerMovement : MonoBehaviour
             _velocity.y += gravity * Time.deltaTime;
             controller.Move(_velocity * Time.deltaTime);
             controller.Move(move * Time.deltaTime);
+
+            //Debug.Log("player looking");
+            #if UNITY_STANDALONE
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                UnityEngine.Cursor.visible = false;
+            #endif
+            #if UNITY_EDITOR
+                UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+                UnityEngine.Cursor.visible = false;
+            #endif
+
+            // up down
+            float lookX = _playerLook.x * _lookSensitivity * Time.deltaTime;
+
+            // left right
+            float lookY = _playerLook.y * _lookSensitivity * Time.deltaTime;
+
+            // up down
+            xRotation -= lookY;
+            xRotation = Math.Clamp(xRotation, -90f, 90f);
+
+            // rotate camera around xAxis (look up & down)
+            Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+            // rotate player around yAxis (turn left & right)
+            transform.Rotate(Vector3.up * lookX);
         }
         else
         {

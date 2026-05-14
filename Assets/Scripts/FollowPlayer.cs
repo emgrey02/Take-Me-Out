@@ -9,8 +9,8 @@ public class FollowPlayer : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void LateUpdate()
     {
         transform.position = player.transform.position + new Vector3(0, .75f, 0);
         transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, player.transform.eulerAngles.y, transform.rotation.eulerAngles.z));

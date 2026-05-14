@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
-  m_Time: 4
+  m_Time: 1.5
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 0655911c81c654f4dbefb70b321d0857, type: 2}
@@ -118,13 +118,13 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 4833553919309879793}
-    m_Duration: 2.5
+    m_Duration: 1
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6877541096114607803}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
-    m_BlendOutDuration: 1.4833333333333334
+    m_BlendOutDuration: 0.6666666666666667
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -166,15 +166,15 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: end-convo-firstcam
   - m_Version: 1
-    m_Start: 1.0166666666666666
+    m_Start: 0.3333333333333333
     m_ClipIn: 0
     m_Asset: {fileID: -5135588074413723905}
-    m_Duration: 3.9833333333333334
+    m_Duration: 1.3333333333333335
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6877541096114607803}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 1.4833333333333334
+    m_BlendInDuration: 0.6666666666666667
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
