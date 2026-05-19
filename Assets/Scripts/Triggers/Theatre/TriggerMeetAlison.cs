@@ -22,8 +22,7 @@ public class TriggerMeetAlison:MonoBehaviour
     }
 
     void OnDisable() {
-        firstDirector.paused -= OnFirstDirectorPaused;
-        DialogueBoxController.OnDialogueEnded -= LeaveConversation;
+        firstDirector.paused -= OnFirstDirectorPaused;  
     }
 
     void OnFirstDirectorPaused(PlayableDirector aDirector)
@@ -45,17 +44,24 @@ public class TriggerMeetAlison:MonoBehaviour
     }
 
 
-    void LeaveConversation()
+    private void LeaveConversation()
     {
         Debug.Log("leaving conversation");
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
-        // so player cant go through this dialogue again
-        gameObject.GetComponent<Collider>().enabled = false;
 
-        GetComponent<AlisonFollow>().enabled = true;
+
+        // so player cant go through this dialogue again
         GetComponent<Collider>().enabled = false;
+        
+        // make alison follow
+        GetComponent<AlisonFollow>().enabled = true;
+
+        // stop timeline animation
         cameraMove.SetActive(false);
         firstDirector.Stop();
+
+        // dont listen anymore to dialogueboxcontroller
+        DialogueBoxController.OnDialogueEnded -= LeaveConversation;
     }
 
 }

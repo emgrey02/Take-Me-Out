@@ -20,13 +20,15 @@ public class DialogueBoxController : MonoBehaviour
 
     [SerializeField] InputReader inputReader;
 
-    public VisualElement dialogueBox;
+    public VisualElement box;
     public VisualElement optionsPanel;
     public Label speakerName;
     public Label dialogueText;
     public Button nextButton;
     public List<Button> options = new List<Button>();
     public DialogueAsset currentDialogue;
+
+    public WhichPole whichPole;
 
 
     // typewriter effect
@@ -47,7 +49,10 @@ public class DialogueBoxController : MonoBehaviour
         }
 
         // get ui elements
-        dialogueBox = GetComponent<UIDocument>().rootVisualElement;
+        VisualElement dialogueBox = GetComponent<UIDocument>().rootVisualElement;
+
+        box = dialogueBox.Q<VisualElement>("Box");
+        box.AddToClassList("hide");
 
         speakerName = dialogueBox.Q<Label>("speakerName");
         dialogueText = dialogueBox.Q<Label>("dialogueText");
@@ -58,8 +63,8 @@ public class DialogueBoxController : MonoBehaviour
 
         nextButton = dialogueBox.Q<Button>("nextLine");
 
-        dialogueBox.AddToClassList("hide");
     }
+
 
     void OnEnable()
     {
@@ -78,14 +83,42 @@ public class DialogueBoxController : MonoBehaviour
         }
     }
 
+    private void ClearDialogueBox()
+    {
+        // hide all dialogue box text
+        speakerName.text = null;
+        dialogueText.text = null;
+        for (int j=0; j < options.Count; j++) {
+            options[j].text = null;
+            options[j].visible = false; 
+        }
+        optionsPanel.visible = false;
+    }
+
     public void StartDialogue(DialogueAsset d)
     {
-        Debug.Log("starting dialogue with asset ");
-        Debug.Log(d.dialogue[0]);
-        optionsPanel.visible = false;
+        Debug.Log(d.name);
+        Debug.Log("starting dialogue with asset");
+
         currentDialogue = d;
+
+        ClearDialogueBox();
+        
         inputReader.DisablePlayerControls();
-        dialogueBox.RemoveFromClassList("hide");
+
+        box.RemoveFromClassList("hide");
+        
+        StopAllCoroutines();
+        StartCoroutine(RunDialogue(d));
+    }
+
+    public void ContinueDialogue(DialogueAsset d)
+    {
+        Debug.Log(d.name);
+        Debug.Log("continuing dialogue");
+        ClearDialogueBox();
+        currentDialogue = d;
+
         StopAllCoroutines();
         StartCoroutine(RunDialogue(d));
     }
@@ -94,10 +127,30 @@ public class DialogueBoxController : MonoBehaviour
     {
         Debug.Log("reseting dialogue ui");
         inputReader.EnablePlayerControls();
-        dialogueBox.AddToClassList("hide");
-        currentDialogue = null;
-        speakerName.text = null;
-        dialogueText.text = null;
+        box.AddToClassList("hide");
+
+        if (currentDialogue.name == "lets-fish") {
+            // start fishing script
+            // swap scripts
+            whichPole.currentPole.GetComponent<TriggerPoleDialogue>().enabled = false;
+            StartFishing script = whichPole.currentPole.GetComponent<StartFishing>();
+            script.enabled = true;
+            script.PrepareToFish();
+        }
+
+        if (currentDialogue.name == "LakeWhitefish") 
+        {
+            Debug.Log("enable script to begin engagement ring dialogue");
+            whichPole.currentPole.GetComponent<RingFound>().enabled = true;
+            box.RemoveFromClassList("basecolor");
+        }
+
+        if (currentDialogue.name == "marry-option" || currentDialogue.name == "walk-option")
+        {
+            box.AddToClassList("basecolor");
+        }
+ 
+        ClearDialogueBox();
     }
 
     IEnumerator RunDialogue(DialogueAsset d)
@@ -107,14 +160,12 @@ public class DialogueBoxController : MonoBehaviour
         for(int i = 0; i < d.speaker.Length; i++)
         {
             Debug.Log("going through speaker list");
-            Debug.Log("step "+ i+ ": "+ d.speaker[i].ToString());
             
-
             // if there's a branch
             if (d.speaker[i] == Speakers.Branch) {
-                Debug.Log("It's a branch!'");
+                Debug.Log("It's a branch!");
+
                 // time to show reply options
-                //optionsPanel.visible = true;
                 nextButton.AddToClassList("hide");
 
                 for (int j=0; j < options.Count; j++) {
@@ -129,18 +180,28 @@ public class DialogueBoxController : MonoBehaviour
             } else {
                 Debug.Log("not a branch");
                 Debug.Log("setting text");
+
+                // hide options
                 optionsPanel.visible = false;
                 for (int j=0; j < options.Count; j++) {
                     options[j].visible = false; 
                 }
+                // show next button
                 nextButton.RemoveFromClassList("hide");
+
+                // set speaker name
                 speakerName.text = d.speaker[i].ToString();
+
+                dialogueText.text = null;
+
+                // start typing text
                 StartCoroutine(TypeText(d.dialogue[i]));
-                //dialogueText.text = d.dialogue[i];
+
             }
 
             if (i < d.dialogue.Length) {
-                    dialogueText.text = d.dialogue[i];
+                // keep dialogue text when showing options
+                dialogueText.text = d.dialogue[i];
             }
            
             while (nextLineTriggered == false)
@@ -158,6 +219,7 @@ public class DialogueBoxController : MonoBehaviour
     
     IEnumerator TypeText(string line)
     {
+        
         float timer = 0;
         float interval = 1 / charactersPerSecond;
         string textBuffer = null;
@@ -193,19 +255,27 @@ public class DialogueBoxController : MonoBehaviour
         Debug.Log("option clicked");
         for (int i=0; i < options.Count; i++) {
             if (evt.target == options[i]) {
+                // hide all dialogue box text
+                speakerName.text = null;
+                dialogueText.text = null;
+                optionsPanel.visible = false;
+                for (int j=0; j < options.Count; j++) {
+                    options[j].text = null;
+                    options[j].visible = false; 
+                }
                 switch (i) 
                 {
                     case 0:
-                        StartDialogue(currentDialogue.option1);
+                        ContinueDialogue(currentDialogue.option1);
                         break;
                     case 1:
-                        StartDialogue(currentDialogue.option2);
+                        ContinueDialogue(currentDialogue.option2);
                         break;
                     case 2:
-                        StartDialogue(currentDialogue.option3);
+                        ContinueDialogue(currentDialogue.option3);
                         break;
                     case 3:
-                        StartDialogue(currentDialogue.option4);
+                        ContinueDialogue(currentDialogue.option4);
                         break;
                     default:
                         break;

@@ -10,6 +10,7 @@ TagManager:
   - CardObj
   - MainMenu
   - SaveManager
+  - FishPoleOne
   layers:
   - Default
   - TransparentFX

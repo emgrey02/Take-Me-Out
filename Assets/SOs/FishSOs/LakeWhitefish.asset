@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b295243d4548b2d49ad34c0c98d90931, type: 3}
+  m_Name: LakeWhitefish
+  m_EditorClassIdentifier: Assembly-CSharp::FishAsset
+  weight: 2
+  fishPrefab: {fileID: 5792138788658433132, guid: 87b99a846b24c9247a288bb371868559, type: 3}
+  dialogue: {fileID: 11400000, guid: 7b8ec51d0d7a54d49841026f695e9377, type: 2}

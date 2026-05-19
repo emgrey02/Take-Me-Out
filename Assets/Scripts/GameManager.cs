@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        // limit fps
+        QualitySettings.vSyncCount = 0; // disabled vSync
+        Application.targetFrameRate = 60;
         // make sure theres only one instance of GameManager
         if (_instance != null && _instance != this)
         {
@@ -77,6 +80,7 @@ public class GameManager : MonoBehaviour
                     case 3:
                         pos = new Vector3(26.5f, 1.1f, 27.3f);
                         rot = Quaternion.Euler(0, -88, 0);
+                        // add third base
                         baseObj = Instantiate(basePrefab, new Vector3(0.2f, .05f, 27.2f), Quaternion.identity);
                         baseObj.name = "Third Base";
                         baseObj.GetComponent<Base>().baseNum = 3;

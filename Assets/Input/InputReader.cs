@@ -10,6 +10,7 @@ public class InputReader : ScriptableObject, IPlayerActions, IUIActions
 
     public event Action<Vector2> MoveEvent;
     public event Action<Vector2> LookEvent;
+    public event Action<bool> LeaveEvent;
     public event Action<bool> InteractEvent;
     public event Action<bool> InventoryToggleEvent;
     public event Action<bool> MainMenuToggleEvent;
@@ -61,6 +62,18 @@ public class InputReader : ScriptableObject, IPlayerActions, IUIActions
     public void OnLook(InputAction.CallbackContext context)
     {
         LookEvent?.Invoke(context.ReadValue<Vector2>());
+    }
+
+    public void OnLeave(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            LeaveEvent?.Invoke(true);
+        }
+        else if (context.canceled)
+        {
+            LeaveEvent?.Invoke(false);
+        }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
