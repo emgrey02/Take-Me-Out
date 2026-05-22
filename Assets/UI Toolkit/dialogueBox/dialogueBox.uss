@@ -42,18 +42,18 @@
     padding-left: 5px;
     transition-property: color;
     transition-duration: 0.2s;
-    font-size: 18px;
+    font-size: 20px;
     flex-wrap: wrap;
     flex-direction: row;
     flex-grow: 1;
 }
 
 .unity-button:hover {
-    transition-property: color, -unity-text-outline-width;
-    transition-duration: 0.2s, 0.2s;
-    color: rgb(255, 0, 0);
-    -unity-text-outline-width: 2px;
-    -unity-text-outline-color: rgb(156, 29, 29);
+    transition-property: color;
+    transition-duration: 0.2s;
+    color: rgb(78, 115, 67);
+    -unity-text-outline-width: 0;
+    -unity-text-outline-color: rgba(156, 29, 29, 0);
 }
 
 .option {
@@ -81,6 +81,8 @@
     background-color: rgba(202, 202, 202, 0.76);
 }
 
+
+
 .unity-button:focus {
-    background-color: rgb(255, 255, 255);
+    color: rgb(78, 115, 67);
 }
