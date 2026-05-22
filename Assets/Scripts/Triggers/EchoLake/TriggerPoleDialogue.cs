@@ -1,12 +1,15 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Playables;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion;
 
 public class TriggerPoleDialogue : MonoBehaviour
 {
     public InputReader inputReader;
 
     public WhichPole whichPole;
+
+    public GameObject lookAtAlisonCamera;
 
     public GameObject RodPrompt;
     public bool inRodArea = false;
@@ -21,8 +24,7 @@ public class TriggerPoleDialogue : MonoBehaviour
     public DialogueAsset dialogue;
 
     public GameObject alison;
-    public int alisonRotOffset;
-    public GameObject secondCam;
+
 
     public Vector3 alisonLoc;
 
@@ -53,15 +55,21 @@ public class TriggerPoleDialogue : MonoBehaviour
         {
             whichPole.currentPole = gameObject;
             DialogueBoxController.OnDialogueEnded += LeaveConversation;
+            
             Debug.Log("triggering cutscene");
             RodPrompt.SetActive(false);
 
             // set alison location
-            alison.GetComponent<AlisonFollow>().enabled = false;
-            alison.transform.rotation = Quaternion.Euler(new Vector3(0f, -secondCam.transform.eulerAngles.y-alisonRotOffset, 0f));
-            alison.transform.position = alisonLoc;
+            //alison.GetComponent<AlisonFollow>().enabled = false;
+            //alison.transform.rotation = Quaternion.Euler(new Vector3(0f, -lookAtAlisonCamera.transform.eulerAngles.y-90, 0f));
+            //alison.transform.position = alisonLoc;
 
             StopAllCoroutines();
+
+
+            //look at alison
+            Transform player = GameObject.FindWithTag("Player").transform;
+            player.rotation = Quaternion.Euler(new Vector3(0f, -lookAtAlisonCamera.transform.eulerAngles.y - 90, 0f));
 
             // start cutscene cameras
             cameraMove.SetActive(true);
@@ -83,18 +91,10 @@ public class TriggerPoleDialogue : MonoBehaviour
         inRodArea = false;
     }
 
-    //Vector3(68.2454758,1.67139399,98.1349945)
-    //Vector3(30.0000114,30.0000076,270)
-
-    //fish
-    //Vector3(68.1356354,1.75,98.9417496)
-
-    //prompt
-    //Vector3(66.6949997,2.08999991,97.0899963)
-
     private void LeaveConversation()
     {
-        Debug.Log("leaving conversation");
+        Debug.Log("leaving pole conversation from");
+        Debug.Log(whichPole.currentPole);
 
         // shouldnt be necessary but just in case, turn off prompt
         RodPrompt.SetActive(false);

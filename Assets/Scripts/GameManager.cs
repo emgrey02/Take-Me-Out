@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
                         // add first base
                         baseObj = Instantiate(basePrefab, new Vector3(27.2f, .05f, .2f), Quaternion.identity);
                         baseObj.name = "First Base";
-                        baseObj.GetComponent<Base>().baseNum = 1;
+                        baseObj.GetComponent<Base>().BaseNum = 1;
                         break;
                     // from first base exp
                     case 2:
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
                         // add second base
                         baseObj = Instantiate(basePrefab, new Vector3(27.2f, .05f, 27.2f), Quaternion.identity);
                         baseObj.name = "Second Base";
-                        baseObj.GetComponent<Base>().baseNum = 2;
+                        baseObj.GetComponent<Base>().BaseNum = 2;
                         break;
                     // from second base exp
                     case 3:
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
                         // add third base
                         baseObj = Instantiate(basePrefab, new Vector3(0.2f, .05f, 27.2f), Quaternion.identity);
                         baseObj.name = "Third Base";
-                        baseObj.GetComponent<Base>().baseNum = 3;
+                        baseObj.GetComponent<Base>().BaseNum = 3;
                         break;
                     // from third base exp
                     case 4:
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
                 break;
             // echo lake
             case 4:
-                pos = new Vector3(-2f, 1.2f, -2f);
+                pos = new Vector3(3.8f, 1, -2f);
                 rot = Quaternion.Euler(0, 0, 0);
                 break;
             default:
@@ -149,13 +149,13 @@ public class GameManager : MonoBehaviour
             Debug.Log("Setting Init Player Data");
             Debug.Log("look sensitivity: " + saveData.lookSensitivity);
             Debug.Log("move speed: " + saveData.moveSpeed);
-            PlayerController.lookSensitivity = saveData.lookSensitivity;
-            PlayerController.moveSpeed = saveData.moveSpeed;
+            PlayerController.LookSensitivity = saveData.lookSensitivity;
+            PlayerController.MoveSpeed = saveData.moveSpeed;
         }
         else
         {
-            PlayerController.lookSensitivity = 20;
-            PlayerController.moveSpeed = 4;
+            PlayerController.LookSensitivity = 20;
+            PlayerController.MoveSpeed = 4;
         }
     }
 
@@ -181,8 +181,8 @@ public class GameManager : MonoBehaviour
     // set player data from menu
     public void SetPlayerData(int ls, int ms)
     {
-        PlayerController.lookSensitivity = ls;
-        PlayerController.moveSpeed = ms;
+        PlayerController.LookSensitivity = ls;
+        PlayerController.MoveSpeed = ms;
         
         // save it
         SaveManager.SavePlayerData(ls, ms);

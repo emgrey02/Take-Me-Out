@@ -20,7 +20,7 @@ public class TriggerAlisonWalk:MonoBehaviour
         // move myself so alison follows
         GameObject player = GameObject.FindWithTag("Player");
         controller = player.GetComponent<CharacterController>();
-        player.transform.rotation = Quaternion.Euler(0f, -120f, 0f);
+        player.transform.rotation = Quaternion.Euler(0f, -40f, 0f);
         
         //Take control of player
         goForWalk();
@@ -41,7 +41,7 @@ public class TriggerAlisonWalk:MonoBehaviour
 
     IEnumerator WaitForDialogue()
     {
-         yield return new WaitForSeconds(2);
+         yield return new WaitForSeconds(1);
          DialogueBoxController.instance.StartDialogue(dialogue);
          DialogueBoxController.OnDialogueEnded += LeaveConversation;
     }
@@ -50,7 +50,7 @@ public class TriggerAlisonWalk:MonoBehaviour
     {
         if (walking)
         {
-            controller.Move(new Vector3(-.3f, 0f, 0f) * Time.deltaTime);
+            controller.Move(new Vector3(-.5f, 0f, 0f) * Time.deltaTime);
         }
     }
 
@@ -67,8 +67,6 @@ public class TriggerAlisonWalk:MonoBehaviour
         // turn off this script
         this.enabled = false;
 
-        // stop timeline animation
-        //cameraMove.SetActive(false);
     }
 
 }

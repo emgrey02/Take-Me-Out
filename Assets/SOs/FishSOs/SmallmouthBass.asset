@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SmallmouthBass
   m_EditorClassIdentifier: Assembly-CSharp::FishAsset
   weight: 4
-  fishPrefab: {fileID: 5792138788658433132, guid: 87b99a846b24c9247a288bb371868559, type: 3}
+  fishPrefab: {fileID: 7458969853247295047, guid: 1ccbc510948caa84dac66155c749a823, type: 3}
   dialogue: {fileID: 11400000, guid: 3c58ca6a15cafbc499e81b1199c2653b, type: 2}

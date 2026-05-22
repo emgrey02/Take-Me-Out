@@ -8,7 +8,7 @@ using System.Linq;
 public enum Speakers {
     Alison,
     Brad,
-    Joe,
+    Michols,
     Mia,
     You,
     Branch
@@ -71,6 +71,7 @@ public class DialogueBoxController : MonoBehaviour
         nextButton.clicked += OnNextButtonClicked;
         for (int i=0; i < options.Count; i++) {
             //options[i].clicked += OnOptionClicked;
+            options[i].RegisterCallback<NavigationSubmitEvent>(OnOptionClicked);
             options[i].RegisterCallback<ClickEvent>(OnOptionClicked);
         }
     }
@@ -79,6 +80,7 @@ public class DialogueBoxController : MonoBehaviour
     {
         nextButton.clicked -= OnNextButtonClicked;
         for (int i=0; i < options.Count; i++) {
+            options[i].UnregisterCallback<NavigationSubmitEvent>(OnOptionClicked);
             options[i].UnregisterCallback<ClickEvent>(OnOptionClicked);
         }
     }
@@ -140,14 +142,18 @@ public class DialogueBoxController : MonoBehaviour
 
         if (currentDialogue.name == "LakeWhitefish") 
         {
+            StartFishing script = whichPole.currentPole.GetComponent<StartFishing>();
             Debug.Log("enable script to begin engagement ring dialogue");
             whichPole.currentPole.GetComponent<RingFound>().enabled = true;
+            script.HidePrompt();
             box.RemoveFromClassList("basecolor");
         }
 
         if (currentDialogue.name == "marry-option" || currentDialogue.name == "walk-option")
         {
+            StartFishing script = whichPole.currentPole.GetComponent<StartFishing>();
             box.AddToClassList("basecolor");
+            script.StopFishing();
         }
  
         ClearDialogueBox();
@@ -203,6 +209,8 @@ public class DialogueBoxController : MonoBehaviour
                 // keep dialogue text when showing options
                 dialogueText.text = d.dialogue[i];
             }
+
+            dialogueText.Focus();
            
             while (nextLineTriggered == false)
             {
@@ -249,21 +257,32 @@ public class DialogueBoxController : MonoBehaviour
         Debug.Log("next button clicked");
         nextLineTriggered = true;
     }
-
-    private void OnOptionClicked(ClickEvent evt) 
+    private void OnOptionClicked(ClickEvent evt)
+    {
+        HandleOption(evt.target);
+    }
+    private void OnOptionClicked(NavigationSubmitEvent evt) 
+    {
+        HandleOption(evt.target);
+        
+    }
+    private void HandleOption(IEventHandler target)
     {
         Debug.Log("option clicked");
-        for (int i=0; i < options.Count; i++) {
-            if (evt.target == options[i]) {
+        for (int i = 0; i < options.Count; i++)
+        {
+            if (target == options[i])
+            {
                 // hide all dialogue box text
                 speakerName.text = null;
                 dialogueText.text = null;
                 optionsPanel.visible = false;
-                for (int j=0; j < options.Count; j++) {
+                for (int j = 0; j < options.Count; j++)
+                {
                     options[j].text = null;
-                    options[j].visible = false; 
+                    options[j].visible = false;
                 }
-                switch (i) 
+                switch (i)
                 {
                     case 0:
                         ContinueDialogue(currentDialogue.option1);
@@ -280,7 +299,7 @@ public class DialogueBoxController : MonoBehaviour
                     default:
                         break;
                 }
-                        
+
             }
         }
     }
