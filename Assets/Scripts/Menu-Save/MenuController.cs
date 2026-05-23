@@ -28,6 +28,8 @@ public class MenuController : MonoBehaviour
     public SliderInt lookSenSlider;
     public SliderInt walkSpeedSlider;
 
+    public bool playerControlsEnabled;
+
     void Awake()
     {
         // get visual elements
@@ -165,6 +167,11 @@ public class MenuController : MonoBehaviour
         {
             // hide main menu
             mm.AddToClassList("hide");
+
+            if (playerControlsEnabled)
+            {
+                inputReader.EnablePlayerControls();
+            }
         }
     }
 
@@ -174,29 +181,32 @@ public class MenuController : MonoBehaviour
         if (MainMenuToggled && invPanel.ClassListContains("hide"))
         {
             Debug.Log("main menu toggle triggered");
-            mm.ToggleInClassList("hide");
 
-            // get current playercontrols status
-            bool status = inputReader.PlayerControlsStatus();
-            Debug.Log("Player controls status: ");
-            Debug.Log(status);
-
-            // disable/enable player controls if main menu is on screen or not
+            // if main menu is closed
             if (mm.ClassListContains("hide"))
             {
-                // if main menu is hidden, go back to what controls were before toggling main menu
-                if (status)
-                {
-                    // if they were on before, turn them back on, if they were off, leave them off
-                    Debug.Log("enabling player controls");
-                    inputReader.EnablePlayerControls(); 
-                }
+                // get current playercontrols status
+                playerControlsEnabled = inputReader.PlayerControlsStatus();
+                Debug.Log("Player controls status: ");
+                Debug.Log(playerControlsEnabled);
 
-            }
-            else {
+                // open main menu
+                mm.RemoveFromClassList("hide");
                 Debug.Log("disabling player controls");
                 inputReader.DisablePlayerControls();
             }
+            else
+            {
+                // close main menu
+                mm.AddToClassList("hide");
+                if (playerControlsEnabled)
+                {
+                    // if player controls were enabled before opening main menu, re-enable them. if they were disabled before opening main menu, leave them disabled. this way we can return to the correct state after closing main menu regardless of what that state was before opening main menu
+                    Debug.Log("enabling player controls");
+                    inputReader.EnablePlayerControls();
+                }
+            }
+
         }
     }
     
