@@ -783,6 +783,7 @@ MonoBehaviour:
   Banks:
   - diegetic music
   - music
+  - sfx
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
