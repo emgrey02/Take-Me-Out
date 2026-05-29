@@ -20,6 +20,7 @@ public class MenuController : MonoBehaviour
     public Button settingsButton;
     public Button quitButton;
     public Button saveButton;
+    public Button backButton;
 
     public DropdownField qualityDropdown;
     public SliderInt masterVolSlider;
@@ -42,6 +43,7 @@ public class MenuController : MonoBehaviour
         settingsButton = mm.Q<Button>("SettingsButton");
         saveButton = mm.Q<Button>("SaveButton");
         quitButton = mm.Q<Button>("QuitButton");
+        backButton = mm.Q<Button>("BackButton");
 
         // get dropdowns and sliders
         qualityDropdown = mm.Q<DropdownField>("quality");
@@ -63,6 +65,7 @@ public class MenuController : MonoBehaviour
         settingsButton.clicked += OnSettingsButtonClicked;
         saveButton.clicked += OnSaveButtonClicked;       
         quitButton.clicked += OnQuitButtonClicked;
+        backButton.clicked += OnBackButtonClicked;
 
         // subscribe to main menu toggle event
         inputReader.MainMenuToggleEvent += OnMainMenuToggle;
@@ -75,6 +78,7 @@ public class MenuController : MonoBehaviour
         settingsButton.clicked -= OnSettingsButtonClicked;
         saveButton.clicked -= OnSaveButtonClicked;       
         quitButton.clicked -= OnQuitButtonClicked;
+        backButton.clicked -= OnBackButtonClicked;
 
         // unsubscribe to main menu toggle event
         inputReader.MainMenuToggleEvent -= OnMainMenuToggle;
@@ -124,6 +128,12 @@ public class MenuController : MonoBehaviour
 
     }
 
+    private void OnBackButtonClicked()
+    {
+        settingsMenu.AddToClassList("remove");
+        initialMenu.RemoveFromClassList("remove");
+    }
+
     private void OnQuitButtonClicked()
     {
         GameManager.Instance.ClearInventory();
@@ -161,6 +171,7 @@ public class MenuController : MonoBehaviour
     {
         if (GameManager.Instance.GetSceneId() == 0)
         {
+            inputReader.EnablePlayerControls();
             GameManager.Instance.MoveToScene(1);
         }
         else
@@ -170,7 +181,11 @@ public class MenuController : MonoBehaviour
 
             if (playerControlsEnabled)
             {
+                Debug.Log("enabling player controls because they were enabled before opening the main menu");
                 inputReader.EnablePlayerControls();
+            } else
+            {
+                Debug.Log("not enabling player controls because they were disabled before opening the menu");
             }
         }
     }
@@ -192,7 +207,7 @@ public class MenuController : MonoBehaviour
 
                 // open main menu
                 mm.RemoveFromClassList("hide");
-                Debug.Log("disabling player controls");
+                Debug.Log("opening main menu and disabling player controls");
                 inputReader.DisablePlayerControls();
             }
             else
@@ -201,9 +216,14 @@ public class MenuController : MonoBehaviour
                 mm.AddToClassList("hide");
                 if (playerControlsEnabled)
                 {
-                    // if player controls were enabled before opening main menu, re-enable them. if they were disabled before opening main menu, leave them disabled. this way we can return to the correct state after closing main menu regardless of what that state was before opening main menu
-                    Debug.Log("enabling player controls");
+                    // if player controls were enabled before opening main menu, re-enable them
+                    // if they were disabled before opening main menu, leave them disabled
+                    // this way we can return to the correct state after closing main menu
+                    Debug.Log("enabling player controls because they were enabled before opening the main menu");
                     inputReader.EnablePlayerControls();
+                } else
+                {
+                    Debug.Log("not enabling player controls because they were disabled before opening the menu");
                 }
             }
 

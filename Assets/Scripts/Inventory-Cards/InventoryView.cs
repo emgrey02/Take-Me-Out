@@ -26,7 +26,9 @@ public class InventoryView : MonoBehaviour
     
     // inventory presenter - to talk to Inventory class
     private InventoryPresenter invPresenter;
-    
+
+    private bool playerControlsStatus;
+
     void OnEnable()
     {
         // get inv presenter component for event subscription
@@ -100,24 +102,27 @@ public class InventoryView : MonoBehaviour
         if (InventoryToggled && mmPanel.ClassListContains("hide"))
         {
             Debug.Log("inventory toggle triggered");
-            // toggle hide class
-            invPanel.ToggleInClassList("hide");
-
-            // get current playercontrols status
-            bool status = inputReader.PlayerControlsStatus();
 
             // disable/enable player controls if inventory on screen or not
             if (invPanel.ClassListContains("hide"))
             {
-                // if main menu is hidden, go back to what controls were before toggling main menu
-                if (status)
+                // get current playercontrols status
+                playerControlsStatus = inputReader.PlayerControlsStatus();
+
+                //open inventory 
+                invPanel.RemoveFromClassList("hide");
+                inputReader.DisablePlayerControls();
+
+            }
+            else {
+                //close inventory
+                invPanel.AddToClassList("hide");
+                // if inventory is hidden, go back to what controls were before toggling inventory
+                if (playerControlsStatus)
                 {
                     // if they were on before, turn them back on, if they were off, leave them off
                     inputReader.EnablePlayerControls();
                 }
-            }
-            else {
-                inputReader.DisablePlayerControls();
             }
         }
     }
