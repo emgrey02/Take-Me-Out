@@ -4,8 +4,9 @@
 
 .hide {
     transition-property: opacity;
-    transition-duration: 0.5s;
+    transition-duration: 0.2s;
     opacity: 0;
+    transition-timing-function: ease-in-out;
 }
 
 .button {
@@ -51,7 +52,7 @@
 .unity-button:hover {
     transition-property: color;
     transition-duration: 0.2s;
-    color: rgb(78, 115, 67);
+    color: rgb(219, 42, 54);
     -unity-text-outline-width: 0;
     -unity-text-outline-color: rgba(156, 29, 29, 0);
 }
@@ -63,6 +64,8 @@
     white-space: normal;
     -unity-text-align: upper-left;
     -unity-paragraph-spacing: 10px;
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-400.ttf?fileID=12800000&guid=eb69cf80b9122864d911be23ec24dd83&type=3#rl-horizon-400");
+    font-size: 20px;
 }
 
 .show {
@@ -80,8 +83,6 @@
 .basecolor {
     background-color: rgba(202, 202, 202, 0.76);
 }
-
-
 
 .unity-button:focus {
     color: rgb(78, 115, 67);

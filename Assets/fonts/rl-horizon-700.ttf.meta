@@ -10,7 +10,9 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - RL Horizon
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: eb69cf80b9122864d911be23ec24dd83, type: 3}
+  - {fileID: 12800000, guid: 3339981d5b3a3a443826e15a573ea12c, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

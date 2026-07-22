@@ -48,7 +48,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: e455edbf7d2609e42bae3ffa4eb053db, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: bd30701873475304399ecaaee74e6fdd, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -69,4 +69,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryController
   inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
-  Inventory: {fileID: 0}
+  playerControlsEnabled: 0

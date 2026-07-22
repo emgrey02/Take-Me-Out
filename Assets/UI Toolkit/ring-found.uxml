@@ -1,0 +1,13 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/ring-found.uss?fileID=7433441132597879392&amp;guid=1b876f28f1b60594284337367ce078bd&amp;type=3#ring-found"/>
+    <ui:VisualElement name="panel-ctn" class="remove" style="flex-grow: 1; background-color: rgb(0, 0, 0);">
+        <ui:VisualElement style="flex-grow: 1; align-content: center; align-items: flex-start; align-self: auto; flex-direction: row; flex-wrap: wrap;">
+            <ui:Label text="Congratulations" enable-rich-text="true" style="-unity-font-definition: url(&quot;project://database/Assets/fonts/selfie-neue-700.ttf?fileID=12800000&amp;guid=ceb65a42685e9db4981878bbe352cb63&amp;type=3#selfie-neue-700&quot;); font-size: 250px; color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-style: normal; -unity-paragraph-spacing: -78px; -unity-text-generator: standard; -unity-text-auto-size: none; rotate: -12deg; position: absolute; left: -108px; top: 60px; transition-property: translate; translate: 497px 0; transition-delay: 500ms; transition-duration: 700ms;"/>
+            <ui:Label text="You found an engagement ring! What would you like to do with it?" style="white-space: normal; -unity-text-align: upper-center; font-size: 40px; padding-top: 137px; padding-right: 600px; padding-bottom: 137px; padding-left: 600px; margin-top: 399px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/fonts/rl-horizon-400.ttf?fileID=12800000&amp;guid=eb69cf80b9122864d911be23ec24dd83&amp;type=3#rl-horizon-400&quot;); width: 1918px;"/>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-content: flex-start; justify-content: flex-start; align-items: center; bottom: 123px;">
+            <ui:Button text="Ask Alison to marry me" name="marry"/>
+            <ui:Button text="Put it in my pocket and ask later" name="walk"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

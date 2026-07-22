@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         // limit fps
         QualitySettings.vSyncCount = 0; // disabled vSync
         Application.targetFrameRate = 60;
+
         // make sure theres only one instance of GameManager
         if (_instance != null && _instance != this)
         {
@@ -54,11 +55,11 @@ public class GameManager : MonoBehaviour
         Quaternion rot;
         switch (sceneID)
         {
-            // change player location in baseball field depending on which scene they came from
+            // baseball field
             case 1:
                 switch (prevSceneID)
                 {
-                    // from main menu
+                    // coming from from main menu
                     case 0:
                         pos = new Vector3(0, 1.1f, 0);
                         rot = Quaternion.Euler(0, 45, 0);
@@ -89,11 +90,15 @@ public class GameManager : MonoBehaviour
                     case 4:
                         pos = new Vector3(0, 1.1f, 25.8f);
                         rot = Quaternion.Euler(0, -180, 0);
+                        baseObj = Instantiate(basePrefab, new Vector3(-0.1f, .06f, -.1f), Quaternion.identity);
+                        baseObj.name = "Home Base";
+                        baseObj.GetComponent<Base>().BaseNum = 4;
+                        // add home base
                         break;
                     // from home base exp
-                    case 5:
+                    case 6:
                         pos = new Vector3(0, 1.1f, 0);
-                        rot = Quaternion.Euler(0, 45, 0);
+                        rot = Quaternion.Euler(0, 0, 0);
                         break;
                     default:
                         pos = new Vector3(0, 1.1f, 0);
@@ -114,6 +119,16 @@ public class GameManager : MonoBehaviour
             // echo lake
             case 4:
                 pos = new Vector3(3.8f, 1, -2f);
+                rot = Quaternion.Euler(0, 0, 0);
+                break;
+            // dice roll
+            case 5:
+                pos = new Vector3(-8, 1.1f, -8);
+                rot = Quaternion.Euler(0, 45, 0);
+                break;
+            // wedding
+            case 6:
+                pos = new Vector3(0, 9.5f, 0);
                 rot = Quaternion.Euler(0, 0, 0);
                 break;
             default:

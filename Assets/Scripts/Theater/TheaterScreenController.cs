@@ -110,7 +110,7 @@ public class TheaterScreenController : MonoBehaviour
         answer.text = t.answer;
 
         // display image
-        img.image = Resources.Load<Texture2D>(t.image);
+        img.sprite = Resources.Load<Sprite>(t.image);
 
         // display info text
         info.text = t.info;

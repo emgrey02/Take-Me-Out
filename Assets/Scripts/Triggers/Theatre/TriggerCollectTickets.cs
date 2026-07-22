@@ -48,15 +48,19 @@ public class TriggerCollectTickets:MonoBehaviour
 
     void LeaveConversation()
     {
-        Debug.Log("leaving conversation");
-        Camera.main.GetComponent<CinemachineBrain>().enabled = false;
-        // so player cant go through this dialogue again
-        if (theaterTracker.isTicketBought()) {
-            gameObject.GetComponent<Collider>().enabled = false;
-            firstDirector.Stop();
-        } else {
-            firstDirector.time = 0;
-            cameraMove.SetActive(false);
+        Debug.Log("leaving conversation from TriggerCollectTickets");
+        if (GameManager.Instance.GetSceneId() == 3)
+        {
+            Camera.main.GetComponent<CinemachineBrain>().enabled = false;
+            // so player cant go through this dialogue again
+            if (theaterTracker.isTicketBought()) {
+                gameObject.GetComponent<Collider>().enabled = false;
+                firstDirector.Stop();
+            } else {
+                firstDirector.time = 0;
+                cameraMove.SetActive(false);
+            }
+
         }
     }
 

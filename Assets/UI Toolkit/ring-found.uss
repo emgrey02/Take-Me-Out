@@ -1,0 +1,30 @@
+:root {
+}
+
+
+
+.unity-button {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    font-size: 40px;
+    width: 50%;
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-400.ttf?fileID=12800000&guid=eb69cf80b9122864d911be23ec24dd83&type=3#rl-horizon-400");
+    transition-property: color;
+    transition-duration: 700ms;
+    color: rgb(255, 255, 255);
+}
+
+.unity-button:hover {
+    color: rgb(255, 0, 0);
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-400.ttf?fileID=12800000&guid=eb69cf80b9122864d911be23ec24dd83&type=3#rl-horizon-400");
+    font-size: 40px;
+    transition-property: color;
+    transition-duration: 700ms;
+}
+
+.remove {
+    display: none;
+}

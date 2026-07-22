@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 // handles player movement and mouse look, listens for move and look input events from InputReader
 public class PlayerMovement : MonoBehaviour

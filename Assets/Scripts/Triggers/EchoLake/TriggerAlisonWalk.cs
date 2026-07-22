@@ -41,7 +41,7 @@ public class TriggerAlisonWalk:MonoBehaviour
 
     IEnumerator WaitForDialogue()
     {
-         yield return new WaitForSeconds(1);
+         yield return new WaitForSeconds(3);
          DialogueBoxController.instance.StartDialogue(dialogue);
          DialogueBoxController.OnDialogueEnded += LeaveConversation;
     }
@@ -59,7 +59,6 @@ public class TriggerAlisonWalk:MonoBehaviour
         Debug.Log("leaving conversation");
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
         walking = false;
-
 
         // so player cant go through this dialogue again
         GetComponent<Collider>().enabled = false;

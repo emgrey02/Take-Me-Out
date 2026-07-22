@@ -12,6 +12,7 @@ public class TriggerPoleDialogue : MonoBehaviour
     public GameObject lookAtAlisonCamera;
 
     public GameObject RodPrompt;
+
     public bool inRodArea = false;
 
     // object with timeline
@@ -24,7 +25,6 @@ public class TriggerPoleDialogue : MonoBehaviour
     public DialogueAsset dialogue;
 
     public GameObject alison;
-
 
     public Vector3 alisonLoc;
 
@@ -59,13 +59,7 @@ public class TriggerPoleDialogue : MonoBehaviour
             Debug.Log("triggering cutscene");
             RodPrompt.SetActive(false);
 
-            // set alison location
-            //alison.GetComponent<AlisonFollow>().enabled = false;
-            //alison.transform.rotation = Quaternion.Euler(new Vector3(0f, -lookAtAlisonCamera.transform.eulerAngles.y-90, 0f));
-            //alison.transform.position = alisonLoc;
-
             StopAllCoroutines();
-
 
             //look at alison
             Transform player = GameObject.FindWithTag("Player").transform;
@@ -80,6 +74,7 @@ public class TriggerPoleDialogue : MonoBehaviour
     private void OnTriggerEnter(Collider player)
     {
         Debug.Log("Player entered fishing rod area");
+        ProposalPromptController.Instance.DeactivateProposalText();
         RodPrompt.SetActive(true);
         inRodArea = true;
     }
@@ -87,6 +82,17 @@ public class TriggerPoleDialogue : MonoBehaviour
     private void OnTriggerExit(Collider player)
     {
         Debug.Log("Player left fishing rod area");
+        // if StartFishing script is not enabled, that means the player has not started fishing yet and we can turn the proposal prompt back on
+        if (!this.GetComponent<StartFishing>().isActiveAndEnabled)
+        {
+            ProposalPromptController.Instance.ActivateProposalText();
+        }
+        RodPrompt.SetActive(false);
+        inRodArea = false;
+    }
+
+    public void HideRodPrompt()
+    {
         RodPrompt.SetActive(false);
         inRodArea = false;
     }
@@ -96,8 +102,12 @@ public class TriggerPoleDialogue : MonoBehaviour
         Debug.Log("leaving pole conversation from");
         Debug.Log(whichPole.currentPole);
 
-        // shouldnt be necessary but just in case, turn off prompt
-        RodPrompt.SetActive(false);
+        // turn off prompt
+        HideRodPrompt();
+
+        // set propose prompt back to active if it was active before
+        Debug.Log("activating proposal prompt");
+        ProposalPromptController.Instance.ActivateProposalText();
 
         // turn off virtual camera
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;

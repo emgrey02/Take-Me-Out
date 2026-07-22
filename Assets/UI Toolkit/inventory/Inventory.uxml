@@ -1,9 +1,9 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/inventory.uss?fileID=7433441132597879392&amp;guid=22ebc510e2a0b1642a96ea91db502e48&amp;type=3#inventory"/>
+    <Style src="project://database/Assets/UI%20Toolkit/inventory/inventory.uss?fileID=7433441132597879392&amp;guid=22ebc510e2a0b1642a96ea91db502e48&amp;type=3#inventory"/>
     <ui:VisualElement name="VisualElement" class="panel">
-        <ui:Label text="Inventory" double-click-selects-word="false" style="font-size: 80px; -unity-text-align: upper-center; -unity-font-style: bold; color: rgb(255, 255, 255);"/>
-        <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: stretch; align-self: stretch; align-content: auto; justify-content: center; border-top-width: 30px; border-right-width: 30px; border-bottom-width: 30px; border-left-width: 30px; border-bottom-left-radius: 90px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); padding-top: 36px; padding-right: 36px; padding-bottom: 36px; padding-left: 36px; border-top-right-radius: -47px; border-top-left-radius: 280px; border-bottom-right-radius: 129px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;">
-            <ui:VisualElement name="VisualElement" style="flex-grow: 0.5; width: 60%; height: 100%; flex-direction: column; aspect-ratio: auto; justify-content: center; align-self: auto; align-content: center; flex-shrink: 1; flex-wrap: nowrap;">
+        <ui:Label text="Inventory" double-click-selects-word="false" style="font-size: 80px; -unity-text-align: upper-center; -unity-font-style: bold; color: rgba(255, 255, 255, 0);"/>
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: stretch; align-self: stretch; align-content: auto; justify-content: center; padding-top: 36px; padding-right: 36px; padding-bottom: 36px; padding-left: 36px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;">
+            <ui:VisualElement name="VisualElement" style="flex-grow: 0.5; width: 60%; height: 100%; flex-direction: column; aspect-ratio: auto; justify-content: center; align-self: auto; align-content: center; flex-shrink: 1; flex-wrap: nowrap; top: 75px;">
                 <ui:VisualElement class="row">
                     <ui:VisualElement name="CardContainer" class="card-ctn" style="transition-property: scale, translate; transition-duration: 0.2s, 0.2s; transition-timing-function: ease, ease; transition-delay: 0s, 0s;">
                         <ui:VisualElement name="Slot" class="card-slot"/>
@@ -32,7 +32,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; width: 20%; height: 100%; flex-direction: column;">
-                <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; align-self: auto; justify-content: center; align-content: auto; margin-top: 18px; margin-right: 18px; margin-bottom: 18px; margin-left: 18px; border-top-width: 24px; border-right-width: 24px; border-bottom-width: 24px; border-left-width: 24px; aspect-ratio: auto;">
+                <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; align-self: auto; justify-content: center; align-content: auto; margin-top: 18px; margin-right: 18px; margin-bottom: 18px; margin-left: 18px; border-top-width: 24px; border-right-width: 24px; border-bottom-width: 24px; border-left-width: 24px; aspect-ratio: auto; top: 80px;">
                     <ui:VisualElement name="Slot" style="flex-grow: 1; position: absolute; aspect-ratio: 0.75; width: 100%; height: auto; background-color: rgb(0, 0, 0);"/>
                     <ui:Image tint-color="rgb(238, 0, 0)" name="Big-Card" style="aspect-ratio: 0.75; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
                 </ui:VisualElement>

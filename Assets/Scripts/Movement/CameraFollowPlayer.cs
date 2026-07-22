@@ -4,6 +4,7 @@ using UnityEngine;
 public class CameraFollowPlayer : MonoBehaviour
 {
     private Transform player;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

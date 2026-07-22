@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b295243d4548b2d49ad34c0c98d90931, type: 3}
   m_Name: NorthernPike
   m_EditorClassIdentifier: Assembly-CSharp::FishAsset
-  weight: 2
+  weight: 3
   fishPrefab: {fileID: 2619814319073537486, guid: 8f7d92a6a46a09a479e60624188922e3, type: 3}
   dialogue: {fileID: 11400000, guid: 1a82dc10b40e8fd40a3e61da6ad34570, type: 2}

@@ -30,6 +30,7 @@ public class DialogueBoxController : MonoBehaviour
 
     public WhichPole whichPole;
 
+    public RingFound ringFound;
 
     // typewriter effect
     float charactersPerSecond = 60;
@@ -144,19 +145,11 @@ public class DialogueBoxController : MonoBehaviour
         {
             StartFishing script = whichPole.currentPole.GetComponent<StartFishing>();
             Debug.Log("enable script to begin engagement ring dialogue");
-            whichPole.currentPole.GetComponent<RingFound>().enabled = true;
-            script.HidePrompt();
-            box.RemoveFromClassList("basecolor");
-        }
-
-        if (currentDialogue.name == "marry-option" || currentDialogue.name == "walk-option")
-        {
-            StartFishing script = whichPole.currentPole.GetComponent<StartFishing>();
-            box.AddToClassList("basecolor");
             script.StopFishing();
+            ringFound.enabled = true;
         }
  
-        ClearDialogueBox();
+        //ClearDialogueBox();
     }
 
     IEnumerator RunDialogue(DialogueAsset d)
@@ -183,6 +176,9 @@ public class DialogueBoxController : MonoBehaviour
                     }
                 }
 
+                // have first option selected
+                options[0].Focus();
+
             } else {
                 Debug.Log("not a branch");
                 Debug.Log("setting text");
@@ -192,16 +188,20 @@ public class DialogueBoxController : MonoBehaviour
                 for (int j=0; j < options.Count; j++) {
                     options[j].visible = false; 
                 }
+
                 // show next button
                 nextButton.RemoveFromClassList("hide");
 
                 // set speaker name
                 speakerName.text = d.speaker[i].ToString();
 
-                dialogueText.text = null;
+                dialogueText.text = d.dialogue[i];
 
                 // start typing text
-                StartCoroutine(TypeText(d.dialogue[i]));
+                //StartCoroutine(TypeText(d.dialogue[i]));
+
+                // have next button selected
+                nextButton.Focus();
 
             }
 
@@ -209,8 +209,6 @@ public class DialogueBoxController : MonoBehaviour
                 // keep dialogue text when showing options
                 dialogueText.text = d.dialogue[i];
             }
-
-            dialogueText.Focus();
            
             while (nextLineTriggered == false)
             {
@@ -282,6 +280,8 @@ public class DialogueBoxController : MonoBehaviour
                     options[j].text = null;
                     options[j].visible = false;
                 }
+
+                // send to next dialogue based on option
                 switch (i)
                 {
                     case 0:

@@ -3,7 +3,6 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEngine.InputSystem;
 using System.Linq;
-using System.Collections.Generic;
 
 public class MenuController : MonoBehaviour
 {
@@ -14,13 +13,20 @@ public class MenuController : MonoBehaviour
     private VisualElement settingsMenu;
     private VisualElement initialMenu;
     private VisualElement mm;
+    private VisualElement startMenu;
+
+    public Image baseImg;
+    public Label menuText;
 
     // buttons
-    public Button playButton;
+    public Button continueButton;
     public Button settingsButton;
     public Button quitButton;
     public Button saveButton;
     public Button backButton;
+    public Button startButton;
+    public Button optionsButton;
+    public Button exitButton;
 
     public DropdownField qualityDropdown;
     public SliderInt masterVolSlider;
@@ -37,13 +43,23 @@ public class MenuController : MonoBehaviour
         mm = GetComponent<UIDocument>().rootVisualElement;
         settingsMenu = mm.Q<VisualElement>("settingsMenu");
         initialMenu = mm.Q<VisualElement>("initialMenu");
+        startMenu = mm.Q<VisualElement>("startMenu");
+
+        // base img
+        baseImg = mm.Q<Image>("baseImg");
+
+        // base text
+        menuText = mm.Q<Label>("menuText");
 
         // get buttons
-        playButton = mm.Q<Button>("PlayButton");
+        continueButton = mm.Q<Button>("PlayButton");
         settingsButton = mm.Q<Button>("SettingsButton");
         saveButton = mm.Q<Button>("SaveButton");
         quitButton = mm.Q<Button>("QuitButton");
         backButton = mm.Q<Button>("BackButton");
+        startButton = mm.Q<Button>("startBtn");
+        optionsButton = mm.Q<Button>("optionsBtn");
+        exitButton = mm.Q<Button>("exitBtn");
 
         // get dropdowns and sliders
         qualityDropdown = mm.Q<DropdownField>("quality");
@@ -61,11 +77,14 @@ public class MenuController : MonoBehaviour
     void OnEnable()
     {
         // subscribe to click events
-        playButton.clicked += OnPlayButtonClicked;
+        continueButton.clicked += OnPlayButtonClicked;
         settingsButton.clicked += OnSettingsButtonClicked;
         saveButton.clicked += OnSaveButtonClicked;       
         quitButton.clicked += OnQuitButtonClicked;
         backButton.clicked += OnBackButtonClicked;
+        startButton.clicked += OnPlayButtonClicked;
+        optionsButton.clicked += OnSettingsButtonClicked;
+        exitButton.clicked += OnQuitButtonClicked;
 
         // subscribe to main menu toggle event
         inputReader.MainMenuToggleEvent += OnMainMenuToggle;
@@ -74,11 +93,14 @@ public class MenuController : MonoBehaviour
     void OnDisable()
     {
         // unsubscribe to click events
-        playButton.clicked -= OnPlayButtonClicked;
+        continueButton.clicked -= OnPlayButtonClicked;
         settingsButton.clicked -= OnSettingsButtonClicked;
         saveButton.clicked -= OnSaveButtonClicked;       
         quitButton.clicked -= OnQuitButtonClicked;
         backButton.clicked -= OnBackButtonClicked;
+        startButton.clicked += OnPlayButtonClicked;
+        optionsButton.clicked += OnSettingsButtonClicked;
+        exitButton.clicked += OnQuitButtonClicked;
 
         // unsubscribe to main menu toggle event
         inputReader.MainMenuToggleEvent -= OnMainMenuToggle;
@@ -95,22 +117,14 @@ public class MenuController : MonoBehaviour
         if (GameManager.Instance.GetSceneId() != 0)
         {
             mm.AddToClassList("hide");
+            settingsMenu.AddToClassList("remove");
+            initialMenu.RemoveFromClassList("remove");
+            startMenu.AddToClassList("remove");
         } else
         {
             inputReader.DisablePlayerControls();
         }
 
-        // set play button text depending on scene num
-        if (GameManager.Instance.GetSceneId() == 0 )
-        {
-            playButton.text = "New Game";
-        }
-        else 
-        {
-            playButton.text = "Continue";
-        }
-
-        
         // set current graphics quality level
         qualityDropdown.index = QualitySettings.GetQualityLevel();
 
@@ -129,9 +143,17 @@ public class MenuController : MonoBehaviour
     }
 
     private void OnBackButtonClicked()
-    {
-        settingsMenu.AddToClassList("remove");
-        initialMenu.RemoveFromClassList("remove");
+    { 
+        if (GameManager.Instance.GetSceneId() == 0)
+        {
+            startMenu.RemoveFromClassList("remove");
+            initialMenu.AddToClassList("remove");
+            settingsMenu.AddToClassList("remove");
+        } else
+        {
+            settingsMenu.AddToClassList("remove");
+            initialMenu.RemoveFromClassList("remove");
+        }
     }
 
     private void OnQuitButtonClicked()
@@ -148,14 +170,24 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("Settings");
         initialMenu.AddToClassList("remove");
+        startMenu.AddToClassList("remove");
         settingsMenu.RemoveFromClassList("remove");
     }
 
     private void OnSaveButtonClicked()
     {
         Debug.Log("Save Game");
-        settingsMenu.AddToClassList("remove");
-        initialMenu.RemoveFromClassList("remove");
+
+        if (GameManager.Instance.GetSceneId() == 0)
+        {
+            startMenu.RemoveFromClassList("remove");
+            initialMenu.AddToClassList("remove");
+            settingsMenu.AddToClassList("remove");
+        } else
+        {
+            settingsMenu.AddToClassList("remove");
+            initialMenu.RemoveFromClassList("remove");
+        }
 
         // set graphics quality
         GameManager.Instance.SetGraphicsQuality(qualityDropdown.index);
@@ -204,6 +236,29 @@ public class MenuController : MonoBehaviour
                 playerControlsEnabled = inputReader.PlayerControlsStatus();
                 Debug.Log("Player controls status: ");
                 Debug.Log(playerControlsEnabled);
+
+                // get which base scene we are on if we are in a base scene
+                int sceneNum = GameManager.Instance.GetSceneId();
+
+                switch (sceneNum)
+                {
+                    case 2:
+                        baseImg.image = Resources.Load<Texture2D>("TMO_pauselocation_1st");
+                        menuText.text = "Heyyy, we're at the first base! This is The Burren, where you had your first date with Alison!";
+                        break;
+                    case 3:
+                        baseImg.image = Resources.Load<Texture2D>("TMO_pauselocation_2nd");
+                        menuText.text = "This is the second base scene! The Somerville Theatre, where you had your first date with Alsion :)";
+                        break;
+                    case 4:
+                        baseImg.image = Resources.Load<Texture2D>("TMO_pauselocation_3rdb");
+                        menuText.text = "This is the third base scene! Echo Lake, where you proposed to Alison!";
+                        break;
+                    default:
+                        baseImg.image = null;
+                        menuText.text = null;
+                        break;
+                }
 
                 // open main menu
                 mm.RemoveFromClassList("hide");

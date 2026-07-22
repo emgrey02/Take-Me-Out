@@ -27,46 +27,11 @@
 }
 
 .unity-button {
-    align-items: auto;
-    width: auto;
-    height: auto;
-    min-width: auto;
-    min-height: auto;
-    align-self: auto;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    padding-top: 5px;
-    padding-right: 80px;
-    padding-bottom: 5px;
-    padding-left: 80px;
-    margin-right: 0;
-    margin-left: 0;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-top-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 0;
-    border-left-width: 0;
-    border-left-color: rgba(105, 105, 105, 0);
-    border-right-color: rgba(105, 105, 105, 0);
-    border-top-color: rgba(105, 105, 105, 0);
-    border-bottom-color: rgba(105, 105, 105, 0);
-    font-size: 100px;
-    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-700.ttf?fileID=12800000&guid=b99393b03af9ad943a296e4e5b16b631&type=3#rl-horizon-700");
-    background-color: rgba(255, 255, 255, 0);
-    align-content: auto;
-    flex-shrink: 1;
-    flex-grow: 0;
-    -unity-font-style: normal;
-    letter-spacing: 1px;
-}
-
-.unity-button:hover {
-    background-color: rgba(226, 172, 25, 0);
-    scale: 1.1 1.1;
-    background-image: resource("TMO_btn_continue_hover");
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
 
 .remove {
@@ -80,6 +45,8 @@
     align-items: center;
     padding-bottom: 0;
     margin-bottom: 0;
+    font-size: 26px;
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-400.ttf?fileID=12800000&guid=eb69cf80b9122864d911be23ec24dd83&type=3#rl-horizon-400");
 }
 
 .unity-base-slider {
@@ -98,19 +65,20 @@
     flex-direction: row;
     align-self: auto;
     align-content: stretch;
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-700.ttf?fileID=12800000&guid=b99393b03af9ad943a296e4e5b16b631&type=3#rl-horizon-700");
+    font-size: 26px;
 }
 
 .unity-base-slider__tracker {
     width: initial;
     height: 10px;
     background-color: rgba(0, 0, 0, 0);
-    margin-left: 0;
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
-    margin-right: 0;
-    right: 30px;
+    right: 9px;
+    left: 0;
 }
 
 .unity-base-slider__dragger {
@@ -131,15 +99,17 @@
 .unity-label {
     flex-wrap: wrap;
     color: rgba(27, 27, 27, 0);
+    left: -28px;
 }
 
 .big-label {
-    font-size: 64px;
+    font-size: 48px;
     -unity-font-style: normal;
     color: rgb(255, 255, 255);
     margin-top: 10px;
     -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-700.ttf?fileID=12800000&guid=b99393b03af9ad943a296e4e5b16b631&type=3#rl-horizon-700");
     padding-left: 40px;
+    left: 11px;
 }
 
 .input-field {
@@ -162,6 +132,12 @@
 .continue {
     background-image: resource("TMO_btn_continue");
     background-color: rgba(0, 0, 0, 0);
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-700.ttf?fileID=12800000&guid=b99393b03af9ad943a296e4e5b16b631&type=3#rl-horizon-700");
+    font-size: 90px;
+    padding-right: 80px;
+    padding-left: 80px;
+    color: rgba(27, 27, 27, 0);
+    margin-bottom: 20px;
 }
 
 .continue:hover {
@@ -170,6 +146,12 @@
 
 .settings {
     background-image: resource("TMO_btn_settings");
+    padding-right: 80px;
+    padding-left: 80px;
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-700.ttf?fileID=12800000&guid=b99393b03af9ad943a296e4e5b16b631&type=3#rl-horizon-700");
+    font-size: 90px;
+    color: rgba(27, 27, 27, 0);
+    margin-bottom: 20px;
 }
 
 .settings:hover {
@@ -178,6 +160,11 @@
 
 .quit {
     background-image: resource("TMO_btn_quit");
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-700.ttf?fileID=12800000&guid=b99393b03af9ad943a296e4e5b16b631&type=3#rl-horizon-700");
+    font-size: 90px;
+    padding-right: 80px;
+    padding-left: 80px;
+    color: rgba(27, 27, 27, 0);
 }
 
 .quit:hover {
@@ -187,7 +174,10 @@
 .unity-base-slider__text-field {
     background-color: rgba(0, 0, 0, 0);
     -unity-background-image-tint-color: rgba(255, 255, 255, 0);
-    right: 25px;
+    right: 0;
+    left: 9px;
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-700.ttf?fileID=12800000&guid=b99393b03af9ad943a296e4e5b16b631&type=3#rl-horizon-700");
+    font-size: 26px;
 }
 
 .input-field {
@@ -204,17 +194,22 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-700.ttf?fileID=12800000&guid=b99393b03af9ad943a296e4e5b16b631&type=3#rl-horizon-700");
+    font-size: 26px;
 }
 
 .unity-base-text-field__input {
-    background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
     font-size: 26px;
     -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-700.ttf?fileID=12800000&guid=b99393b03af9ad943a296e4e5b16b631&type=3#rl-horizon-700");
-    left: 0;
+    background-color: rgba(0, 0, 0, 0);
+    white-space: nowrap;
+    text-overflow: clip;
+    flex-grow: 1;
+    -unity-font-style: normal;
 }
 
 .unity-popup-field__input {
@@ -226,10 +221,18 @@
     width: auto;
     right: 20px;
     left: auto;
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-400.ttf?fileID=12800000&guid=eb69cf80b9122864d911be23ec24dd83&type=3#rl-horizon-400");
+    font-size: 24px;
+    white-space: nowrap;
 }
 
 .save-btn {
     background-image: resource("TMO_btn_save");
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-700.ttf?fileID=12800000&guid=b99393b03af9ad943a296e4e5b16b631&type=3#rl-horizon-700");
+    font-size: 48px;
+    padding-right: 60px;
+    padding-left: 60px;
+    color: rgba(27, 27, 27, 0);
 }
 
 .save-btn:hover {
@@ -238,8 +241,49 @@
 
 .back-btn {
     background-image: resource("TMO_btn_back");
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-700.ttf?fileID=12800000&guid=b99393b03af9ad943a296e4e5b16b631&type=3#rl-horizon-700");
+    font-size: 48px;
+    padding-right: 60px;
+    padding-left: 60px;
+    color: rgba(27, 27, 27, 0);
 }
 
 .back-btn:hover {
     background-image: resource("TMO_btn_back_hover");
+}
+
+.unity-base-field__input {
+    left: -16px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 12px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.unity-base-slider__input {
+    padding-left: -31px;
+}
+
+.startMenuBtn {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-400.ttf?fileID=12800000&guid=eb69cf80b9122864d911be23ec24dd83&type=3#rl-horizon-400");
+    font-size: 60px;
+    color: rgb(255, 255, 255);
+}
+
+.startMenuBtn:hover {
+    color: rgb(0, 255, 24);
+    transition-property: color;
+    transition-duration: 0.3s;
 }
