@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Jasper
   m_EditorClassIdentifier: Assembly-CSharp::CardObjectSO
   cardName: Jasper
-  spawnPoint: {x: 1.2240219, y: 0, z: 31.76273}
+  spawnPoint: {x: 13.425861, y: 0, z: 15.211961}
   cardIndex: 4
+  cardImage: TMO_card_jasper
+  materialName: jasper

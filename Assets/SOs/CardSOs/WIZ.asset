@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: WIZ
   m_EditorClassIdentifier: Assembly-CSharp::CardObjectSO
   cardName: William Irving Zorowitz
-  spawnPoint: {x: 13.938023, y: 0, z: 14.862729}
+  spawnPoint: {x: 4.9358616, y: 0, z: 31.521957}
   cardIndex: 5
+  cardImage: TMO_card_wiz
+  materialName: wiz

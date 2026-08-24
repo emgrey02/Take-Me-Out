@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: ClamChowder
   m_EditorClassIdentifier: Assembly-CSharp::CardObjectSO
   cardName: Clam Chowder
-  spawnPoint: {x: 13.938023, y: 0, z: 21.46273}
+  spawnPoint: {x: 31.79586, y: 0, z: 29.81196}
   cardIndex: 3
+  cardImage: TMO_card_clam
+  materialName: clam-chowder

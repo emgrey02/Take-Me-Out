@@ -24,6 +24,7 @@ public class DialogueBoxController : MonoBehaviour
     public VisualElement optionsPanel;
     public Label speakerName;
     public Label dialogueText;
+    public Image lightning;
     public Button nextButton;
     public List<Button> options = new List<Button>();
     public DialogueAsset currentDialogue;
@@ -54,13 +55,18 @@ public class DialogueBoxController : MonoBehaviour
 
         box = dialogueBox.Q<VisualElement>("Box");
         box.AddToClassList("hide");
+   
 
         speakerName = dialogueBox.Q<Label>("speakerName");
         dialogueText = dialogueBox.Q<Label>("dialogueText");
+        lightning = dialogueBox.Q<Image>("lightning-bar");
         
         optionsPanel = dialogueBox.Q<VisualElement>("option-container");
 
         options = dialogueBox.Query<Button>(className: "option").ToList();
+
+        optionsPanel.visible = false;
+        lightning.AddToClassList("hide");
 
         nextButton = dialogueBox.Q<Button>("nextLine");
 
@@ -91,6 +97,7 @@ public class DialogueBoxController : MonoBehaviour
         // hide all dialogue box text
         speakerName.text = null;
         dialogueText.text = null;
+        lightning.AddToClassList("hide");
         for (int j=0; j < options.Count; j++) {
             options[j].text = null;
             options[j].visible = false; 
@@ -167,6 +174,9 @@ public class DialogueBoxController : MonoBehaviour
                 // time to show reply options
                 nextButton.AddToClassList("hide");
 
+                // show lighting bar
+                lightning.RemoveFromClassList("hide");
+
                 for (int j=0; j < options.Count; j++) {
                     if (d.options.Length > j) {
                         options[j].visible = true;
@@ -188,6 +198,7 @@ public class DialogueBoxController : MonoBehaviour
                 for (int j=0; j < options.Count; j++) {
                     options[j].visible = false; 
                 }
+                lightning.AddToClassList("hide");
 
                 // show next button
                 nextButton.RemoveFromClassList("hide");
@@ -275,6 +286,7 @@ public class DialogueBoxController : MonoBehaviour
                 speakerName.text = null;
                 dialogueText.text = null;
                 optionsPanel.visible = false;
+                lightning.AddToClassList("hide");
                 for (int j = 0; j < options.Count; j++)
                 {
                     options[j].text = null;

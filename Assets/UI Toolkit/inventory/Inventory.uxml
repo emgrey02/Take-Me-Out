@@ -4,10 +4,10 @@
         <ui:Label text="Inventory" double-click-selects-word="false" style="font-size: 80px; -unity-text-align: upper-center; -unity-font-style: bold; color: rgba(255, 255, 255, 0);"/>
         <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: stretch; align-self: stretch; align-content: auto; justify-content: center; padding-top: 36px; padding-right: 36px; padding-bottom: 36px; padding-left: 36px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;">
             <ui:VisualElement name="VisualElement" style="flex-grow: 0.5; width: 60%; height: 100%; flex-direction: column; aspect-ratio: auto; justify-content: center; align-self: auto; align-content: center; flex-shrink: 1; flex-wrap: nowrap; top: 75px;">
-                <ui:VisualElement class="row">
+                <ui:VisualElement class="row" style="border-top-left-radius: 48px; border-top-right-radius: 48px; border-bottom-right-radius: 48px; border-bottom-left-radius: 48px;">
                     <ui:VisualElement name="CardContainer" class="card-ctn" style="transition-property: scale, translate; transition-duration: 0.2s, 0.2s; transition-timing-function: ease, ease; transition-delay: 0s, 0s;">
                         <ui:VisualElement name="Slot" class="card-slot"/>
-                        <ui:Button text="" name="Card" class="button"/>
+                        <ui:Button text="" name="Card" icon-image="" class="button" style="aspect-ratio: auto;"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="CardContainer" class="card-ctn">
                         <ui:VisualElement name="Slot" class="card-slot"/>
@@ -32,9 +32,9 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; width: 20%; height: 100%; flex-direction: column;">
-                <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; align-self: auto; justify-content: center; align-content: auto; margin-top: 18px; margin-right: 18px; margin-bottom: 18px; margin-left: 18px; border-top-width: 24px; border-right-width: 24px; border-bottom-width: 24px; border-left-width: 24px; aspect-ratio: auto; top: 80px;">
-                    <ui:VisualElement name="Slot" style="flex-grow: 1; position: absolute; aspect-ratio: 0.75; width: 100%; height: auto; background-color: rgb(0, 0, 0);"/>
-                    <ui:Image tint-color="rgb(238, 0, 0)" name="Big-Card" style="aspect-ratio: 0.75; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;"/>
+                <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; align-self: auto; justify-content: center; align-content: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 27px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; aspect-ratio: 0.691; top: 80px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0; left: 15px;">
+                    <ui:VisualElement name="Slot" style="flex-grow: 1; position: absolute; aspect-ratio: 0.691; width: 442px; height: 634px; background-color: rgb(43, 43, 43); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; left: 5px; top: 83px;"/>
+                    <ui:Image tint-color="rgb(238, 0, 0)" name="Big-Card" style="aspect-ratio: 0.691; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 3px; background-image: none; height: 646px; width: 446px;"/>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: MrMayor
   m_EditorClassIdentifier: Assembly-CSharp::CardObjectSO
   cardName: Mr Mayor
-  spawnPoint: {x: 4.3, y: 0, z: 2.5}
+  spawnPoint: {x: 5.0958595, y: 0, z: 4.31196}
   cardIndex: 0
+  cardImage: TMO_card_mrmayor
+  materialName: mr-mayor

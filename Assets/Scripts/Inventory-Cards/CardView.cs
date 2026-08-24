@@ -46,6 +46,7 @@ public class CardView : MonoBehaviour
             // add card to inventory and hide card in world
             invPresenter.PickUpCard(gameObject.GetComponent<CardView>());
             gameObject.SetActive(false);
+            inCardArea = false;
         }
     }
 

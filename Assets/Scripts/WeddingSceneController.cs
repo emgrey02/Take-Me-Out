@@ -27,10 +27,6 @@ public class WeddingSceneController : MonoBehaviour
     {
         yield return new WaitForSeconds(2.9f);
         firstDollyCamera.SetActive(true);
-        //yield return new WaitForSeconds(5f);
-        //firstDollyCamera.SetActive(false);
-        //skyCamera.SetActive(true);
-        //Griffin.SetActive(true);
     }
 
     // Update is called once per frame
@@ -48,6 +44,11 @@ public class WeddingSceneController : MonoBehaviour
                 Griffin.GetComponent<Animator>().SetBool("turn", true);
                 Alison.GetComponent<Animator>().SetBool("turn", true);
             }
+        }
+
+        if (skyCamera.GetComponent<CinemachineSplineDolly>().CameraPosition >= 1)
+        {
+            GameManager.Instance.MoveToScene(7);
         }
     }
 }

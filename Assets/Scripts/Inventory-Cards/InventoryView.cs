@@ -36,6 +36,8 @@ public class InventoryView : MonoBehaviour
 
         // listen for any inventory updates from inv presenter
         invPresenter.InventoryUpdated += UpdateInventoryUI;
+
+        
     }
 
     void Start()
@@ -45,6 +47,12 @@ public class InventoryView : MonoBehaviour
 
         // fill list with ui cards
         Cards = invPanel.Query(className: "unity-button").ToList();
+
+        // listen for click events on each card in inventory
+        for (int i = 0; i < Cards.Count; i++)
+        {
+            Cards[i].RegisterCallback<ClickEvent>(OnCardClicked);
+        }
 
         // hide inventory on start
         invPanel.AddToClassList("hide");
@@ -61,6 +69,20 @@ public class InventoryView : MonoBehaviour
     {   
         // unsubscribe to inventory toggle event
         invPresenter.InventoryUpdated -= UpdateInventoryUI;
+
+        for (int i = 0; i < Cards.Count; i++)
+        {
+            Cards[i].UnregisterCallback<ClickEvent>(OnCardClicked);
+        }
+    }
+
+    private void OnCardClicked(ClickEvent evt)
+    {
+        Debug.Log("card clicked");
+        VisualElement clickedCard = evt.target as VisualElement;
+        Texture2D cardImage = clickedCard.style.backgroundImage.value.texture;
+        VisualElement cardDisplay = invPanel.Q<VisualElement>("Big-Card");
+        cardDisplay.style.backgroundImage = cardImage;
     }
 
     // when we get an inventory update event, update the inventory ui to match the current inventory state
@@ -78,19 +100,34 @@ public class InventoryView : MonoBehaviour
         // only instantiate card prefabs we can still pickup
         for (int i = 0; i < 6; i++)
         {
+            // if card is in our inventory, show it in the inventory ui
+            Debug.Log(i + ": " + cardSpawnValues[i].cardName + " is in inventory: " + e.Cards[i]);
             if (e.Cards[i])
             {
                 Cards[i].RemoveFromClassList("hide");
+                if (cardSpawnValues[i].cardImage != null)
+                {
+                    Cards[i].style.backgroundImage = Resources.Load<Texture2D>(cardSpawnValues[i].cardImage);
+                }
             }
-            else 
+            // since card isnt in our inventory, check if we are in baseball field scene and if card already exists in scene
+            else
             {
-                // if we are in baseball field scene and card doesnt already exist in scene
+                // instantiate card prefab if we are in baseball field scene and card doesnt already exist in scene
                 if (GameObject.Find(cardSpawnValues[i].cardName) == null && GameManager.Instance.GetSceneId() == 1)
                 {
-                    // use corresponding SO spawn point, name, and card index
+                    Debug.Log("instantiating card prefab for " + cardSpawnValues[i].cardName);
+                    Debug.Log(GameObject.Find(cardSpawnValues[i].cardName));
+
+                    // use corresponding SO spawn point, name, card index, and image for the card prefab
                     GameObject c = Instantiate(cardObjPrefab, cardSpawnValues[i].spawnPoint, Quaternion.identity);
                     c.name = cardSpawnValues[i].cardName;
                     c.GetComponent<CardView>().CardIndex = cardSpawnValues[i].cardIndex;
+                    Material cardMat = Resources.Load<Material>("pickup-cards/" + cardSpawnValues[i].materialName);
+                    Debug.Log(cardMat);
+                    GameObject cardChild = c.transform.GetChild(1).gameObject;
+                    Debug.Log(cardChild.name);
+                    cardChild.GetComponent<MeshRenderer>().material = cardMat;
                 }
             }
         }

@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Wedding.unity
     guid: 6291d149bd2051e42a37bb2d35eda3c8
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 5b8c78740a4dbf348ac3e08980548881
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

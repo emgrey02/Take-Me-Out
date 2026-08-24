@@ -131,6 +131,11 @@ public class GameManager : MonoBehaviour
                 pos = new Vector3(0, 9.5f, 0);
                 rot = Quaternion.Euler(0, 0, 0);
                 break;
+            // credits
+            case 7:
+                pos = new Vector3(-0.469999999f, 16.6094303f, 35.4139442f);
+                rot = Quaternion.Euler(336.076843f, 330.287994f, 0);
+                break;
             default:
                 pos = new Vector3(0, 0, 0);
                 rot = Quaternion.Euler(0, 0, 0);

@@ -5,57 +5,32 @@
 .hide {
     transition-property: opacity;
     transition-duration: 0.2s;
-    opacity: 0;
+    opacity: 1;
     transition-timing-function: ease-in-out;
+    display: none;
 }
 
 .button {
     align-self: flex-end;
-    margin-top: 30px;
-    margin-right: 30px;
-    margin-bottom: 30px;
-    margin-left: 30px;
     justify-content: flex-end;
     position: relative;
     bottom: 0;
     right: 0;
-    font-size: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    padding-bottom: 28px;
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 0;
+    margin-right: 10px;
+    margin-bottom: 14px;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
 }
 
 .unity-button {
-    border-bottom-left-radius: -76px;
-    border-top-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 0;
-    border-left-width: 0;
-    background-color: rgba(0, 0, 0, 0);
-    margin-top: 1px;
-    margin-right: 1px;
-    margin-bottom: 1px;
-    margin-left: 1px;
-    padding-top: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-    transition-property: color;
-    transition-duration: 0.2s;
-    font-size: 20px;
-    flex-wrap: wrap;
-    flex-direction: row;
-    flex-grow: 1;
 }
 
-.unity-button:hover {
-    transition-property: color;
-    transition-duration: 0.2s;
-    color: rgb(219, 42, 54);
-    -unity-text-outline-width: 0;
-    -unity-text-outline-color: rgba(156, 29, 29, 0);
-}
+
 
 .option {
     flex-wrap: wrap;
@@ -63,9 +38,33 @@
     flex-grow: 0;
     white-space: normal;
     -unity-text-align: upper-left;
-    -unity-paragraph-spacing: 10px;
+    -unity-paragraph-spacing: 25px;
     -unity-font-definition: url("project://database/Assets/fonts/rl-horizon-400.ttf?fileID=12800000&guid=eb69cf80b9122864d911be23ec24dd83&type=3#rl-horizon-400");
-    font-size: 20px;
+    font-size: 21px;
+    background-color: rgb(255, 255, 255);
+    border-top-width: 4.5px;
+    border-right-width: 4.5px;
+    border-bottom-width: 4.5px;
+    border-left-width: 4.5px;
+    width: auto;
+    height: auto;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    padding-right: 17.5px;
+    padding-left: 17.5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    max-width: 450px;
+    max-height: 200px;
+    min-height: 60px;
+    min-width: 332px;
+    transition-property: background-color;
 }
 
 .show {
@@ -84,6 +83,25 @@
     background-color: rgba(202, 202, 202, 0.76);
 }
 
-.unity-button:focus {
-    color: rgb(78, 115, 67);
+
+
+.option:hover {
+    background-color: rgb(255, 234, 133);
+    transition-property: background-color;
+}
+
+.option:focus {
+    border-top-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    border-left-width: 6px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-left-color: rgb(214, 105, 105);
+    border-right-color: rgb(214, 105, 105);
+    border-top-color: rgb(214, 105, 105);
+    border-bottom-color: rgb(214, 105, 105);
+    transition-property: border-color;
 }

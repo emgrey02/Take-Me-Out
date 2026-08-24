@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Ellie
   m_EditorClassIdentifier: Assembly-CSharp::CardObjectSO
   cardName: Ellie
-  spawnPoint: {x: 13.938023, y: 0, z: 5.0057287}
+  spawnPoint: {x: 31.79586, y: 0, z: 14.02196}
   cardIndex: 2
+  cardImage: TMO_card_ellie
+  materialName: ellie
