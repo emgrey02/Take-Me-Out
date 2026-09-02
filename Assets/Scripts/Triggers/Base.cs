@@ -31,6 +31,9 @@ public class Base : MonoBehaviour
         if (Interacted & inBaseArea)
         {
             Debug.Log("Sending to new scene");
+            // FMOD
+            // Play enter_scene sfx
+            FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/ia/enter_scene");
             GameManager.Instance.MoveToScene(BaseNum + 1);
         }
     }

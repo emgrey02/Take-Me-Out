@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -196,6 +197,13 @@ public class GameManager : MonoBehaviour
 
         // save it
         SaveManager.SaveGraphicsQuality(graphicsQual);
+    }
+
+    // FMOD
+    // set volume quality from menu
+    public void SetVolumeData(float masterV, float musicV, float sfxV)
+    {
+        
     }
 
     // set player data from menu

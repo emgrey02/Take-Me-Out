@@ -3,10 +3,28 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEngine.InputSystem;
 using System.Linq;
+using Mono.Cecil.Cil;
+using FMODUnity;
+using FMOD.Studio;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 
 public class MenuController : MonoBehaviour
 {
     [SerializeField] InputReader inputReader;
+
+    // FMOD Events
+    [SerializeField] EventReference startEvent;
+    [SerializeField] EventReference continueEvent;
+    [SerializeField] EventReference hoverEvent;
+    [SerializeField] EventReference quitEvent;
+    [SerializeField] EventReference optionsEvent;
+    [SerializeField] EventReference backEvent;
+    [SerializeField] EventReference saveEvent;
+    [SerializeField] EventReference dropdownEvent;
+    [SerializeField] EventReference dropdownSelectEvent;
+    [SerializeField] EventReference pauseEvent;
+    public string pauseSnapshot;
 
     private GameObject Inventory;
     private VisualElement invPanel;
@@ -14,6 +32,12 @@ public class MenuController : MonoBehaviour
     private VisualElement initialMenu;
     private VisualElement mm;
     private VisualElement startMenu;
+
+    // FMOD VCAs
+    private VCA vcaMasterController;
+    private VCA vcaMusicController;
+    private VCA vcaSFXController;
+    private float lastVol;
 
     public Image baseImg;
     public Label menuText;
@@ -71,20 +95,43 @@ public class MenuController : MonoBehaviour
         
         // populate enum dropdown
         qualityDropdown.choices = QualitySettings.names.ToList();
-  
+
+        // FMOD
+        // get VCAs
+        vcaMasterController = RuntimeManager.GetVCA("vca:/Master");
+        vcaMusicController = RuntimeManager.GetVCA("vca:/Music");
+        vcaSFXController = RuntimeManager.GetVCA("vca:/SFX");
+
+
+    }
+
+    void Update()
+    {
+        vcaMasterController.setVolume(masterVolSlider.value * 0.01f);
+        vcaMusicController.setVolume(musicVolSlider.value * 0.01f);
+        vcaSFXController.setVolume(sfxVolSlider.value * 0.01f);
     }
 
     void OnEnable()
     {
         // subscribe to click events
-        continueButton.clicked += OnPlayButtonClicked;
+        //continueButton.clicked += OnPlayButtonClicked;
+        continueButton.RegisterCallback<ClickEvent, int>(OnPlayButtonClicked, 0);
         settingsButton.clicked += OnSettingsButtonClicked;
         saveButton.clicked += OnSaveButtonClicked;       
         quitButton.clicked += OnQuitButtonClicked;
         backButton.clicked += OnBackButtonClicked;
-        startButton.clicked += OnPlayButtonClicked;
+        //startButton.clicked += OnPlayButtonClicked;
+        startButton.RegisterCallback<ClickEvent, int>(OnPlayButtonClicked, 1);
         optionsButton.clicked += OnSettingsButtonClicked;
         exitButton.clicked += OnQuitButtonClicked;
+
+        // dropdown specific handlers
+        qualityDropdown.RegisterValueChangedCallback(evt => RuntimeManager.PlayOneShot(dropdownSelectEvent));
+        qualityDropdown.RegisterCallback<MouseDownEvent>(OnDropdownDrop);
+
+        // hover event handler
+        mm.RegisterCallback<MouseOverEvent>(OnHover, TrickleDown.TrickleDown);
 
         // subscribe to main menu toggle event
         inputReader.MainMenuToggleEvent += OnMainMenuToggle;
@@ -93,14 +140,24 @@ public class MenuController : MonoBehaviour
     void OnDisable()
     {
         // unsubscribe to click events
-        continueButton.clicked -= OnPlayButtonClicked;
+        //continueButton.clicked -= OnPlayButtonClicked;
+        continueButton.UnregisterCallback<ClickEvent, int>(OnPlayButtonClicked, 0);
         settingsButton.clicked -= OnSettingsButtonClicked;
         saveButton.clicked -= OnSaveButtonClicked;       
         quitButton.clicked -= OnQuitButtonClicked;
         backButton.clicked -= OnBackButtonClicked;
-        startButton.clicked += OnPlayButtonClicked;
+        //startButton.clicked += OnPlayButtonClicked;
+        startButton.UnregisterCallback<ClickEvent, int>(OnPlayButtonClicked, TrickleDown.TrickleDown);
         optionsButton.clicked += OnSettingsButtonClicked;
         exitButton.clicked += OnQuitButtonClicked;
+
+        // dropdown specific handlers
+        qualityDropdown.UnregisterValueChangedCallback(evt => RuntimeManager.PlayOneShot(dropdownSelectEvent));
+        qualityDropdown.UnregisterCallback<MouseDownEvent>(OnDropdownDrop);
+        
+
+        // hover event handler
+        mm.UnregisterCallback<MouseOverEvent>(OnHover, TrickleDown.TrickleDown);
 
         // unsubscribe to main menu toggle event
         inputReader.MainMenuToggleEvent -= OnMainMenuToggle;
@@ -142,8 +199,20 @@ public class MenuController : MonoBehaviour
 
     }
 
+    private void OnHover(MouseOverEvent hov)
+    {
+        if (hov.target is Button)
+        {
+            RuntimeManager.PlayOneShot(hoverEvent);
+        }
+    }
+
     private void OnBackButtonClicked()
     { 
+        //FMOD
+        // Play back button sfx
+        RuntimeManager.PlayOneShot(backEvent);
+
         if (GameManager.Instance.GetSceneId() == 0)
         {
             startMenu.RemoveFromClassList("remove");
@@ -159,6 +228,9 @@ public class MenuController : MonoBehaviour
     private void OnQuitButtonClicked()
     {
         GameManager.Instance.ClearInventory();
+        // FMOD
+        // Play Quit SFX
+        RuntimeManager.PlayOneShot(quitEvent);
 
         Application.Quit();
         #if UNITY_EDITOR
@@ -168,15 +240,30 @@ public class MenuController : MonoBehaviour
 
     private void OnSettingsButtonClicked()
     {
+        // FMOD
+        // Play settings enter SFX
+        RuntimeManager.PlayOneShot(optionsEvent);
+
         Debug.Log("Settings");
         initialMenu.AddToClassList("remove");
         startMenu.AddToClassList("remove");
         settingsMenu.RemoveFromClassList("remove");
     }
 
+    // This is for clicking on dropdown
+    private void OnDropdownDrop(MouseDownEvent evt)
+    {
+        // FMOD
+        // Play dropdown sfx
+        RuntimeManager.PlayOneShot(dropdownEvent);
+    }
+
     private void OnSaveButtonClicked()
     {
         Debug.Log("Save Game");
+        // FMOD
+        // Play save sfx
+        RuntimeManager.PlayOneShot(saveEvent);
 
         if (GameManager.Instance.GetSceneId() == 0)
         {
@@ -192,15 +279,24 @@ public class MenuController : MonoBehaviour
         // set graphics quality
         GameManager.Instance.SetGraphicsQuality(qualityDropdown.index);
 
-        // set volumes
-        // implement here
+        // set volume data
 
         // set player data
         GameManager.Instance.SetPlayerData(lookSenSlider.value, walkSpeedSlider.value);
     }
 
-    private void OnPlayButtonClicked()
+    private void OnPlayButtonClicked(ClickEvent clicky, int startOrCont)
     {
+        // FMOD
+        // check if start btn or continue btn
+        // if start...
+        if (startOrCont == 0)
+        {
+          RuntimeManager.PlayOneShot(continueEvent);
+        } else 
+        {
+            RuntimeManager.PlayOneShot(startEvent);
+        }
         if (GameManager.Instance.GetSceneId() == 0)
         {
             inputReader.EnablePlayerControls();
@@ -260,6 +356,10 @@ public class MenuController : MonoBehaviour
                         break;
                 }
 
+                // FMOD sound for pause menu
+                RuntimeManager.PlayOneShot(pauseEvent);
+                RuntimeManager.StudioSystem.setParameterByName("gamePause", 0);
+
                 // open main menu
                 mm.RemoveFromClassList("hide");
                 Debug.Log("opening main menu and disabling player controls");
@@ -269,6 +369,11 @@ public class MenuController : MonoBehaviour
             {
                 // close main menu
                 mm.AddToClassList("hide");
+
+                // FMOD sound for pause menu
+                RuntimeManager.PlayOneShot(continueEvent);
+                RuntimeManager.StudioSystem.setParameterByName("gamePause", 1);
+
                 if (playerControlsEnabled)
                 {
                     // if player controls were enabled before opening main menu, re-enable them

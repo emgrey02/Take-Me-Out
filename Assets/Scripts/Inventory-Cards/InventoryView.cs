@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 using System.Linq;
+using FMODUnity;
 
 // handles inventory UI, listens for inventory updates from InventoryPresenter
 // also listens for inventory toggle input
@@ -21,6 +22,11 @@ public class InventoryView : MonoBehaviour
     // card object scriptable objects
     public CardObjectSO[] cardSpawnValues;
 
+    [Header("FMOD Events")]
+    [SerializeField] EventReference cardSelect;
+    [SerializeField] EventReference inventoryOpen;
+    [SerializeField] EventReference inventoryClose;
+
     // main menu ui
     private VisualElement mmPanel;
     
@@ -36,8 +42,6 @@ public class InventoryView : MonoBehaviour
 
         // listen for any inventory updates from inv presenter
         invPresenter.InventoryUpdated += UpdateInventoryUI;
-
-        
     }
 
     void Start()
@@ -79,6 +83,11 @@ public class InventoryView : MonoBehaviour
     private void OnCardClicked(ClickEvent evt)
     {
         Debug.Log("card clicked");
+
+        // FMOD
+        // Play card select sfx
+        RuntimeManager.PlayOneShot(cardSelect);
+
         VisualElement clickedCard = evt.target as VisualElement;
         Texture2D cardImage = clickedCard.style.backgroundImage.value.texture;
         VisualElement cardDisplay = invPanel.Q<VisualElement>("Big-Card");
@@ -140,6 +149,10 @@ public class InventoryView : MonoBehaviour
         {
             Debug.Log("inventory toggle triggered");
 
+            // FMOD
+            // Play inventory open sfx
+            RuntimeManager.PlayOneShot(inventoryOpen);
+
             // disable/enable player controls if inventory on screen or not
             if (invPanel.ClassListContains("hide"))
             {
@@ -153,6 +166,11 @@ public class InventoryView : MonoBehaviour
             }
             else {
                 //close inventory
+                
+                // FMOD
+                // Play inventory close sfx
+                RuntimeManager.PlayOneShot(inventoryClose);
+
                 invPanel.AddToClassList("hide");
                 // if inventory is hidden, go back to what controls were before toggling inventory
                 if (playerControlsStatus)

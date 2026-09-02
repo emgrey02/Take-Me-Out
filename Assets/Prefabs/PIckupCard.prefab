@@ -166,6 +166,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardView
   inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
+  cardIdle:
+    Guid:
+      Data1: 1720660257
+      Data2: 1336078432
+      Data3: -1853591421
+      Data4: 1382020827
+    Path: event:/sfx/ia/card_idle
   pickupText: {fileID: 1612775281667562381}
   inCardArea: 0
   CardIndex: 1

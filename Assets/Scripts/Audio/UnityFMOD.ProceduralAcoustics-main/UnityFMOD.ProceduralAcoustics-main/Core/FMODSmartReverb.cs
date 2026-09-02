@@ -49,6 +49,8 @@ public class FMODSmartReverb : MonoBehaviour
     // Debug Cache
     private Vector3[] debugHitPoints;
     private bool[] debugDidHit;
+    // MADDIE ADDITION
+    public float[] distances;
 
     void Start()
     {
@@ -71,6 +73,8 @@ public class FMODSmartReverb : MonoBehaviour
         rayDirections = new Vector3[raysCount];
         debugHitPoints = new Vector3[raysCount];
         debugDidHit = new bool[raysCount];
+        // MADDIE ADDITION
+        distances = new float[raysCount];
 
         float goldenRatio = (1 + Mathf.Sqrt(5)) / 2;
         float angleIncrement = Mathf.PI * 2 * goldenRatio;
@@ -115,7 +119,7 @@ public class FMODSmartReverb : MonoBehaviour
         CurrentReverb = Mathf.Lerp(CurrentReverb, targetReverb, Time.deltaTime * smoothSpeed);
         CurrentRoomSize = Mathf.Lerp(CurrentRoomSize, targetRoomSize, Time.deltaTime * smoothSpeed);
 
-        Debug.Log("Reverb: " + CurrentReverb + "; Room Size: " + CurrentRoomSize);
+        //Debug.Log("Reverb: " + CurrentReverb + "; Room Size: " + CurrentRoomSize);
         ApplyFMODParameters();
     }
 
@@ -152,11 +156,15 @@ public class FMODSmartReverb : MonoBehaviour
                 // Cache for visualization
                 debugDidHit[i] = true;
                 debugHitPoints[i] = hit.point;
+                // MADDIE ADDITION
+                distances[i] = hit.distance;
             }
             else
             {
                 debugDidHit[i] = false;
                 debugHitPoints[i] = transform.position + (dir * maxScanDistance);
+                // MADDIE ADDITION
+                distances[i] = 0.0f;
             }
         }
 

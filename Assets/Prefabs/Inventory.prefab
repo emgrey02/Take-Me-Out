@@ -78,6 +78,28 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5cf940b2d9fb63f45835cf01d91d3bdb, type: 2}
   - {fileID: 11400000, guid: f5e5d4d1b516a3e4ebdf36e5346a731f, type: 2}
   - {fileID: 11400000, guid: d4c656163d5895347908b7896f7e94b0, type: 2}
+  cardSelect:
+    Guid:
+      Data1: -1818257103
+      Data2: 1185713076
+      Data3: 130521478
+      Data4: 173065191
+    Path: event:/sfx/ui/menu/inventory_select
+  inventoryOpen:
+    Guid:
+      Data1: 1361586538
+      Data2: 1186487871
+      Data3: 1537582499
+      Data4: 1809520419
+    Path: event:/sfx/ui/menu/inventory_open
+  inventoryClose:
+    Guid:
+      Data1: 98569544
+      Data2: 1229379947
+      Data3: -1599532914
+      Data4: 1418719371
+    Path: event:/sfx/ui/menu/inventory_close
+  cardIdle: {fileID: 0}
 --- !u!114 &6824334642773575839
 MonoBehaviour:
   m_ObjectHideFlags: 0

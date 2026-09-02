@@ -69,4 +69,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryController
   inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
+  startEvent:
+    Guid:
+      Data1: -260855335
+      Data2: 1120933608
+      Data3: 543002011
+      Data4: -737394325
+    Path: event:/sfx/ui/menu/start
+  continueEvent:
+    Guid:
+      Data1: -1592131255
+      Data2: 1153296142
+      Data3: 1569723533
+      Data4: 1347769582
+    Path: event:/sfx/ui/menu/continue
+  hoverEvent:
+    Guid:
+      Data1: 1750919134
+      Data2: 1326455149
+      Data3: -124022653
+      Data4: 711139746
+    Path: event:/sfx/ui/hover
+  quitEvent:
+    Guid:
+      Data1: 820476819
+      Data2: 1083441942
+      Data3: -2048488825
+      Data4: 625397320
+    Path: event:/sfx/ui/menu/quit
+  optionsEvent:
+    Guid:
+      Data1: 1591732956
+      Data2: 1329795403
+      Data3: -1665433434
+      Data4: -1905040621
+    Path: event:/sfx/ui/menu/settings
+  backEvent:
+    Guid:
+      Data1: -2026374267
+      Data2: 1106735056
+      Data3: 1261320621
+      Data4: 198230212
+    Path: event:/sfx/ui/menu/settings_back
+  saveEvent:
+    Guid:
+      Data1: -320222049
+      Data2: 1281704969
+      Data3: 850913665
+      Data4: -627467007
+    Path: event:/sfx/ui/menu/save
+  dropdownEvent:
+    Guid:
+      Data1: -236771017
+      Data2: 1324010951
+      Data3: -2126172993
+      Data4: 478783080
+    Path: event:/sfx/ui/menu/dropdown
+  dropdownSelectEvent:
+    Guid:
+      Data1: 533056199
+      Data2: 1297280673
+      Data3: 1527730621
+      Data4: 1929157802
+    Path: event:/sfx/ui/menu/dropdown_select
+  pauseEvent:
+    Guid:
+      Data1: 1842640551
+      Data2: 1077606968
+      Data3: -434563702
+      Data4: -1329697921
+    Path: event:/sfx/ui/menu/pause
+  pauseSnapshot: Pause
   playerControlsEnabled: 0
