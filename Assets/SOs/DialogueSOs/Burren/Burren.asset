@@ -12,13 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c6c3c4355ec4a4b91e229a8af6a9bb, type: 3}
   m_Name: Burren
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  speaker: 000000000000000000000000
+  speaker: 0000000004000000
   dialogue:
   - Yay! You're here!
-  - Testing another line of dialogue!
-  - Okay let's go back to the baseball field now. I think I've had enough of you...
-    maybe this is it for us. Lol jk I love you I think we're going to end up getting
-    married or something idk lol.
+  - I'm here :)
   options: []
   option1: {fileID: 0}
   option2: {fileID: 0}

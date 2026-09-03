@@ -144,6 +144,7 @@ public class GameManager : MonoBehaviour
         }
 
         // instantiate prefabs
+        // inventory instantiated every scene, which is why we save it to player filesystem and load it from there
         Instantiate(playerPrefab, pos, rot);
         Instantiate(inventoryPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         Instantiate(mainmenuPrefab, new Vector3(0, 0, 0), Quaternion.identity);

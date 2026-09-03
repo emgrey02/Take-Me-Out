@@ -107,6 +107,7 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
+        // set volumes on slider change, not on save, so that the user can hear the changes in real time
         vcaMasterController.setVolume(masterVolSlider.value * 0.01f);
         vcaMusicController.setVolume(musicVolSlider.value * 0.01f);
         vcaSFXController.setVolume(sfxVolSlider.value * 0.01f);
@@ -193,6 +194,7 @@ public class MenuController : MonoBehaviour
             walkSpeedSlider.value = data.moveSpeed; 
         }
         else {
+            // adjust these to change default values
             lookSenSlider.value = 20;
             walkSpeedSlider.value = 4;
         }
@@ -227,7 +229,9 @@ public class MenuController : MonoBehaviour
 
     private void OnQuitButtonClicked()
     {
+        // clear inventory on quit
         GameManager.Instance.ClearInventory();
+
         // FMOD
         // Play Quit SFX
         RuntimeManager.PlayOneShot(quitEvent);
@@ -278,8 +282,6 @@ public class MenuController : MonoBehaviour
 
         // set graphics quality
         GameManager.Instance.SetGraphicsQuality(qualityDropdown.index);
-
-        // set volume data
 
         // set player data
         GameManager.Instance.SetPlayerData(lookSenSlider.value, walkSpeedSlider.value);
@@ -340,15 +342,15 @@ public class MenuController : MonoBehaviour
                 {
                     case 2:
                         baseImg.image = Resources.Load<Texture2D>("TMO_pauselocation_1st");
-                        menuText.text = "Heyyy, we're at the first base! This is The Burren, where you had your first date with Alison!";
+                        menuText.text = "You are at The Burren, where you had your first date with Alison!";
                         break;
                     case 3:
                         baseImg.image = Resources.Load<Texture2D>("TMO_pauselocation_2nd");
-                        menuText.text = "This is the second base scene! The Somerville Theatre, where you had your first date with Alsion :)";
+                        menuText.text = "You are at The Somerville Theatre, where you had your first date with Alison :)";
                         break;
                     case 4:
                         baseImg.image = Resources.Load<Texture2D>("TMO_pauselocation_3rdb");
-                        menuText.text = "This is the third base scene! Echo Lake, where you proposed to Alison!";
+                        menuText.text = "You are at Echo Lake, where you proposed to Alison! I wonder how you get the ring?";
                         break;
                     default:
                         baseImg.image = null;

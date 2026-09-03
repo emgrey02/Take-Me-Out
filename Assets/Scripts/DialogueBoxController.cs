@@ -21,6 +21,9 @@ public class DialogueBoxController : MonoBehaviour
     [SerializeField] InputReader inputReader;
 
     public VisualElement box;
+    public VisualElement alisonBox;
+    public VisualElement innerBox;
+
     public VisualElement optionsPanel;
     public Label speakerName;
     public Label dialogueText;
@@ -54,9 +57,12 @@ public class DialogueBoxController : MonoBehaviour
         VisualElement dialogueBox = GetComponent<UIDocument>().rootVisualElement;
 
         box = dialogueBox.Q<VisualElement>("Box");
+        alisonBox = dialogueBox.Q<VisualElement>("AlisonBox");
+        innerBox = dialogueBox.Q<VisualElement>("inner-box");
         box.AddToClassList("hide");
+        alisonBox.AddToClassList("hide");
+        innerBox.AddToClassList("hide");
    
-
         speakerName = dialogueBox.Q<Label>("speakerName");
         dialogueText = dialogueBox.Q<Label>("dialogueText");
         lightning = dialogueBox.Q<Image>("lightning-bar");
@@ -117,6 +123,7 @@ public class DialogueBoxController : MonoBehaviour
         inputReader.DisablePlayerControls();
 
         box.RemoveFromClassList("hide");
+        innerBox.RemoveFromClassList("hide");
         
         StopAllCoroutines();
         StartCoroutine(RunDialogue(d));
@@ -138,6 +145,8 @@ public class DialogueBoxController : MonoBehaviour
         Debug.Log("reseting dialogue ui");
         inputReader.EnablePlayerControls();
         box.AddToClassList("hide");
+        alisonBox.AddToClassList("hide");
+        innerBox.AddToClassList("hide");
 
         if (currentDialogue.name == "lets-fish") {
             // start fishing script
@@ -177,6 +186,7 @@ public class DialogueBoxController : MonoBehaviour
                 // show lighting bar
                 lightning.RemoveFromClassList("hide");
 
+                // show answer options
                 for (int j=0; j < options.Count; j++) {
                     if (d.options.Length > j) {
                         options[j].visible = true;
@@ -187,6 +197,7 @@ public class DialogueBoxController : MonoBehaviour
                 }
 
                 // have first option selected
+                // should in not do this?? 
                 options[0].Focus();
 
             } else {
@@ -205,6 +216,18 @@ public class DialogueBoxController : MonoBehaviour
 
                 // set speaker name
                 speakerName.text = d.speaker[i].ToString();
+
+                // if it's alison speaking, show her box, otherwise hide it
+                if (d.speaker[i] == Speakers.Alison)
+                {
+                    alisonBox.RemoveFromClassList("hide");
+                    box.AddToClassList("hide");
+                }
+                else
+                {
+                    alisonBox.AddToClassList("hide");
+                    box.RemoveFromClassList("hide");
+                }
 
                 dialogueText.text = d.dialogue[i];
 

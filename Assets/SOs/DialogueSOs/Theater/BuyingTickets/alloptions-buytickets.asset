@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   speaker: 0300000005000000
   dialogue:
-  - Good choice! That'll be $24 total for 2 adult tickets.
+  - Good choice! That'll be $24 total for 2 adults.
   options:
   - Search for a $20 and uncrumple 4 dollar bills in your back pocket.
-  - Hand her your credit card, gimme those points.
-  - Use your apple wallet and tap, then when that doesn't work, use your credit card.
+  - Hand her your credit card (gimme those points!!)
+  - Use your apple wallet and tap, and when that doesn't work, use your credit card.
   option1: {fileID: 11400000, guid: 74b4f68e421dc594b991256017583294, type: 2}
   option2: {fileID: 11400000, guid: 74b4f68e421dc594b991256017583294, type: 2}
   option3: {fileID: 11400000, guid: 74b4f68e421dc594b991256017583294, type: 2}
