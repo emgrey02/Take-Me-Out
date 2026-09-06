@@ -12,6 +12,8 @@ public class WeddingSceneController : MonoBehaviour
 
     public GameObject heartParticles;
 
+    public GameObject takeMeOutLogo;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,7 +27,7 @@ public class WeddingSceneController : MonoBehaviour
 
     IEnumerator StartFirstDolly()
     {
-        yield return new WaitForSeconds(2.9f);
+        yield return new WaitForSeconds(2.8f);
         firstDollyCamera.SetActive(true);
     }
 
@@ -48,7 +50,7 @@ public class WeddingSceneController : MonoBehaviour
 
         if (skyCamera.GetComponent<CinemachineSplineDolly>().CameraPosition >= 1)
         {
-            GameManager.Instance.MoveToScene(7);
+            takeMeOutLogo.SetActive(true);
         }
     }
 }

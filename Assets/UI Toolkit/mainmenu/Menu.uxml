@@ -10,7 +10,7 @@
                 <ui:Label text="" parse-escape-sequences="true" name="menuText" style="position: absolute; right: 32px; bottom: 107px; left: auto; -unity-font-definition: url(&quot;project://database/Assets/fonts/rl-horizon-400.ttf?fileID=12800000&amp;guid=eb69cf80b9122864d911be23ec24dd83&amp;type=3#rl-horizon-400&quot;); font-size: 30px; color: rgb(0, 0, 0); white-space: normal; flex-grow: 0; width: 508px;"/>
                 <ui:Image source="" name="baseImg" style="position: absolute; width: 350px; height: 400px; right: 87px; bottom: 205px;"/>
             </ui:VisualElement>
-            <ui:VisualElement name="settingsMenu" class="menu" style="background-image: resource(&quot;TMO_settings_bg (1)&quot;); background-color: rgba(0, 0, 0, 0); flex-direction: row; align-items: flex-start; justify-content: flex-start; align-content: flex-start; width: 100%; height: 1080px; padding-left: 324px; padding-top: 387px; padding-right: 337px; padding-bottom: 0;">
+            <ui:VisualElement name="settingsMenu" class="menu remove" style="background-image: resource(&quot;TMO_settings_bg (1)&quot;); background-color: rgba(0, 0, 0, 0); flex-direction: row; align-items: flex-start; justify-content: flex-start; align-content: flex-start; width: 100%; height: 1080px; padding-left: 324px; padding-top: 387px; padding-right: 337px; padding-bottom: 0;">
                 <ui:VisualElement name="VisualElement" style="flex-grow: 0; margin-right: 60px; height: 530px; width: 45%; padding-top: 0; flex-direction: column;">
                     <ui:VisualElement style="flex-grow: 1;">
                         <ui:Label text="Volume&#10;" class="big-label"/>
@@ -31,7 +31,7 @@
                     <ui:SliderInt label="Walk Speed" value="3" high-value="8" name="walkSpeed" fill="false" show-input-field="true" inverted="false" class="input-field" style="background-image: resource(&quot;TMO_settings_walkspeedslider&quot;); left: -120px; padding-left: 73px; padding-right: 33px; height: 70px; width: 110%;"/>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="startMenu" class="menu remove" style="height: 1080px; justify-content: flex-start; align-items: flex-start; align-content: flex-end; width: 100%; align-self: flex-start; flex-direction: column; background-image: none; background-color: rgb(214, 105, 105); padding-left: 103px;">
+            <ui:VisualElement name="startMenu" class="menu" style="height: 1080px; justify-content: flex-start; align-items: flex-start; align-content: flex-end; width: 100%; align-self: flex-start; flex-direction: column; background-image: none; background-color: rgb(214, 105, 105); padding-left: 103px;">
                 <ui:Image source="project://database/Assets/Resources/TMO_logo.png?fileID=2800000&amp;guid=f8ef728f11ffb214c89aceb2e3b801d5&amp;type=3#TMO_logo" style="width: 700px; height: 500px; left: -26px; margin-top: 59px;"/>
                 <ui:VisualElement style="flex-grow: 1; align-items: flex-start; align-self: flex-start; align-content: flex-end; justify-content: flex-end; padding-bottom: 74px;">
                     <ui:Button text="Start" name="startBtn" class="startMenuBtn"/>
