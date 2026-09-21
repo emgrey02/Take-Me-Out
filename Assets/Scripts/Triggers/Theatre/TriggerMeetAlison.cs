@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Playables;
+using FMODUnity;
 
 public class TriggerMeetAlison:MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class TriggerMeetAlison:MonoBehaviour
 
     // SO dialogue asset
     public DialogueAsset dialogue;
+
+    // FMOD References
+    [SerializeField] EventReference enterDialogue;
+    [SerializeField] EventReference dialogueExit;
 
 
     void OnEnable()
@@ -37,6 +42,9 @@ public class TriggerMeetAlison:MonoBehaviour
     void OnTriggerEnter(Collider player)
     {
         Debug.Log("Player entered alison area");
+        // FMOD
+        // Play enter dialogue sfx
+        RuntimeManager.PlayOneShot(enterDialogue);
         DialogueBoxController.OnDialogueEnded += LeaveConversation;
         Debug.Log("triggering cutscene");
         cameraMove.SetActive(true);
@@ -47,6 +55,9 @@ public class TriggerMeetAlison:MonoBehaviour
     private void LeaveConversation()
     {
         Debug.Log("leaving conversation");
+        // FMOD
+        // Play leave convo sfx
+        RuntimeManager.PlayOneShot(dialogueExit);
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
 
 

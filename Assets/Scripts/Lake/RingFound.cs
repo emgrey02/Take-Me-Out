@@ -1,8 +1,10 @@
 using System;
+using FMODUnity;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UIElements;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class RingFound : MonoBehaviour
 {
@@ -21,6 +23,11 @@ public class RingFound : MonoBehaviour
     // director that controls cameraMove timeline
     public PlayableDirector firstDirector;
 
+    // FMOD References
+    [SerializeField] EventReference hover;
+    [SerializeField] EventReference continueWalk;
+    [SerializeField] EventReference marryChoice;
+
     private void OnEnable()
     {
         firstDirector.paused += OnFirstDirectorPaused;
@@ -37,8 +44,16 @@ public class RingFound : MonoBehaviour
         marryBtn.clicked += OnMarryBtnClicked;
         walkBtn.clicked += OnWalkBtnClicked;
 
+        marryBtn.RegisterCallback<MouseOverEvent>(OnHover);
+        walkBtn.RegisterCallback<MouseOverEvent>(OnHover);
+
         inputReader.DisablePlayerControls();
         promptCtn.RemoveFromClassList("remove");
+    }
+
+    void OnHover(MouseOverEvent evt)
+    {
+        RuntimeManager.PlayOneShot(hover);
     }
 
     void OnInteract(bool Interacted)
@@ -67,6 +82,8 @@ public class RingFound : MonoBehaviour
     {
         Debug.Log("Marry button clicked");
         promptCtn.AddToClassList("remove");
+
+        RuntimeManager.PlayOneShot(marryChoice);
        
         // trigger proposal timeline
         cameraMove.SetActive(true);
@@ -75,6 +92,7 @@ public class RingFound : MonoBehaviour
 
     private void OnWalkBtnClicked()
     {
+        RuntimeManager.PlayOneShot(continueWalk);
         // keep walking
         inputReader.EnablePlayerControls();
         promptCtn.AddToClassList("remove");

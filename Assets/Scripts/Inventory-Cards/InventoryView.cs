@@ -26,6 +26,8 @@ public class InventoryView : MonoBehaviour
     [SerializeField] EventReference cardSelect;
     [SerializeField] EventReference inventoryOpen;
     [SerializeField] EventReference inventoryClose;
+    [SerializeField] EventReference cardHover;
+    public string pauseSnapshot;
 
     // main menu ui
     private VisualElement mmPanel;
@@ -56,6 +58,7 @@ public class InventoryView : MonoBehaviour
         for (int i = 0; i < Cards.Count; i++)
         {
             Cards[i].RegisterCallback<ClickEvent>(OnCardClicked);
+            Cards[i].RegisterCallback<MouseOverEvent>(OnCardHover);
         }
 
         // hide inventory on start
@@ -92,6 +95,13 @@ public class InventoryView : MonoBehaviour
         Texture2D cardImage = clickedCard.style.backgroundImage.value.texture;
         VisualElement cardDisplay = invPanel.Q<VisualElement>("Big-Card");
         cardDisplay.style.backgroundImage = cardImage;
+    }
+
+    // FMOD
+    // Play hover sfx for card hover in inventory
+    private void OnCardHover(MouseOverEvent evt)
+    {
+        RuntimeManager.PlayOneShot(cardHover);
     }
 
     // when we get an inventory update event, update the inventory ui to match the current inventory state
@@ -152,6 +162,8 @@ public class InventoryView : MonoBehaviour
             // FMOD
             // Play inventory open sfx
             RuntimeManager.PlayOneShot(inventoryOpen);
+            // Muffle sounds snapshot
+            RuntimeManager.StudioSystem.setParameterByName("gamePause", 0);
 
             // disable/enable player controls if inventory on screen or not
             if (invPanel.ClassListContains("hide"))
@@ -170,6 +182,8 @@ public class InventoryView : MonoBehaviour
                 // FMOD
                 // Play inventory close sfx
                 RuntimeManager.PlayOneShot(inventoryClose);
+                // Unmuffle
+                RuntimeManager.StudioSystem.setParameterByName("gamePause", 1);
 
                 invPanel.AddToClassList("hide");
                 // if inventory is hidden, go back to what controls were before toggling inventory
@@ -180,5 +194,7 @@ public class InventoryView : MonoBehaviour
                 }
             }
         }
+
+        
     }
 }

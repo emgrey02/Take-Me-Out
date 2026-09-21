@@ -99,7 +99,21 @@ MonoBehaviour:
       Data3: -1599532914
       Data4: 1418719371
     Path: event:/sfx/ui/menu/inventory_close
-  cardIdle: {fileID: 0}
+  cardHover:
+    Guid:
+      Data1: 1750919134
+      Data2: 1326455149
+      Data3: -124022653
+      Data4: 711139746
+    Path: event:/sfx/ui/hover
+  pauseEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  pauseSnapshot: Pause
 --- !u!114 &6824334642773575839
 MonoBehaviour:
   m_ObjectHideFlags: 0

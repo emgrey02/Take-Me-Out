@@ -3,6 +3,9 @@ using Unity.Cinemachine;
 using UnityEngine.Playables;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
+using FMOD.Studio;
+using FMODUnity;
+using UnityEngine.UIElements.Experimental;
 
 public class StartFishing : MonoBehaviour
 {
@@ -54,9 +57,26 @@ public class StartFishing : MonoBehaviour
 
     public WhichPole whichPole;
 
+    // FMOD
+    // Snapshot & Event References
+    [SerializeField] EventReference fishMusic;
+    [SerializeField] EventReference fishCatch;
+    [SerializeField] EventReference fishingLoop;
+    [SerializeField] EventReference fishWrong;
+    public EventInstance fishTime;
+    public EventInstance musicInstance;
+    public EventInstance fishingLoopInstance;
+    public string musicParameter;
+    public string fishCaughtParam;
+
     void OnEnable()
     {
         firstDirector.paused += OnFirstDirectorPaused;
+        fishTime = RuntimeManager.CreateInstance("snapshot:/theaterTrivia");
+
+        musicInstance = RuntimeManager.CreateInstance(fishMusic);
+        fishingLoopInstance = RuntimeManager.CreateInstance(fishingLoop);
+        RuntimeManager.StudioSystem.setParameterByName(fishCaughtParam, 0.0f, false);
     }
 
     void OnDisable()
@@ -71,6 +91,11 @@ public class StartFishing : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // FMOD
+        // start snapshot
+        fishTime.start();
+        musicInstance.start();
+
         // get fishing slider game ui elements
         fishingSliderUI = fishingSliderObj.GetComponent<UIDocument>().rootVisualElement;
         fishingSlider = fishingSliderUI.Q<Slider>("fishing-game-slider");
@@ -112,6 +137,7 @@ public class StartFishing : MonoBehaviour
     void OnFirstDirectorPaused(PlayableDirector aDirector)
     {
         Debug.Log("first director paused");
+
         if (firstDirector == aDirector)
         {
             // show fish prompt
@@ -129,6 +155,9 @@ public class StartFishing : MonoBehaviour
 
     void OnInteract(bool Interacted)
     {
+
+        RuntimeManager.StudioSystem.getParameterByName(fishCaughtParam, out float value, out float finalValue);
+        Debug.Log(fishCaughtParam + ": " + finalValue);
         // use presses E to interact/ fish when prompt is showing
         if (Interacted & promptIsShowing)
         {
@@ -146,11 +175,23 @@ public class StartFishing : MonoBehaviour
             Fish();
         }
 
+        if (Interacted & !sliderWithinBar & !promptIsShowing)
+        {
+            Debug.Log("whoops! no fish");
+            RuntimeManager.PlayOneShot(fishWrong);
+        }
+
         // during fishing, if user presses E when slider is within bar, they catch the fish
         if (Interacted & sliderWithinBar)
         {
             Debug.Log("caught the fish!");
             fishCaught = true;
+
+            // FMOD
+            // play fish catch sfx
+            RuntimeManager.PlayOneShot(fishCatch);
+            RuntimeManager.StudioSystem.setParameterByName(fishCaughtParam, 2f, false);
+            fishingLoopInstance.release();
 
             // instantiate fish prefab
             GameObject fish = chosenFish.fishPrefab;
@@ -208,6 +249,10 @@ public class StartFishing : MonoBehaviour
 
         isFishing = true;
 
+        // FMOD
+        // play fishing loop event
+        fishingLoopInstance.start();
+
        
     }
 
@@ -255,6 +300,11 @@ public class StartFishing : MonoBehaviour
 
     public void StopFishing()
     {
+        // FMOD
+        // stop snapshot
+        fishTime.release();
+        
+
         // stop fishing
         // move fishing rod back to groundPos
         poleAnim.SetBool("poleUp", false);
@@ -288,6 +338,8 @@ public class StartFishing : MonoBehaviour
     {
         if (Left & promptIsShowing)
         {
+            RuntimeManager.StudioSystem.setParameterByName(musicParameter, 1f, false);
+            musicInstance.release();
             StopFishing();
         }
     }

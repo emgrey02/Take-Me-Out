@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Playables;
+using FMODUnity;
 
 public class BurrenCutsceneTrigger : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class BurrenCutsceneTrigger : MonoBehaviour
 
     // SO dialogue asset
     public DialogueAsset dialogue;
+
+    // FMOD Events
+    [SerializeField] EventReference dialogueTalk;
 
     void OnEnable()
     {
@@ -55,6 +59,9 @@ public class BurrenCutsceneTrigger : MonoBehaviour
     {
         if (Interacted & inTableArea)
         {
+            // FMOD
+            // Play dialogue talk sfx
+            RuntimeManager.PlayOneShot(dialogueTalk);
             // trigger cutscene
             EnterCutscenePrompt.SetActive(false);
             cameraMove.SetActive(true);

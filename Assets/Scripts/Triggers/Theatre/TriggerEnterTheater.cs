@@ -3,6 +3,8 @@ using UnityEngine.UIElements;
 using Unity.Cinemachine;
 using UnityEngine.Playables;
 using System.Collections;
+using FMOD.Studio;
+using FMODUnity;
 
 public class TriggerEnterTheater : MonoBehaviour
 {
@@ -33,10 +35,15 @@ public class TriggerEnterTheater : MonoBehaviour
     public GameObject endConvoTrigger;
     public GameObject otherTrigger;
 
+    // FMOD
+    // Snapshot
+    public EventInstance triviaTime;
+
     void OnEnable()
     {
         firstDirector.paused += OnFirstDirectorPaused;
         TheaterScreenController.OnTriviaOver += EndTrivia;
+        triviaTime = RuntimeManager.CreateInstance("snapshot:/theaterTrivia");
     }
 
     void Awake() {
@@ -67,6 +74,9 @@ public class TriggerEnterTheater : MonoBehaviour
         {
             // trigger cutscene
             Debug.Log("triggering cutscene");
+            // FMOD
+            // play snapshot
+            triviaTime.start();
             EnterPrompt.SetActive(false);
             cameraMove.SetActive(true);
             Camera.main.GetComponent<CinemachineBrain>().enabled = true;
@@ -92,6 +102,10 @@ public class TriggerEnterTheater : MonoBehaviour
     {
         // fade-out-in
         StartCoroutine("FadeOut");
+        // FMOD
+        // release snapshot
+        triviaTime.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        triviaTime.release();
     }
 
     IEnumerator FadeOut()

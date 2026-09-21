@@ -28819,6 +28819,39 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &132244185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 132244186}
+  m_Layer: 0
+  m_Name: SoundScenes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &132244186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132244185}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1113878796}
+  - {fileID: 1360543970}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &132955220
 GameObject:
   m_ObjectHideFlags: 0
@@ -77794,7 +77827,7 @@ GameObject:
   - component: {fileID: 355699006}
   - component: {fileID: 355699005}
   - component: {fileID: 355699004}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110008,6 +110041,140 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &501420235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 501420236}
+  - component: {fileID: 501420240}
+  - component: {fileID: 501420238}
+  - component: {fileID: 501420237}
+  m_Layer: 0
+  m_Name: sndsn_vol_water_edge (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &501420236
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501420235}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7840665, z: -0, w: 0.6206769}
+  m_LocalPosition: {x: -0.52441007, y: -0.5222, z: 0.36699596}
+  m_LocalScale: {x: 0.11188908, y: 0.025867753, z: 0.013448457}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1780454582}
+  m_LocalEulerAnglesHint: {x: 0, y: 103.269, z: 0}
+--- !u!114 &501420237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501420235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1859244073
+      Data2: 1213613706
+      Data3: -2069720953
+      Data4: 1516083923
+    Path: event:/sfx/amb/ocean
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &501420238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501420235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 0}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!65 &501420240
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501420235}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1.039848}
+  m_Center: {x: 0, y: 0, z: 0.019924141}
 --- !u!43 &501977465
 Mesh:
   m_ObjectHideFlags: 0
@@ -129214,7 +129381,7 @@ GameObject:
   - component: {fileID: 582111633}
   - component: {fileID: 582111632}
   - component: {fileID: 582111631}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147945,7 +148112,7 @@ GameObject:
   - component: {fileID: 660463257}
   - component: {fileID: 660463256}
   - component: {fileID: 660463255}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169106,6 +169273,137 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &748181968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748181969}
+  - component: {fileID: 748181972}
+  - component: {fileID: 748181971}
+  - component: {fileID: 748181970}
+  m_Layer: 0
+  m_Name: QuadAmbFR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &748181969
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748181968}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.057924572, y: -0.007360341, z: 0.0026939113, w: 0.9982902}
+  m_LocalPosition: {x: 2.7657115, y: 0.29589158, z: 2.1375968}
+  m_LocalScale: {x: 10, y: 2.5, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2025139674}
+  m_LocalEulerAnglesHint: {x: -6.639, y: -0.866, z: 0.359}
+--- !u!114 &748181970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748181968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 748181972}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!114 &748181971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748181968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8870fc6ec2dcfe4dae4dda25e0fa365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODAmbienceManager
+  scannerSource: {fileID: 0}
+  ambienceEmitter: {fileID: 748181972}
+  mixParameterName: InOut
+  smoothTime: 2
+  outdoorThreshold: 0.5
+  indoorThreshold: 0.9
+--- !u!114 &748181972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748181968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2007176339
+      Data2: 1262521937
+      Data3: 2031001729
+      Data4: -1487804496
+    Path: event:/sfx/amb/amb_location_wedding
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!43 &749040904
 Mesh:
   m_ObjectHideFlags: 0
@@ -245908,7 +246206,7 @@ GameObject:
   - component: {fileID: 1078455159}
   - component: {fileID: 1078455158}
   - component: {fileID: 1078455157}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257984,6 +258282,60 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1113878795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1113878796}
+  - component: {fileID: 1113878797}
+  m_Layer: 0
+  m_Name: sndsn_vol_bed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1113878796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113878795}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.145, y: 38, z: -14.369}
+  m_LocalScale: {x: 170.32283, y: 71.00793, z: 226.3654}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1780454582}
+  m_Father: {fileID: 132244186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1113878797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113878795}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1117517733
 GameObject:
   m_ObjectHideFlags: 0
@@ -288500,7 +288852,7 @@ GameObject:
   - component: {fileID: 1249082837}
   - component: {fileID: 1249082836}
   - component: {fileID: 1249082835}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293271,6 +293623,140 @@ Transform:
   - {fileID: 1337556783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1266609170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1266609171}
+  - component: {fileID: 1266609175}
+  - component: {fileID: 1266609173}
+  - component: {fileID: 1266609172}
+  m_Layer: 0
+  m_Name: sndsn_vol_water_edge (11)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1266609171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266609170}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.5203722, z: -0, w: -0.8539396}
+  m_LocalPosition: {x: 0.562, y: -0.5222, z: 0.25910422}
+  m_LocalScale: {x: 0.1550441, y: 0.025867753, z: 0.013448456}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1780454582}
+  m_LocalEulerAnglesHint: {x: 0, y: 297.286, z: 0}
+--- !u!114 &1266609172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266609170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1859244073
+      Data2: 1213613706
+      Data3: -2069720953
+      Data4: 1516083923
+    Path: event:/sfx/amb/ocean
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1266609173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266609170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 0}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!65 &1266609175
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266609170}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1.039848}
+  m_Center: {x: 0, y: 0, z: 0.019924141}
 --- !u!43 &1267430703
 Mesh:
   m_ObjectHideFlags: 0
@@ -297087,6 +297573,137 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &1285617947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285617948}
+  - component: {fileID: 1285617951}
+  - component: {fileID: 1285617950}
+  - component: {fileID: 1285617949}
+  m_Layer: 0
+  m_Name: QuadAmbFL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1285617948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285617947}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.057924572, y: -0.007360341, z: 0.0026939113, w: 0.9982902}
+  m_LocalPosition: {x: -2.4936333, y: 0.28469232, z: 1.9825393}
+  m_LocalScale: {x: 10, y: 2.5, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2025139674}
+  m_LocalEulerAnglesHint: {x: -6.639, y: -0.866, z: 0.359}
+--- !u!114 &1285617949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285617947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 1285617951}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!114 &1285617950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285617947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8870fc6ec2dcfe4dae4dda25e0fa365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODAmbienceManager
+  scannerSource: {fileID: 0}
+  ambienceEmitter: {fileID: 1285617951}
+  mixParameterName: InOut
+  smoothTime: 2
+  outdoorThreshold: 0.5
+  indoorThreshold: 0.9
+--- !u!114 &1285617951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285617947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2007176339
+      Data2: 1262521937
+      Data3: 2031001729
+      Data4: -1487804496
+    Path: event:/sfx/amb/amb_location_wedding
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!43 &1288785266
 Mesh:
   m_ObjectHideFlags: 0
@@ -313442,6 +314059,37 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1360543969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1360543970}
+  m_Layer: 0
+  m_Name: AllSpawns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1360543970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360543969}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 132244186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1361691351
 GameObject:
   m_ObjectHideFlags: 0
@@ -386675,6 +387323,137 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &1677161558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1677161559}
+  - component: {fileID: 1677161562}
+  - component: {fileID: 1677161561}
+  - component: {fileID: 1677161560}
+  m_Layer: 0
+  m_Name: QuadAmbBR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1677161559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677161558}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.057924572, y: -0.007360341, z: 0.0026939113, w: 0.9982902}
+  m_LocalPosition: {x: 2.3215737, y: -0.0916369, z: -2.7333772}
+  m_LocalScale: {x: 10, y: 2.5, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2025139674}
+  m_LocalEulerAnglesHint: {x: -6.639, y: -0.866, z: 0.359}
+--- !u!114 &1677161560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677161558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 1677161562}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!114 &1677161561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677161558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8870fc6ec2dcfe4dae4dda25e0fa365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODAmbienceManager
+  scannerSource: {fileID: 0}
+  ambienceEmitter: {fileID: 1677161562}
+  mixParameterName: InOut
+  smoothTime: 2
+  outdoorThreshold: 0.5
+  indoorThreshold: 0.9
+--- !u!114 &1677161562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677161558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2007176339
+      Data2: 1262521937
+      Data3: 2031001729
+      Data4: -1487804496
+    Path: event:/sfx/amb/amb_location_wedding
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!43 &1679212285
 Mesh:
   m_ObjectHideFlags: 0
@@ -409011,6 +409790,41 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1780454581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1780454582}
+  m_Layer: 0
+  m_Name: sndsn_vol_water_edges
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1780454582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780454581}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0026067, y: 0, z: -0.060704}
+  m_LocalScale: {x: 0.4598622, y: 1, z: 0.50766027}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1879024842}
+  - {fileID: 501420236}
+  - {fileID: 1827181560}
+  - {fileID: 1266609171}
+  m_Father: {fileID: 1113878796}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1782337685
 GameObject:
   m_ObjectHideFlags: 0
@@ -422117,6 +422931,140 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1827181559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827181560}
+  - component: {fileID: 1827181564}
+  - component: {fileID: 1827181562}
+  - component: {fileID: 1827181561}
+  m_Layer: 0
+  m_Name: sndsn_vol_water_edge (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1827181560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827181559}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.99919885, z: -0, w: -0.04002119}
+  m_LocalPosition: {x: 0.075299986, y: -0.5222, z: 0.5624}
+  m_LocalScale: {x: 0.21032907, y: 0.025867753, z: 0.013448455}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1780454582}
+  m_LocalEulerAnglesHint: {x: 0, y: 184.587, z: 0}
+--- !u!114 &1827181561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827181559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1859244073
+      Data2: 1213613706
+      Data3: -2069720953
+      Data4: 1516083923
+    Path: event:/sfx/amb/ocean
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1827181562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827181559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 0}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!65 &1827181564
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827181559}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1.039848}
+  m_Center: {x: 0, y: 0, z: 0.019924141}
 --- !u!43 &1827851822
 Mesh:
   m_ObjectHideFlags: 0
@@ -433428,6 +434376,140 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &1879024841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1879024842}
+  - component: {fileID: 1879024846}
+  - component: {fileID: 1879024844}
+  - component: {fileID: 1879024843}
+  m_Layer: 0
+  m_Name: sndsn_vol_water_edge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1879024842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879024841}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.08023031, z: -0, w: 0.9967764}
+  m_LocalPosition: {x: -0.1145, y: -0.5222, z: 0.0963}
+  m_LocalScale: {x: 0.19792868, y: 0.025867753, z: 0.013448457}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1780454582}
+  m_LocalEulerAnglesHint: {x: 0, y: 9.204, z: 0}
+--- !u!114 &1879024843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879024841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1859244073
+      Data2: 1213613706
+      Data3: -2069720953
+      Data4: 1516083923
+    Path: event:/sfx/amb/ocean
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1879024844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879024841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 0}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!65 &1879024846
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879024841}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1.039848}
+  m_Center: {x: 0, y: 0, z: 0.019924141}
 --- !u!43 &1881205705
 Mesh:
   m_ObjectHideFlags: 0
@@ -463294,7 +464376,11 @@ Transform:
   m_LocalPosition: {x: 9.72, y: 9.429999, z: -1.3299999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1677161559}
+  - {fileID: 2089410296}
+  - {fileID: 748181969}
+  - {fileID: 1285617948}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2025139675
@@ -480433,6 +481519,137 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &2089410295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2089410296}
+  - component: {fileID: 2089410299}
+  - component: {fileID: 2089410298}
+  - component: {fileID: 2089410297}
+  m_Layer: 0
+  m_Name: QuadAmbBL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2089410296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089410295}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.057924572, y: -0.007360341, z: 0.0026939113, w: 0.9982902}
+  m_LocalPosition: {x: -2.5622253, y: -0.11722824, z: -2.1286976}
+  m_LocalScale: {x: 10, y: 2.5, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2025139674}
+  m_LocalEulerAnglesHint: {x: -6.639, y: -0.866, z: 0.359}
+--- !u!114 &2089410297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089410295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 2089410299}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!114 &2089410298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089410295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8870fc6ec2dcfe4dae4dda25e0fa365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODAmbienceManager
+  scannerSource: {fileID: 0}
+  ambienceEmitter: {fileID: 2089410299}
+  mixParameterName: InOut
+  smoothTime: 2
+  outdoorThreshold: 0.5
+  indoorThreshold: 0.9
+--- !u!114 &2089410299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089410295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2007176339
+      Data2: 1262521937
+      Data3: 2031001729
+      Data4: -1487804496
+    Path: event:/sfx/amb/amb_location_wedding
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2090373114
 GameObject:
   m_ObjectHideFlags: 0
@@ -497676,3 +498893,4 @@ SceneRoots:
   - {fileID: 1338467312}
   - {fileID: 1046406833}
   - {fileID: 1771807703}
+  - {fileID: 132244186}

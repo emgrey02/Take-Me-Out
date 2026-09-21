@@ -4,7 +4,8 @@ public class Base : MonoBehaviour
 {
     public InputReader inputReader;
 
-    [SerializeField]
+    //[SerializeField]
+    FMOD.Studio.Bus MasterBus;
     private int _baseNum;
     public int BaseNum
     { 
@@ -24,6 +25,7 @@ public class Base : MonoBehaviour
     void Start()
     {
         inputReader.InteractEvent += OnInteract;
+        MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
     }
 
     void OnInteract(bool Interacted)
@@ -33,8 +35,10 @@ public class Base : MonoBehaviour
             Debug.Log("Sending to new scene");
             // FMOD
             // Play enter_scene sfx
+            MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             FMODUnity.RuntimeManager.PlayOneShot("event:/sfx/ia/enter_scene");
             GameManager.Instance.MoveToScene(BaseNum + 1);
+            
         }
     }
 

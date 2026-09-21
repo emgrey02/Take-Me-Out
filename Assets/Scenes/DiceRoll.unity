@@ -598,6 +598,137 @@ Transform:
   m_Children: []
   m_Father: {fileID: 562434090}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &206848258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 206848259}
+  - component: {fileID: 206848262}
+  - component: {fileID: 206848261}
+  - component: {fileID: 206848260}
+  m_Layer: 0
+  m_Name: QuadAmbBR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &206848259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206848258}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.26784322, y: -0.0435187, z: 0.0073830206, w: 0.96245086}
+  m_LocalPosition: {x: 1.792, y: -0.12, z: 0.542}
+  m_LocalScale: {x: 10, y: 2.5000002, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1157473269}
+  m_LocalEulerAnglesHint: {x: -12.727, y: 40.903, z: -11.483}
+--- !u!114 &206848260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206848258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 206848262}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!114 &206848261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206848258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8870fc6ec2dcfe4dae4dda25e0fa365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODAmbienceManager
+  scannerSource: {fileID: 0}
+  ambienceEmitter: {fileID: 206848262}
+  mixParameterName: InOut
+  smoothTime: 2
+  outdoorThreshold: 0.5
+  indoorThreshold: 0.9
+--- !u!114 &206848262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206848258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -337806478
+      Data2: 1166477587
+      Data3: -2029039202
+      Data4: 512930512
+    Path: event:/sfx/amb/amb_location_d20
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!43 &261927009
 Mesh:
   m_ObjectHideFlags: 0
@@ -5207,6 +5338,7 @@ GameObject:
   - component: {fileID: 1157473265}
   - component: {fileID: 1157473264}
   - component: {fileID: 1157473270}
+  - component: {fileID: 1157473271}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -5355,7 +5487,11 @@ Transform:
   m_LocalPosition: {x: -0.33961362, y: 4.256983, z: -5.0569196}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1758765116}
+  - {fileID: 206848259}
+  - {fileID: 1311029355}
+  - {fileID: 1769142737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!114 &1157473270
@@ -5390,6 +5526,135 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &1157473271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157473263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13262c55b6df7b0428d9d3d77e50ef89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartReverb
+  isGlobal: 0
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  updateRate: 0.2
+  smoothSpeed: 3
+  reverbParam: ReverbAmount
+  roomSizeParam: RoomSize
+  targetEmitter: {fileID: 0}
+  maxScanDistance: 100
+  raysCount: 30
+  reverbAmountCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  roomSizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.1
+      value: 0.4
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 0.7
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  distances:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!1 &1191725408
 GameObject:
   m_ObjectHideFlags: 0
@@ -6078,6 +6343,137 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!1 &1311029354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1311029355}
+  - component: {fileID: 1311029358}
+  - component: {fileID: 1311029357}
+  - component: {fileID: 1311029356}
+  m_Layer: 0
+  m_Name: QuadAmbBL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1311029355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311029354}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.26784322, y: -0.0435187, z: 0.0073830206, w: 0.96245086}
+  m_LocalPosition: {x: -3.123, y: -0.021, z: 0.763}
+  m_LocalScale: {x: 10, y: 2.5000002, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1157473269}
+  m_LocalEulerAnglesHint: {x: -12.727, y: 40.903, z: -11.483}
+--- !u!114 &1311029356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311029354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 1311029358}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!114 &1311029357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311029354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8870fc6ec2dcfe4dae4dda25e0fa365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODAmbienceManager
+  scannerSource: {fileID: 0}
+  ambienceEmitter: {fileID: 1311029358}
+  mixParameterName: InOut
+  smoothTime: 2
+  outdoorThreshold: 0.5
+  indoorThreshold: 0.9
+--- !u!114 &1311029358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311029354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -337806478
+      Data2: 1166477587
+      Data3: -2029039202
+      Data4: 512930512
+    Path: event:/sfx/amb/amb_location_d20
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1344323244
 GameObject:
   m_ObjectHideFlags: 0
@@ -9441,6 +9837,268 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &1758765115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1758765116}
+  - component: {fileID: 1758765119}
+  - component: {fileID: 1758765118}
+  - component: {fileID: 1758765117}
+  m_Layer: 0
+  m_Name: QuadAmbFR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1758765116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758765115}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.26784322, y: -0.0435187, z: 0.0073830206, w: 0.96245086}
+  m_LocalPosition: {x: 1.877, y: 2.255, z: 4.834}
+  m_LocalScale: {x: 10, y: 2.5000002, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1157473269}
+  m_LocalEulerAnglesHint: {x: -12.727, y: 40.903, z: -11.483}
+--- !u!114 &1758765117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758765115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 1758765119}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!114 &1758765118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758765115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8870fc6ec2dcfe4dae4dda25e0fa365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODAmbienceManager
+  scannerSource: {fileID: 0}
+  ambienceEmitter: {fileID: 1758765119}
+  mixParameterName: InOut
+  smoothTime: 2
+  outdoorThreshold: 0.5
+  indoorThreshold: 0.9
+--- !u!114 &1758765119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758765115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -337806478
+      Data2: 1166477587
+      Data3: -2029039202
+      Data4: 512930512
+    Path: event:/sfx/amb/amb_location_d20
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!1 &1769142736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1769142737}
+  - component: {fileID: 1769142740}
+  - component: {fileID: 1769142739}
+  - component: {fileID: 1769142738}
+  m_Layer: 0
+  m_Name: QuadAmbFL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1769142737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769142736}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.26784322, y: -0.0435187, z: 0.0073830206, w: 0.96245086}
+  m_LocalPosition: {x: -3.357, y: 2.044, z: 4.333}
+  m_LocalScale: {x: 10, y: 2.5000002, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1157473269}
+  m_LocalEulerAnglesHint: {x: -12.727, y: 40.903, z: -11.483}
+--- !u!114 &1769142738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769142736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325c3c7c5e68bc446a2c42f3e9ca821a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODSmartOcclusion
+  emitter: {fileID: 1769142740}
+  occlusionParameter: Occlusion
+  roomScanRadius: 5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  diffractionSpread: 0.8
+  raysCount: 6
+  nearFieldThreshold: 1
+  transmissionMaxDist: 25
+  transmissionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.8
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  diffractionDist: 10
+  smoothSpeed: 3
+--- !u!114 &1769142739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769142736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8870fc6ec2dcfe4dae4dda25e0fa365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODAmbienceManager
+  scannerSource: {fileID: 0}
+  ambienceEmitter: {fileID: 1769142740}
+  mixParameterName: InOut
+  smoothTime: 2
+  outdoorThreshold: 0.5
+  indoorThreshold: 0.9
+--- !u!114 &1769142740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769142736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -337806478
+      Data2: 1166477587
+      Data3: -2029039202
+      Data4: 512930512
+    Path: event:/sfx/amb/amb_location_d20
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1851065411
 GameObject:
   m_ObjectHideFlags: 0
@@ -9557,6 +10215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldTextRotation
   text: {fileID: 1985679405}
+  img: {fileID: 0}
 --- !u!1 &1985679404
 GameObject:
   m_ObjectHideFlags: 0
@@ -9770,6 +10429,7 @@ MonoBehaviour:
   dice: {fileID: 4490180986955630742}
   firstDirector: {fileID: 504456489}
   SuccessText: {fileID: 1626303794}
+  diceParam: rolling
 --- !u!1 &2128779737
 GameObject:
   m_ObjectHideFlags: 0

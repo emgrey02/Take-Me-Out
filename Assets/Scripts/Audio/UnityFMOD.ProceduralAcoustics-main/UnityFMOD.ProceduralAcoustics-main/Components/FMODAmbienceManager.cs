@@ -61,6 +61,7 @@ public class FMODAmbienceManager : MonoBehaviour
         if (ambienceEmitter.IsPlaying())
         {
             ambienceEmitter.SetParameter(mixParameterName, CurrentMix);
+            //Debug.Log("Current Mix: " + CurrentMix);
         }
     }
 }

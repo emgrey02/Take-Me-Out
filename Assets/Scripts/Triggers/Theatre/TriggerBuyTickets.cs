@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Playables;
+using FMODUnity;
 
 public class TriggerBuyTickets : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class TriggerBuyTickets : MonoBehaviour
     public DialogueAsset dialogue;
 
     public TrackTheaterEvents theaterTracker;
+
+    // FMOD Event
+    [SerializeField] EventReference enterDialogue;
+    [SerializeField] EventReference dialogueExit;
 
     void OnEnable()
     {
@@ -42,7 +47,10 @@ public class TriggerBuyTickets : MonoBehaviour
     void OnInteract(bool Interacted)
     {
         if (Interacted & inTalkArea)
-        {
+        {   
+            // FMOD
+            // Play dialogue enter event
+            RuntimeManager.PlayOneShot(enterDialogue);
             // trigger cutscene
             DialogueBoxController.OnDialogueEnded += LeaveConversation;
             Debug.Log("triggering cutscene");
@@ -69,6 +77,9 @@ public class TriggerBuyTickets : MonoBehaviour
     void LeaveConversation()
     {
         Debug.Log("leaving conversation");
+        // FMOD
+        // Play leaving convo (og dropdown sfx lmao) sfx
+        RuntimeManager.PlayOneShot(dialogueExit);
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
         theaterTracker.buyTicket();
         // so player cant go through this dialogue again

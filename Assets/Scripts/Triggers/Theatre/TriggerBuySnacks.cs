@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Playables;
+using FMODUnity;
 
 public class TriggerBuySnacks : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class TriggerBuySnacks : MonoBehaviour
 
     // SO dialogue asset
     public DialogueAsset dialogue;
+
+    // FMOD Event
+    [SerializeField] EventReference enterDialogue;
+    [SerializeField] EventReference dialogueExit;
 
     void OnEnable()
     {
@@ -42,6 +47,9 @@ public class TriggerBuySnacks : MonoBehaviour
     {
         if (Interacted & inTalkArea)
         {
+            // FMOD
+            // Play enter dialogue event
+            RuntimeManager.PlayOneShot(enterDialogue);
             // trigger cutscene
             DialogueBoxController.OnDialogueEnded += LeaveConversation;
             Debug.Log("triggering cutscene");
@@ -68,6 +76,9 @@ public class TriggerBuySnacks : MonoBehaviour
     void LeaveConversation()
     {
         Debug.Log("leaving conversation");
+        // FMOD
+        // Play leave convo sfx
+        RuntimeManager.PlayOneShot(dialogueExit);
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
         // so player cant go through this dialogue again
         gameObject.GetComponent<Collider>().enabled = false;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Playables;
+using FMODUnity;
 
 public class TriggerCollectTickets:MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class TriggerCollectTickets:MonoBehaviour
     public DialogueAsset noTicketDialogue;
 
     public TrackTheaterEvents theaterTracker;
+
+    // FMOD Events
+    [SerializeField] EventReference enterDialogue;
+    [SerializeField] EventReference dialogueExit;
 
     void OnEnable()
     {
@@ -39,6 +44,9 @@ public class TriggerCollectTickets:MonoBehaviour
     void OnTriggerEnter(Collider player)
     {
         Debug.Log("Player entered buy ticket area");
+        // FMOD
+        // Play enter dialogue sfx
+        RuntimeManager.PlayOneShot(enterDialogue);
         DialogueBoxController.OnDialogueEnded += LeaveConversation;
         Debug.Log("triggering cutscene");
         cameraMove.SetActive(true);
@@ -49,6 +57,9 @@ public class TriggerCollectTickets:MonoBehaviour
     void LeaveConversation()
     {
         Debug.Log("leaving conversation from TriggerCollectTickets");
+        // FMOD
+        // Play dialogue exit sfx
+        RuntimeManager.PlayOneShot(dialogueExit);
         if (GameManager.Instance.GetSceneId() == 3)
         {
             Camera.main.GetComponent<CinemachineBrain>().enabled = false;

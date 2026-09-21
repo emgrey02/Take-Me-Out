@@ -2,6 +2,8 @@ using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Playables;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion;
+using FMOD.Studio;
+using FMODUnity;
 
 public class TriggerPoleDialogue : MonoBehaviour
 {
@@ -28,10 +30,14 @@ public class TriggerPoleDialogue : MonoBehaviour
 
     public Vector3 alisonLoc;
 
+    // FMOD References
+    [SerializeField] EventReference investigate;
+
     void OnEnable()
     {
         firstDirector.paused += OnFirstDirectorPaused;
         inputReader.InteractEvent += OnInteract;
+        
     } 
 
     void Start()
@@ -53,6 +59,8 @@ public class TriggerPoleDialogue : MonoBehaviour
     {
         if (Interacted & inRodArea)
         {
+            RuntimeManager.PlayOneShot(investigate);
+
             whichPole.currentPole = gameObject;
             DialogueBoxController.OnDialogueEnded += LeaveConversation;
             

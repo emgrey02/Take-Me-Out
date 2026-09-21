@@ -4,6 +4,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FMODUnity;
+using FMOD.Studio;
 
 public class TheaterScreenController : MonoBehaviour
 {
@@ -29,6 +31,15 @@ public class TheaterScreenController : MonoBehaviour
 
     public static event Action OnTriviaOver;
 
+    // FMOD References
+    [SerializeField] EventReference triviaMusic;
+    [SerializeField] EventReference optionHover;
+    [SerializeField] EventReference optionSelect;
+    [SerializeField] EventReference continueText;
+    public EventInstance musicInstance;
+    public int musicFinished = 0;
+    public string musicParameter;
+
 
     void Awake()
     {
@@ -50,12 +61,16 @@ public class TheaterScreenController : MonoBehaviour
         questionCtn.AddToClassList("remove");
         answerCtn.AddToClassList("remove");
         finalScreenCtn.AddToClassList("remove");
+
+        musicInstance = RuntimeManager.CreateInstance(triviaMusic);
+
     }
 
     void OnEnable()
     {
         for (int i=0; i < options.Count; i++) {
             options[i].RegisterCallback<ClickEvent>(OnOptionClicked);
+            options[i].RegisterCallback<MouseOverEvent>(OnOptionHover);
         }
     }
 
@@ -63,17 +78,24 @@ public class TheaterScreenController : MonoBehaviour
     {
         for (int i=0; i < options.Count; i++) {
             options[i].UnregisterCallback<ClickEvent>(OnOptionClicked);
+            options[i].UnregisterCallback<MouseOverEvent>(OnOptionHover);
         }
     }
 
     public void StartTrivia(TriviaQAsset t)
     {
         DisplayQuestion(t);
+        // FMOD
+        // Start music
+        musicInstance.start();
     }
 
     public void EndTrivia()
     {
         Debug.Log("trivia ended");
+        // FMOD
+        // Stop music
+        RuntimeManager.StudioSystem.setParameterByName(musicParameter, 1f, false);
         questionCtn.AddToClassList("remove");
         answerCtn.AddToClassList("remove");
         finalScreenCtn.RemoveFromClassList("remove");
@@ -132,6 +154,8 @@ public class TheaterScreenController : MonoBehaviour
 
     private void OnButtonClicked(ClickEvent evt)
     {
+        // FMOD
+        RuntimeManager.PlayOneShot(continueText);
         if (currentAnswer.next == null) {
             EndTrivia();
             OnTriviaOver?.Invoke();
@@ -140,10 +164,17 @@ public class TheaterScreenController : MonoBehaviour
         }
     }
 
+    private void OnOptionHover(MouseOverEvent evt)
+    {
+        // FMOD
+        RuntimeManager.PlayOneShot(optionHover);
+    }
 
     private void OnOptionClicked(ClickEvent evt) 
     {
         Debug.Log("option clicked");
+        // FMOD
+        RuntimeManager.PlayOneShot(optionSelect);
         for (int i=0; i < options.Count; i++) {
             if (evt.target == options[i]) {
                 switch (i) 

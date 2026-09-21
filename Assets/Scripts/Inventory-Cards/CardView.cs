@@ -14,6 +14,7 @@ public class CardView : MonoBehaviour
 
     [Header("FMOD Events")]
     [SerializeField] EventReference cardIdle;
+    [SerializeField] EventReference pickUpCard;
     private EventInstance instance;
 
     public GameObject pickupText;
@@ -34,8 +35,12 @@ public class CardView : MonoBehaviour
         // FMOD
         // Play card idle event instance for each card
         instance = RuntimeManager.CreateInstance(cardIdle);
-        RuntimeManager.AttachInstanceToGameObject(instance, this.gameObject);
-        instance.start();
+        // if this card is not in inventory
+        if (this.gameObject.activeSelf)
+        {
+            RuntimeManager.AttachInstanceToGameObject(instance, this.gameObject);
+            instance.start();   
+        }
     }
 
     void OnTriggerEnter(Collider player)
@@ -61,8 +66,9 @@ public class CardView : MonoBehaviour
             
             // FMOD
             // stop instance of card idle sfx
+            instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             instance.release();
-
+            RuntimeManager.PlayOneShot(pickUpCard);
             invPresenter.PickUpCard(gameObject.GetComponent<CardView>());
             gameObject.SetActive(false);
             inCardArea = false;

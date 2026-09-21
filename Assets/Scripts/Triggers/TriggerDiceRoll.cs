@@ -1,3 +1,4 @@
+using FMODUnity;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -22,6 +23,8 @@ public class TriggerDiceRoll : MonoBehaviour
     // director that controls diceRoll timeline
     //public PlayableDirector secondDirector;
     public GameObject SuccessText;
+
+    public string diceParam;
 
     void OnEnable()
     {
@@ -49,6 +52,7 @@ public class TriggerDiceRoll : MonoBehaviour
     {
         if (Interacted & inTableArea)
         {
+            RuntimeManager.StudioSystem.setParameterByName(diceParam, 1f, false);
             // trigger cutscene
             //DiceRollPrompt.SetActive(false);
             //cameraMove.SetActive(true);

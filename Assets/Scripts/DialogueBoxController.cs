@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FMODUnity;
 
 public enum Speakers {
     Alison,
@@ -19,6 +20,11 @@ public class DialogueBoxController : MonoBehaviour
     public static DialogueBoxController instance;
 
     [SerializeField] InputReader inputReader;
+
+    // FMOD
+    // events needed for dialogue
+    [SerializeField] EventReference dialogueContinue;
+    [SerializeField] EventReference optionHover;
 
     public VisualElement box;
     public VisualElement alisonBox;
@@ -86,6 +92,7 @@ public class DialogueBoxController : MonoBehaviour
             //options[i].clicked += OnOptionClicked;
             options[i].RegisterCallback<NavigationSubmitEvent>(OnOptionClicked);
             options[i].RegisterCallback<ClickEvent>(OnOptionClicked);
+            options[i].RegisterCallback<MouseEnterEvent>(OnOptionHover);
         }
     }
 
@@ -131,6 +138,7 @@ public class DialogueBoxController : MonoBehaviour
 
     public void ContinueDialogue(DialogueAsset d)
     {
+        RuntimeManager.PlayOneShot(dialogueContinue);
         Debug.Log(d.name);
         Debug.Log("continuing dialogue");
         ClearDialogueBox();
@@ -288,6 +296,7 @@ public class DialogueBoxController : MonoBehaviour
     {
         Debug.Log("next button clicked");
         nextLineTriggered = true;
+        RuntimeManager.PlayOneShot(dialogueContinue);
     }
     private void OnOptionClicked(ClickEvent evt)
     {
@@ -297,6 +306,10 @@ public class DialogueBoxController : MonoBehaviour
     {
         HandleOption(evt.target);
         
+    }
+    private void OnOptionHover(MouseEnterEvent evt)
+    {
+        RuntimeManager.PlayOneShot(optionHover);
     }
     private void HandleOption(IEventHandler target)
     {

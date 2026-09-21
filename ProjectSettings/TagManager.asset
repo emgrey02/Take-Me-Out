@@ -11,6 +11,7 @@ TagManager:
   - MainMenu
   - SaveManager
   - FishPoleOne
+  - AmbSource
   layers:
   - Default
   - TransparentFX
