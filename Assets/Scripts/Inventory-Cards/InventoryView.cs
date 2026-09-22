@@ -54,7 +54,7 @@ public class InventoryView : MonoBehaviour
         // fill list with ui cards
         Cards = invPanel.Query(className: "unity-button").ToList();
 
-        // listen for click events on each card in inventory
+        // listen for hover and click events on each card in inventory
         for (int i = 0; i < Cards.Count; i++)
         {
             Cards[i].RegisterCallback<ClickEvent>(OnCardClicked);
@@ -121,6 +121,7 @@ public class InventoryView : MonoBehaviour
         {
             // if card is in our inventory, show it in the inventory ui
             Debug.Log(i + ": " + cardSpawnValues[i].cardName + " is in inventory: " + e.Cards[i]);
+
             if (e.Cards[i])
             {
                 Cards[i].RemoveFromClassList("hide");
@@ -142,10 +143,10 @@ public class InventoryView : MonoBehaviour
                     GameObject c = Instantiate(cardObjPrefab, cardSpawnValues[i].spawnPoint, Quaternion.identity);
                     c.name = cardSpawnValues[i].cardName;
                     c.GetComponent<CardView>().CardIndex = cardSpawnValues[i].cardIndex;
+
+                    // set card prefab material to corresponding SO material
                     Material cardMat = Resources.Load<Material>("pickup-cards/" + cardSpawnValues[i].materialName);
-                    Debug.Log(cardMat);
                     GameObject cardChild = c.transform.GetChild(1).gameObject;
-                    Debug.Log(cardChild.name);
                     cardChild.GetComponent<MeshRenderer>().material = cardMat;
                 }
             }

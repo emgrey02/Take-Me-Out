@@ -1,13 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
-using UnityEngine.InputSystem;
 using System.Linq;
-using Mono.Cecil.Cil;
+using System.Collections.Generic;
 using FMODUnity;
 using FMOD.Studio;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
+
 
 public class MenuController : MonoBehaviour
 {
@@ -32,12 +30,6 @@ public class MenuController : MonoBehaviour
     private VisualElement initialMenu;
     private VisualElement mm;
     private VisualElement startMenu;
-
-    // FMOD VCAs
-    private VCA vcaMasterController;
-    private VCA vcaMusicController;
-    private VCA vcaSFXController;
-    private float lastVol;
 
     public Image baseImg;
     public Label menuText;
@@ -95,22 +87,12 @@ public class MenuController : MonoBehaviour
         
         // populate enum dropdown
         qualityDropdown.choices = QualitySettings.names.ToList();
-
-        // FMOD
-        // get VCAs
-        vcaMasterController = RuntimeManager.GetVCA("vca:/Master");
-        vcaMusicController = RuntimeManager.GetVCA("vca:/Music");
-        vcaSFXController = RuntimeManager.GetVCA("vca:/SFX");
-
-
     }
 
     void Update()
     {
         // set volumes on slider change, not on save, so that the user can hear the changes in real time
-        vcaMasterController.setVolume(masterVolSlider.value * 0.01f);
-        vcaMusicController.setVolume(musicVolSlider.value * 0.01f);
-        vcaSFXController.setVolume(sfxVolSlider.value * 0.01f);
+        GameManager.Instance.SetVolumeData(masterVolSlider.value * 0.01f, musicVolSlider.value * 0.01f, sfxVolSlider.value * 0.01f);
     }
 
     void OnEnable()
@@ -185,6 +167,21 @@ public class MenuController : MonoBehaviour
 
         // set current graphics quality level
         qualityDropdown.index = QualitySettings.GetQualityLevel();
+
+        // set current volume levels
+        List<float> volData = GameManager.Instance.GetVolumeData();
+        if (volData != null)
+        {
+            masterVolSlider.value = (int)(volData[0] * 100);
+            musicVolSlider.value = (int)(volData[1] * 100);
+            sfxVolSlider.value = (int)(volData[2] * 100);
+        } else
+        {
+            // adjust these to change default values
+            masterVolSlider.value = 42;
+            musicVolSlider.value = 42;
+            sfxVolSlider.value = 42;
+        }
 
         // set current look sensitivity & walk speed
         PlayerSaveData data = GameManager.Instance.GetPlayerData();
@@ -285,6 +282,9 @@ public class MenuController : MonoBehaviour
 
         // set player data
         GameManager.Instance.SetPlayerData(lookSenSlider.value, walkSpeedSlider.value);
+
+        // set volume data
+        //GameManager.Instance.SetVolumeData(masterVolSlider.value * 0.01f, musicVolSlider.value * 0.01f, sfxVolSlider.value * 0.01f);
     }
 
     private void OnPlayButtonClicked(ClickEvent clicky, int startOrCont)

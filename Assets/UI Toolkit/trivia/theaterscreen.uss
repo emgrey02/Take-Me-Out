@@ -2,7 +2,7 @@
 }
 
 .choice {
-    font-size: 30px;
+    font-size: 40px;
     align-items: flex-start;
 }
 

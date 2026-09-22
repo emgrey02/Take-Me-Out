@@ -1,6 +1,8 @@
+using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +10,11 @@ public class GameManager : MonoBehaviour
     public GameObject inventoryPrefab;
     public GameObject mainmenuPrefab;
     public GameObject basePrefab;
+
+    // fmod VCAs
+    private VCA vcaMasterController;
+    private VCA vcaMusicController;
+    private VCA vcaSFXController;
 
     private SaveManager SaveManager;
     private PlayerMovement PlayerController;
@@ -37,11 +44,18 @@ public class GameManager : MonoBehaviour
 
         // get save manager
         SaveManager = GameObject.FindWithTag("SaveManager").GetComponent<SaveManager>();
-        
+
+        // bases, player, inventory, and main menu are instantiated every scene
         InstantiatePrefabs();   
 
         // get player controller
         PlayerController = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+
+        // FMOD
+        // get VCAs
+        vcaMasterController = RuntimeManager.GetVCA("vca:/Master");
+        vcaMusicController = RuntimeManager.GetVCA("vca:/Music");
+        vcaSFXController = RuntimeManager.GetVCA("vca:/SFX");
     }
 
     // Instantiate prefabs for the current scene
@@ -63,7 +77,7 @@ public class GameManager : MonoBehaviour
                     // coming from from main menu
                     case 0:
                         pos = new Vector3(0, 1.1f, 0);
-                        rot = Quaternion.Euler(0, 45, 0);
+                        rot = Quaternion.Euler(0, 85, 0);
                         // add first base
                         baseObj = Instantiate(basePrefab, new Vector3(27.2f, .05f, .2f), Quaternion.identity);
                         baseObj.name = "First Base";
@@ -156,6 +170,7 @@ public class GameManager : MonoBehaviour
         // set initial data
         int sceneID = SceneManager.GetActiveScene().buildIndex;
         SetInitPlayerData();
+        SetInitVolumeData();
 
         if (sceneID == 0)
         {   
@@ -178,6 +193,24 @@ public class GameManager : MonoBehaviour
         {
             PlayerController.LookSensitivity = 20;
             PlayerController.MoveSpeed = 4;
+        }
+    }
+
+    private void SetInitVolumeData()
+    {
+        List<float> volumeData = SaveManager.LoadVolume();
+        if (volumeData != null && volumeData.Count == 3)
+        {
+            Debug.Log("Setting Init Volume Data");
+            vcaMasterController.setVolume(volumeData[0]);
+            vcaMusicController.setVolume(volumeData[1]);
+            vcaSFXController.setVolume(volumeData[2]);
+        }
+        else
+        {
+            vcaMasterController.setVolume(40f);
+            vcaMusicController.setVolume(40f);
+            vcaSFXController.setVolume(40f);
         }
     }
 
@@ -204,7 +237,17 @@ public class GameManager : MonoBehaviour
     // set volume quality from menu
     public void SetVolumeData(float masterV, float musicV, float sfxV)
     {
-        
+        vcaMasterController.setVolume(masterV);
+        vcaMusicController.setVolume(musicV);
+        vcaSFXController.setVolume(sfxV);
+
+        // save it
+        SaveManager.SaveVolume(masterV, musicV, sfxV);
+    }
+
+    public List<float> GetVolumeData()
+    {
+        return SaveManager.LoadVolume();
     }
 
     // set player data from menu

@@ -3,7 +3,6 @@ using UnityEngine.UIElements;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using FMODUnity;
 using FMOD.Studio;
 
@@ -25,6 +24,9 @@ public class TheaterScreenController : MonoBehaviour
     public VisualElement questionCtn;
     public VisualElement answerCtn;
     public VisualElement finalScreenCtn;
+    public VisualElement startScreenCtn;
+    public VisualElement cornerIcon;
+
 
     public TriviaQAsset currentQuestion;
     public TriviaAAsset currentAnswer;
@@ -49,6 +51,8 @@ public class TheaterScreenController : MonoBehaviour
         questionCtn = theaterScreen.Q<VisualElement>("question-ctn");
         answerCtn = theaterScreen.Q<VisualElement>("answer-ctn");
         finalScreenCtn = theaterScreen.Q<VisualElement>("finalscreen-ctn");
+        startScreenCtn = theaterScreen.Q<VisualElement>("startscreen-ctn");
+        cornerIcon = theaterScreen.Q<VisualElement>("corner-icon");
 
         question = theaterScreen.Q<Label>("question");
         options = theaterScreen.Query<Button>(className: "button-answer").ToList();
@@ -61,6 +65,8 @@ public class TheaterScreenController : MonoBehaviour
         questionCtn.AddToClassList("remove");
         answerCtn.AddToClassList("remove");
         finalScreenCtn.AddToClassList("remove");
+        startScreenCtn.RemoveFromClassList("remove");
+        cornerIcon.AddToClassList("remove");
 
         musicInstance = RuntimeManager.CreateInstance(triviaMusic);
 
@@ -84,10 +90,18 @@ public class TheaterScreenController : MonoBehaviour
 
     public void StartTrivia(TriviaQAsset t)
     {
-        DisplayQuestion(t);
+        StartCoroutine(HideSplashScreen(t));
         // FMOD
         // Start music
         musicInstance.start();
+    }
+
+    IEnumerator HideSplashScreen(TriviaQAsset t)
+    {
+        yield return new WaitForSeconds(2f);
+        startScreenCtn.AddToClassList("remove");
+        cornerIcon.RemoveFromClassList("remove");
+        DisplayQuestion(t);
     }
 
     public void EndTrivia()
@@ -140,15 +154,23 @@ public class TheaterScreenController : MonoBehaviour
         // listen for button click
         nextBtn.RegisterCallback<ClickEvent>(OnButtonClicked);
 
-        // display correct button text
+        // display correct button image
         if (t.correct && !currentAnswer.next) {
-            nextBtn.text = "Finish";
+            nextBtn.iconImage = Resources.Load<Texture2D>("TMO_trivia_finish");
         } else if (t.correct) 
         {
-            nextBtn.text = "Next Question";
+            nextBtn.iconImage = Resources.Load<Texture2D>("TMO_trivia_nextq");
         } else {
-            nextBtn.text = "Try Again";
+            nextBtn.iconImage = Resources.Load<Texture2D>("TMO_trivia_tryagain");
         }
+    }
+
+    private void OnStartScreenClicked(ClickEvent evt)
+    {
+        // FMOD
+        RuntimeManager.PlayOneShot(continueText);
+        startScreenCtn.AddToClassList("remove");
+        StartTrivia(currentQuestion);
     }
     
 

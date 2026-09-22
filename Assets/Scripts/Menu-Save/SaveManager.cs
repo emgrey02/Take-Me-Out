@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.IO;
+using System.Collections.Generic;
 
 public class SaveManager : MonoBehaviour
 {
@@ -48,6 +49,34 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("GraphicsQuality", qualityLevel);
         PlayerPrefs.Save();
         Debug.Log("Graphics Quality Saved");
+    }
+
+    public void SaveVolume(float masterV, float musicV, float sfxV)
+    {
+        PlayerPrefs.SetFloat("MasterVolume", masterV);
+        PlayerPrefs.SetFloat("MusicVolume", musicV);
+        PlayerPrefs.SetFloat("SFXVolume", sfxV);
+        PlayerPrefs.Save();
+        Debug.Log("Volume Data Saved to PlayerPrefs");
+    }
+
+    public List<float> LoadVolume()
+    {
+        if (PlayerPrefs.HasKey("MasterVolume") && PlayerPrefs.HasKey("MusicVolume") && PlayerPrefs.HasKey("SFXVolume"))
+        {
+            float masterV = PlayerPrefs.GetFloat("MasterVolume");
+            float musicV = PlayerPrefs.GetFloat("MusicVolume");
+            float sfxV = PlayerPrefs.GetFloat("SFXVolume");
+            Debug.Log("Volume Data Loaded");
+            Debug.Log("Master Volume: " + masterV + ", Music Volume: " + musicV + ", SFX Volume: " + sfxV);
+            // return volume data as a list of floats to implement in GameManager
+            return new List<float> { masterV, musicV, sfxV };
+        }
+        else
+        {
+            Debug.LogWarning("No volume data saved to player prefs");
+            return null;
+        }
     }
 
     public int LoadGraphicsQuality()
