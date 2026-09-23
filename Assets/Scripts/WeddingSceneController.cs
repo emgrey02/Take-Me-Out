@@ -14,6 +14,8 @@ public class WeddingSceneController : MonoBehaviour
 
     public GameObject takeMeOutLogo;
 
+    public GameObject credits;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,9 +50,18 @@ public class WeddingSceneController : MonoBehaviour
             }
         }
 
-        if (skyCamera.GetComponent<CinemachineSplineDolly>().CameraPosition >= 1)
+        if (skyCamera.GetComponent<CinemachineSplineDolly>().CameraPosition >= 1 && !credits.activeSelf)
         {
             takeMeOutLogo.SetActive(true);
+            StartCoroutine(ShowCredits());
         }
+    }
+
+    IEnumerator ShowCredits()
+    {
+        yield return new WaitForSeconds(5f);
+        // Show credits here
+        takeMeOutLogo.SetActive(false);
+        credits.SetActive(true);
     }
 }

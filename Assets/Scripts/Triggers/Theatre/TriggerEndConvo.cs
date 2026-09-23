@@ -46,6 +46,7 @@ public class TriggerEndConvo:MonoBehaviour
         alison.GetComponent<TriggerMeetAlison>().enabled = false;
 
         Debug.Log("triggering cutscene");
+        inputReader.DisablePlayerControls();
         cameraMove.SetActive(true);
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
     }

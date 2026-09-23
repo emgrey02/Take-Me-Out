@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         // limit fps
-        QualitySettings.vSyncCount = 0; // disabled vSync
-        Application.targetFrameRate = 60;
+        //QualitySettings.vSyncCount = 0; // disabled vSync
+        //Application.targetFrameRate = 60;
 
         // make sure theres only one instance of GameManager
         if (_instance != null && _instance != this)
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         // get save manager
         SaveManager = GameObject.FindWithTag("SaveManager").GetComponent<SaveManager>();
 
-        // bases, player, inventory, and main menu are instantiated every scene
+        // player, inventory, and main menu are instantiated every scene
         InstantiatePrefabs();   
 
         // get player controller
@@ -146,11 +146,7 @@ public class GameManager : MonoBehaviour
                 pos = new Vector3(0, 9.5f, 0);
                 rot = Quaternion.Euler(0, 0, 0);
                 break;
-            // credits
-            case 7:
-                pos = new Vector3(-0.469999999f, 16.6094303f, 35.4139442f);
-                rot = Quaternion.Euler(336.076843f, 330.287994f, 0);
-                break;
+            // pre menu
             default:
                 pos = new Vector3(0, 0, 0);
                 rot = Quaternion.Euler(0, 0, 0);
@@ -175,6 +171,7 @@ public class GameManager : MonoBehaviour
         if (sceneID == 0)
         {   
             SetInitGraphicsQuality();
+            
         }
     }
 

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: e455edbf7d2609e42bae3ffa4eb053db, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 4dff9f02da8e514418c2ff920ce7f03d, type: 3}
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -76,7 +76,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3bc6716858de2c24c8684f78717cbb34, type: 2}
   - {fileID: 11400000, guid: 9101322c6ac6ccc469ea84379781aa08, type: 2}
   - {fileID: 11400000, guid: 56181ce8a3ebaf840977fe794644d973, type: 2}
-  - {fileID: 11400000, guid: 3bc6716858de2c24c8684f78717cbb34, type: 2}
+  - {fileID: 11400000, guid: d59804472137b8440ba0003a81499cdf, type: 2}
   - {fileID: 11400000, guid: 9ef1e91a3a0ecbe48b31cacfb94463ec, type: 2}
   cardSelect:
     Guid:

@@ -49,6 +49,7 @@ public class TriggerCollectTickets:MonoBehaviour
         RuntimeManager.PlayOneShot(enterDialogue);
         DialogueBoxController.OnDialogueEnded += LeaveConversation;
         Debug.Log("triggering cutscene");
+        inputReader.DisablePlayerControls();
         cameraMove.SetActive(true);
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
     }

@@ -16,7 +16,7 @@ MonoBehaviour:
   dialogue:
   - oh. Well, let's get moving then.
   options:
-  - say nothing
+  - (say nothing)
   - jk, it's great :D
   option1: {fileID: 11400000, guid: b0116c71c16824a4c932a1aa3ce1400f, type: 2}
   option2: {fileID: 11400000, guid: b0116c71c16824a4c932a1aa3ce1400f, type: 2}

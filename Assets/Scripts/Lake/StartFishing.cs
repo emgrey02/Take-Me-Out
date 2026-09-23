@@ -158,7 +158,7 @@ public class StartFishing : MonoBehaviour
 
         RuntimeManager.StudioSystem.getParameterByName(fishCaughtParam, out float value, out float finalValue);
         Debug.Log(fishCaughtParam + ": " + finalValue);
-        // use presses E to interact/ fish when prompt is showing
+        // user presses E to interact/ fish when prompt is showing
         if (Interacted & promptIsShowing)
         {
             HidePrompt();
@@ -333,7 +333,7 @@ public class StartFishing : MonoBehaviour
         this.enabled = false;
     }
 
-    // user pressed V to stop fishing
+    // user pressed C to stop fishing
     void OnLeave(bool Left)
     {
         if (Left & promptIsShowing)
@@ -358,7 +358,6 @@ public class StartFishing : MonoBehaviour
             bkgd.AddToClassList("remove");
 
             // show prompt again
-            //fishingPrompt.SetActive(true);
             textAnim.SetBool("hide", false);
             promptIsShowing = true;
 

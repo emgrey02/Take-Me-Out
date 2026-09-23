@@ -135,9 +135,10 @@ public class TriggerEnterTheater : MonoBehaviour
 
     IEnumerator FadeIn()
     {
+        
         yield return new WaitForSeconds(4);
-        inputReader.EnablePlayerControls();
         panelToClear.SetActive(false);
+        inputReader.EnablePlayerControls();
         endConvoTrigger.SetActive(true);
         
     }

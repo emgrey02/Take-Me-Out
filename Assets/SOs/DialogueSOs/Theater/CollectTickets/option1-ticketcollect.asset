@@ -15,7 +15,7 @@ MonoBehaviour:
   speaker: 01000000
   dialogue:
   - Thanks, looks good! You can go straight ahead into the theater or stop at the
-    kiosk for refreshments.
+    bar for refreshments.
   options: []
   option1: {fileID: 0}
   option2: {fileID: 0}

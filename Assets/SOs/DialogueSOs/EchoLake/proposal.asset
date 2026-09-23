@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c6c3c4355ec4a4b91e229a8af6a9bb, type: 3}
   m_Name: proposal
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  speaker: 040000000000000004000000
+  speaker: 0400000000000000
   dialogue:
   - Will you marry me?
-  - Yes, yes, a million times yes!!!!!
-  - Oh thank god.
+  - Yes YAY!!!
   options: []
   option1: {fileID: 0}
   option2: {fileID: 0}

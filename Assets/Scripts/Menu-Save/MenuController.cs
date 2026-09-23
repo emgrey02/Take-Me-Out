@@ -162,6 +162,10 @@ public class MenuController : MonoBehaviour
             startMenu.AddToClassList("remove");
         } else
         {
+            mm.AddToClassList("hide");
+            settingsMenu.AddToClassList("remove");
+            initialMenu.AddToClassList("remove");
+            startMenu.RemoveFromClassList("remove");
             inputReader.DisablePlayerControls();
         }
 

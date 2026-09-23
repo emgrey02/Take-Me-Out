@@ -16,8 +16,8 @@ MonoBehaviour:
   dialogue:
   - Are you reading a brochure?
   options:
-  - hide brochure and grin widely
-  - '"no, i just fucking love echo lake state park"'
+  - (hide brochure and grin widely)
+  - no, i just fucking love echo lake state park
   option1: {fileID: 11400000, guid: 1a9826a442544bb4b9dc0db713614b4f, type: 2}
   option2: {fileID: 11400000, guid: 1a9826a442544bb4b9dc0db713614b4f, type: 2}
   option3: {fileID: 0}

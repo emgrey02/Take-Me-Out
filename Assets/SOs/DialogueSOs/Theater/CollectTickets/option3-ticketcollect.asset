@@ -16,7 +16,7 @@ MonoBehaviour:
   dialogue:
   - ...
   - Wow what a surprise! Tickets!
-  - You can go ahead. Oh, and feel free to get some refreshments at the kiosk.
+  - You can go ahead. Oh, and feel free to get some refreshments at the bar.
   options: []
   option1: {fileID: 0}
   option2: {fileID: 0}

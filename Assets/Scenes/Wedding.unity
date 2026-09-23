@@ -327442,7 +327442,7 @@ GameObject:
   - component: {fileID: 1434048347}
   - component: {fileID: 1434048348}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: WeddingSceneController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327481,6 +327481,7 @@ MonoBehaviour:
   Griffin: {fileID: 1741376233}
   heartParticles: {fileID: 1819070230}
   takeMeOutLogo: {fileID: 220830192}
+  credits: {fileID: 2070822004}
 --- !u!1 &1434259178
 GameObject:
   m_ObjectHideFlags: 0
@@ -457209,10 +457210,24 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 'a game by greygirlsgame
+
+
+    Lucy Grey - game concept & design
+
+    Madeline
+    Grey - music, sound design, & ui design
+
+    Emma Grey - programming, 3d modeling
+
+
+    made
+    w/ unity
+
+    fmod'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30238208c2df6164089ed56dcbbd4efd, type: 2}
+  m_sharedMaterial: {fileID: 3338774182030023788, guid: 30238208c2df6164089ed56dcbbd4efd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -457236,10 +457251,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -477574,7 +477589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.3254902}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

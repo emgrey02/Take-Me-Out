@@ -54,6 +54,7 @@ public class TriggerBuySnacks : MonoBehaviour
             DialogueBoxController.OnDialogueEnded += LeaveConversation;
             Debug.Log("triggering cutscene");
             TalkPrompt.SetActive(false);
+            inputReader.DisablePlayerControls();
             cameraMove.SetActive(true);
             Camera.main.GetComponent<CinemachineBrain>().enabled = true;
         }

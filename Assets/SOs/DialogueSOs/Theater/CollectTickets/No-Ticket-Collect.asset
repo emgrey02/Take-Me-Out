@@ -16,7 +16,7 @@ MonoBehaviour:
   dialogue:
   - Heyyy hey hey.
   - You have to buy a ticket first...
-  - The kiosk is behind you!
+  - The booth is behind you!
   options: []
   option1: {fileID: 0}
   option2: {fileID: 0}

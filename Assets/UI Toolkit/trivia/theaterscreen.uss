@@ -32,7 +32,7 @@
 .unity-button:hover {
     transition-property: color;
     transition-duration: 0.5s;
-    color: rgb(156, 26, 26);
+    color: rgb(255, 234, 133);
 }
 
 .button-answer {

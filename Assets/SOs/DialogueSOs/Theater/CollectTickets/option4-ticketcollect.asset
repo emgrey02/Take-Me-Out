@@ -16,7 +16,7 @@ MonoBehaviour:
   dialogue:
   - It's.... beautiful. ;,)
   - Thanks for that.
-  - Please, enjoy the movie! And don't forget to get some food or drink at the kiosk
+  - Please, enjoy the movie! And don't forget to get some food or drink at the bar
     if you'd like.
   options: []
   option1: {fileID: 0}
