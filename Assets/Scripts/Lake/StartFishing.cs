@@ -77,6 +77,7 @@ public class StartFishing : MonoBehaviour
         musicInstance = RuntimeManager.CreateInstance(fishMusic);
         fishingLoopInstance = RuntimeManager.CreateInstance(fishingLoop);
         RuntimeManager.StudioSystem.setParameterByName(fishCaughtParam, 0.0f, false);
+        RuntimeManager.StudioSystem.setParameterByName(musicParameter, 0.0f, false);
     }
 
     void OnDisable()
@@ -340,6 +341,7 @@ public class StartFishing : MonoBehaviour
         {
             RuntimeManager.StudioSystem.setParameterByName(musicParameter, 1f, false);
             musicInstance.release();
+            musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             StopFishing();
         }
     }

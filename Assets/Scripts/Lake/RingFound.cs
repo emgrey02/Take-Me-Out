@@ -64,6 +64,7 @@ public class RingFound : MonoBehaviour
             ProposalPromptController.Instance.DeactivateProposalText();
             // trigger proposal timeline
             cameraMove.SetActive(true);
+            RuntimeManager.PlayOneShot(marryChoice);
             Camera.main.GetComponent<CinemachineBrain>().enabled = true;
         }
     }

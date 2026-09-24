@@ -25,7 +25,7 @@ public class Base : MonoBehaviour
     void Start()
     {
         inputReader.InteractEvent += OnInteract;
-        MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+        MasterBus = FMODUnity.RuntimeManager.GetBus("bus:/");
     }
 
     void OnInteract(bool Interacted)

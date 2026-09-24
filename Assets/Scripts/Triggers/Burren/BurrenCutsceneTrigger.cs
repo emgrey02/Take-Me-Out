@@ -2,6 +2,8 @@ using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.Playables;
 using FMODUnity;
+using FMOD.Studio;
+using FMODUnityResonance;
 
 public class BurrenCutsceneTrigger : MonoBehaviour
 {
@@ -25,12 +27,16 @@ public class BurrenCutsceneTrigger : MonoBehaviour
 
     // FMOD Events
     [SerializeField] EventReference dialogueTalk;
+    public EventInstance dateTime;
+    public Bus MasterBus;
 
     void OnEnable()
     {
         firstDirector.paused += OnFirstDirectorPaused;
         secondDirector.stopped += OnSecondDirectorStopped;
         DialogueBoxController.OnDialogueEnded += LeaveConversation;
+        dateTime = RuntimeManager.CreateInstance("snapshot:/FirstDate");
+        MasterBus = RuntimeManager.GetBus("bus:/");
     }
 
     void OnFirstDirectorPaused(PlayableDirector aDirector)
@@ -47,6 +53,7 @@ public class BurrenCutsceneTrigger : MonoBehaviour
         {
             // go back to baseball field
             GameManager.Instance.MoveToScene(1);
+           
         }
     }
 
@@ -62,6 +69,7 @@ public class BurrenCutsceneTrigger : MonoBehaviour
             // FMOD
             // Play dialogue talk sfx
             RuntimeManager.PlayOneShot(dialogueTalk);
+            dateTime.start();
             // trigger cutscene
             EnterCutscenePrompt.SetActive(false);
             cameraMove.SetActive(true);
@@ -86,6 +94,8 @@ public class BurrenCutsceneTrigger : MonoBehaviour
     void LeaveConversation()
     {
         sipAndFinishAnimation.SetActive(true);
+        dateTime.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        dateTime.release();
     }
 
     void OnDisable()

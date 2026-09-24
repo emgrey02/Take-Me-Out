@@ -464243,6 +464243,7 @@ GameObject:
   - component: {fileID: 2025139670}
   - component: {fileID: 2025139669}
   - component: {fileID: 2025139675}
+  - component: {fileID: 2025139676}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -464430,6 +464431,37 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &2025139676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025139668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1365082080
+      Data2: 1078676697
+      Data3: -1088573800
+      Data4: -586621456
+    Path: event:/music/no_machine
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2026476202
 GameObject:
   m_ObjectHideFlags: 0

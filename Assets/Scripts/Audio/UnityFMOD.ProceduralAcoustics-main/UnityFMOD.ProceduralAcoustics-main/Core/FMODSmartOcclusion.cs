@@ -24,7 +24,7 @@ public class FMODSmartOcclusion : MonoBehaviour
 
     [Header("Corner & Diffraction Logic")]
     [Tooltip("Ignore occlusion if the obstacle is within this distance (prevents false positives near walls).")]
-    public float nearFieldThreshold = 1.0f;
+    public float nearFieldThreshold = 4.0f;
 
     [Tooltip("Simulates transmission loss over distance when enclosed.")]
     public float transmissionMaxDist = 25.0f;
@@ -32,7 +32,7 @@ public class FMODSmartOcclusion : MonoBehaviour
 
     [Tooltip("Distance at which sound fully diffracts around an obstacle.")]
     public float diffractionDist = 10.0f;
-    public float smoothSpeed = 3.0f;
+    public float smoothSpeed = 1.0f;
 
     // Internal state
     private float currentOcclusion = 0.0f;

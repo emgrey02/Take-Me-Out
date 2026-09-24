@@ -110,7 +110,7 @@ public class MenuController : MonoBehaviour
         exitButton.clicked += OnQuitButtonClicked;
 
         // dropdown specific handlers
-        qualityDropdown.RegisterValueChangedCallback(evt => RuntimeManager.PlayOneShot(dropdownSelectEvent));
+        qualityDropdown.RegisterValueChangedCallback(OnDropdownFieldChange);
         qualityDropdown.RegisterCallback<MouseDownEvent>(OnDropdownDrop);
 
         // hover event handler
@@ -135,7 +135,7 @@ public class MenuController : MonoBehaviour
         exitButton.clicked += OnQuitButtonClicked;
 
         // dropdown specific handlers
-        qualityDropdown.UnregisterValueChangedCallback(evt => RuntimeManager.PlayOneShot(dropdownSelectEvent));
+        qualityDropdown.UnregisterValueChangedCallback(OnDropdownFieldChange);
         qualityDropdown.UnregisterCallback<MouseDownEvent>(OnDropdownDrop);
         
 
@@ -200,6 +200,13 @@ public class MenuController : MonoBehaviour
             walkSpeedSlider.value = 4;
         }
 
+    }
+
+    private void OnDropdownFieldChange(ChangeEvent<string> evt)
+    {
+        if (!mm.ClassListContains("hide")) {
+            RuntimeManager.PlayOneShot(dropdownSelectEvent);
+        }
     }
 
     private void OnHover(MouseOverEvent hov)
