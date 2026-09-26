@@ -357,7 +357,7 @@ public class MenuController : MonoBehaviour
                         break;
                     case 3:
                         baseImg.image = Resources.Load<Texture2D>("TMO_pauselocation_2nd");
-                        menuText.text = "You are at The Somerville Theatre, where you had your first date with Alison :)";
+                        menuText.text = "You are at The Somerville Theatre, where you went on many fun movie dates with Alison!";
                         break;
                     case 4:
                         baseImg.image = Resources.Load<Texture2D>("TMO_pauselocation_3rdb");

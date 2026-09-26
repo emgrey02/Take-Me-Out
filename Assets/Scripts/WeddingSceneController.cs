@@ -29,7 +29,7 @@ public class WeddingSceneController : MonoBehaviour
 
     IEnumerator StartFirstDolly()
     {
-        yield return new WaitForSeconds(2.8f);
+        yield return new WaitForSeconds(6f);
         firstDollyCamera.SetActive(true);
     }
 

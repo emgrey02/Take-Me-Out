@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using FMODUnity;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class RingFound : MonoBehaviour
 
     public DialogueAsset proposalDialogue;
     //public bool promptIsShowing = false;
+
+    public GameObject fadeToBlack;
 
     // object with timeline
     public GameObject cameraMove;
@@ -108,10 +111,18 @@ public class RingFound : MonoBehaviour
 
     private void LeaveConversation()
     {
-
-        GameManager.Instance.MoveToScene(1);
+        fadeToBlack.SetActive(true);
+        StartCoroutine(WaitForFade());
+        
         // stop proposal timeline
         //cameraMove.SetActive(false);
         //Camera.main.GetComponent<CinemachineBrain>().enabled = false;
+    }
+
+    IEnumerator WaitForFade()
+    {
+        yield return new WaitForSeconds(7f);
+        // back to baseball field
+        GameManager.Instance.MoveToScene(1);
     }
 }

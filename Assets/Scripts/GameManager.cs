@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
         int sceneID = SceneManager.GetActiveScene().buildIndex;
         int prevSceneID = PlayerPrefs.GetInt("PrevSceneNum", 6);
 
+
         // set player prefab position and rotation based on scene number
         Vector3 pos;
         Quaternion rot;
@@ -72,10 +73,17 @@ public class GameManager : MonoBehaviour
         {
             // baseball field
             case 1:
+                GameObject longFade = GameObject.FindWithTag("LongFade");
+                GameObject shortFade = GameObject.FindWithTag("ShortFade");
+
                 switch (prevSceneID)
                 {
                     // coming from from main menu
                     case 0:
+                        // inital fade in with baseball hit sounds
+                        longFade.SetActive(true);
+                        shortFade.SetActive(false);
+
                         pos = new Vector3(0, 1.1f, 0);
                         rot = Quaternion.Euler(0, 85, 0);
                         // add first base
@@ -85,6 +93,9 @@ public class GameManager : MonoBehaviour
                         break;
                     // from first base exp
                     case 2:
+                        longFade.SetActive(false);
+                        shortFade.SetActive(true);
+
                         pos = new Vector3(27.2f, 1.1f, 1.6f);
                         rot = Quaternion.Euler(0, 0, 0);
                         // add second base
@@ -94,6 +105,9 @@ public class GameManager : MonoBehaviour
                         break;
                     // from second base exp
                     case 3:
+                        longFade.SetActive(false);
+                        shortFade.SetActive(true);
+
                         pos = new Vector3(26.5f, 1.1f, 27.3f);
                         rot = Quaternion.Euler(0, -88, 0);
                         // add third base
@@ -103,6 +117,9 @@ public class GameManager : MonoBehaviour
                         break;
                     // from third base exp
                     case 4:
+                        longFade.SetActive(false);
+                        shortFade.SetActive(true);
+
                         pos = new Vector3(0, 1.1f, 25.8f);
                         rot = Quaternion.Euler(0, -180, 0);
                         baseObj = Instantiate(basePrefab, new Vector3(-0.1f, .06f, -.1f), Quaternion.identity);
@@ -112,6 +129,9 @@ public class GameManager : MonoBehaviour
                         break;
                     // from home base exp
                     case 6:
+                        longFade.SetActive(false);
+                        shortFade.SetActive(true);
+
                         pos = new Vector3(0, 1.1f, 0);
                         rot = Quaternion.Euler(0, 0, 0);
                         break;
@@ -143,8 +163,8 @@ public class GameManager : MonoBehaviour
                 break;
             // wedding
             case 6:
-                pos = new Vector3(0, 9.5f, 0);
-                rot = Quaternion.Euler(0, 0, 0);
+                pos = new Vector3(9.72f, 9.5f, -1.33f);
+                rot = Quaternion.Euler(-.093f, 6.426f, 0);
                 break;
             // pre menu
             default:

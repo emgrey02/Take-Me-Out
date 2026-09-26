@@ -4,6 +4,7 @@ using UnityEngine.Playables;
 using FMODUnity;
 using FMOD.Studio;
 using FMODUnityResonance;
+using System.Collections;
 
 public class BurrenCutsceneTrigger : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class BurrenCutsceneTrigger : MonoBehaviour
     // objects with timelines
     public GameObject cameraMove;
     public GameObject sipAndFinishAnimation;
+
+    public GameObject fadeOut;
 
     // director that controls cameraMove timeline
     public PlayableDirector firstDirector;
@@ -52,9 +55,15 @@ public class BurrenCutsceneTrigger : MonoBehaviour
         if (secondDirector == aDirector)
         {
             // go back to baseball field
-            GameManager.Instance.MoveToScene(1);
-           
+            fadeOut.SetActive(true);
+            StartCoroutine(FadeOut());
         }
+    }
+
+    IEnumerator FadeOut()
+    {
+        yield return new WaitForSeconds(7f);
+        GameManager.Instance.MoveToScene(1);
     }
 
     void Start()

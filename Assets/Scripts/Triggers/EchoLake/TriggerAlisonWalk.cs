@@ -41,7 +41,7 @@ public class TriggerAlisonWalk:MonoBehaviour
 
     IEnumerator WaitForDialogue()
     {
-         yield return new WaitForSeconds(3);
+         yield return new WaitForSeconds(8);
          DialogueBoxController.instance.StartDialogue(dialogue);
          DialogueBoxController.OnDialogueEnded += LeaveConversation;
     }

@@ -12,6 +12,8 @@ TagManager:
   - SaveManager
   - FishPoleOne
   - AmbSource
+  - LongFade
+  - ShortFade
   layers:
   - Default
   - TransparentFX
