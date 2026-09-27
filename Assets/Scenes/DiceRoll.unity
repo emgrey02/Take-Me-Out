@@ -1657,7 +1657,7 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - a1347bfddbd3ebc48918411d8c29d0e1: {fileID: 1207864535}
-    - 1af79155629e3df4a9e617655d0b1da4: {fileID: 843053615}
+    - 1af79155629e3df4a9e617655d0b1da4: {fileID: 0}
     - df531e2784c58ab4bbe2c818dcac7945: {fileID: 1207864535}
     - 8efdbe1fd797aa549a9c7d8340e6cf1c: {fileID: 931722730}
 --- !u!4 &504456490
@@ -3052,13 +3052,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843053613}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.26974, y: -0.0022898207, z: 0.00065942126, w: 0.9629302}
-  m_LocalPosition: {x: -0.33961362, y: 4.256983, z: -5.0569196}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: -8, y: 0.96, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!114 &843053618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,7 +3072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
-    BindingMode: 3
+    BindingMode: 0
     PositionDamping: {x: 0, y: 0, z: 0}
     AngularDampingMode: 0
     RotationDamping: {x: 0, y: 0, z: 0}
@@ -5421,8 +5421,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157473263}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.26974002, y: -0.002289821, z: 0.0006594213, w: 0.96293026}
-  m_LocalPosition: {x: -0.33961362, y: 4.256983, z: -5.0569196}
+  m_LocalRotation: {x: 0.000006664269, y: 0.38268343, z: 0.00001608897, w: 0.92387956}
+  m_LocalPosition: {x: -8, y: 0.96, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5962,13 +5962,14 @@ GameObject:
   - component: {fileID: 1193304393}
   - component: {fileID: 1193304392}
   - component: {fileID: 1193304391}
+  - component: {fileID: 1193304396}
   m_Layer: 5
   m_Name: FadeFromBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!111 &1193304391
 Animation:
   m_ObjectHideFlags: 0
@@ -5978,9 +5979,9 @@ Animation:
   m_GameObject: {fileID: 1193304390}
   m_Enabled: 1
   serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: f6b15a1a01cf72641b822ac6e91de929, type: 2}
+  m_Animation: {fileID: 7400000, guid: 9ac5a1f60a1bd164fbf84b1f7e5e89a0, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: f6b15a1a01cf72641b822ac6e91de929, type: 2}
+  - {fileID: 7400000, guid: 9ac5a1f60a1bd164fbf84b1f7e5e89a0, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -6047,7 +6048,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1193304395
 RectTransform:
@@ -6069,6 +6070,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1193304396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193304390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a08770cac56c548831b7762a6d0985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEnd
+  inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
 --- !u!1 &1207864533
 GameObject:
   m_ObjectHideFlags: 0
@@ -10317,7 +10331,6 @@ SceneRoots:
   - {fileID: 128648381}
   - {fileID: 93935232}
   - {fileID: 1157473269}
-  - {fileID: 1193304395}
   - {fileID: 562434090}
   - {fileID: 2037871493}
   - {fileID: 867379621}
@@ -10328,3 +10341,4 @@ SceneRoots:
   - {fileID: 504456490}
   - {fileID: 1626303798}
   - {fileID: 1341962575}
+  - {fileID: 1193304395}

@@ -10,6 +10,8 @@ public class TriggerAlisonWalk:MonoBehaviour
 
     CharacterController controller;
 
+    [SerializeField] InputReader inputReader;
+
     private bool walking;
 
     void Start() 
@@ -17,13 +19,20 @@ public class TriggerAlisonWalk:MonoBehaviour
         // start camera movement
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
 
+        
+
         // move myself so alison follows
         GameObject player = GameObject.FindWithTag("Player");
         controller = player.GetComponent<CharacterController>();
         player.transform.rotation = Quaternion.Euler(0f, -40f, 0f);
-        
+
+        inputReader.DisablePlayerControls();
+
+        StartCoroutine("WaitForDialogue");
+
         //Take control of player
-        goForWalk();
+
+        //goForWalk();
     }
 
 
@@ -32,33 +41,35 @@ public class TriggerAlisonWalk:MonoBehaviour
     }
  
 
-    private void goForWalk()
-    {
-        walking = true;
-        Debug.Log("starting coroutine");
-        StartCoroutine("WaitForDialogue");
-    }
+    //private void goForWalk()
+    //{
+    //    walking = true;
+    //    Debug.Log("starting coroutine");
+    //    StartCoroutine("WaitForDialogue");
+    //}
 
     IEnumerator WaitForDialogue()
     {
-         yield return new WaitForSeconds(8);
-         DialogueBoxController.instance.StartDialogue(dialogue);
-         DialogueBoxController.OnDialogueEnded += LeaveConversation;
+
+        yield return new WaitForSeconds(7.5f);
+        
+        DialogueBoxController.instance.StartDialogue(dialogue);
+        DialogueBoxController.OnDialogueEnded += LeaveConversation;
     }
 
-    void Update() 
-    {
-        if (walking)
-        {
-            controller.Move(new Vector3(-.5f, 0f, 0f) * Time.deltaTime);
-        }
-    }
+    //void Update() 
+    //{
+    //    if (walking)
+    //    {
+    //        controller.Move(new Vector3(-.5f, 0f, 0f) * Time.deltaTime);
+    //    }
+    //}
 
     public void LeaveConversation()
     {
         Debug.Log("leaving conversation");
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
-        walking = false;
+        //walking = false;
 
         // so player cant go through this dialogue again
         GetComponent<Collider>().enabled = false;

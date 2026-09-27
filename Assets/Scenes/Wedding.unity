@@ -19822,7 +19822,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88041628}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.019999983}
   m_LocalScale: {x: 0.1, y: 0.13, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19830,7 +19830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.098418176, y: -0.008082502}
+  m_AnchoredPosition: {x: 0.098418176, y: 0.031035442}
   m_SizeDelta: {x: 1.7, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &88041630
@@ -50397,8 +50397,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238120996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.022543274}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0193438}
   m_LocalScale: {x: 0.16666667, y: 0.14871845, z: 0.16666667}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50407,7 +50407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.01214385, y: 0.26917312}
+  m_AnchoredPosition: {x: -0.015243429, y: 0.26650584}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &238120998
@@ -63675,8 +63675,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6038769, y: 0.5}
   m_AnchorMax: {x: 0.6038769, y: 0.5}
-  m_AnchoredPosition: {x: -110.692444, y: 0}
-  m_SizeDelta: {x: 1065.6, y: 651.3896}
+  m_AnchoredPosition: {x: -110.68335, y: -228.66}
+  m_SizeDelta: {x: 1065.6, y: 1084.3994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295684796
 MonoBehaviour:
@@ -63698,60 +63698,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'a game by greygirlsgame
-
-
-    Lucy Grey - game concept & design
-
-    Madeline
-    Grey - music, sound design, & ui design
-
-    Emma Grey - programming, 3d modeling
-
-
-    made
-    w/ unity
-
-
-    special thanks
-
-    Dorian
-
-    Dan
-
-    Charlie
-
-    Ellie
-
-    Buddy
-    (Mr. Mayor)
-
-    Toby
-
-    Clam Chowder
-
-    Jasper
-
-    William Irving Zorowitz
-
-    Playtesters
-
-
-    3d
-    Assets:
-
-    "Candy Bowl" (https://skfb.ly/6DsAF) by Yanez Designs is licensed
-    under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
-
-
-    "4
-    emissive stone d20 pack" (https://skfb.ly/pBO76) by KapetS is licensed under
-    Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
-
-
-    "Free
-    Pack - Lowpoly People" (https://skfb.ly/pyPvM) by PolyOne Studio is licensed
-    under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).'
+  m_text: "a game by greygirlsgame\n\nLucy Grey\n- game concept \n- game design\n-
+    game testing\n\nEmma Grey\n- programming\n- 3d modeling & environments\n- game
+    testing\n\nMadeline Grey\n- ui design\n- graphic design\n- sound design\n- original
+    composition\n- game testing\n\nMade with \nUnity\nFmod\n\nLicensed under Creative
+    Commons Attribution: \nYangtze Designs: \u201CCandy Bowl\u201D\nKapetS: \u201C4
+    emissive stone d20 pack\u201D\nPolyOne Studio: \u201CFree Pack - Lowpoly People\u201D\n\nSpecial
+    Thanks\nWilliam Irving Zorowitz\nDan Gorman\nDorian Wenig\nAll the beautiful
+    animals in our lives (Clam Chowder, Toby, Ellie, Jasper, Buddy, and many more)
+    \nMatthew Perry\nPlaytesters <3\n\n\nWe love you Alison and Griffin <3"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -90946,6 +90901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a08770cac56c548831b7762a6d0985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RemoveSplashScreen
+  inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
 --- !u!1 &431787741
 GameObject:
   m_ObjectHideFlags: 0
@@ -304361,7 +304317,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -867.2908}
-  m_SizeDelta: {x: 1065.6199, y: 1052.7395}
+  m_SizeDelta: {x: 1065.6199, y: 1541.7195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1322124303
 Animator:
@@ -399650,8 +399606,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741376233}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.46606246, y: 7.737711, z: 16.462862}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.46606278, y: 7.737711, z: 16.40146}
   m_LocalScale: {x: 6, y: 6.5, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children:

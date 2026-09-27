@@ -69,6 +69,8 @@ public class TriggerPoleDialogue : MonoBehaviour
 
             StopAllCoroutines();
 
+            inputReader.DisablePlayerControls();
+
             //look at alison
             Transform player = GameObject.FindWithTag("Player").transform;
             player.rotation = Quaternion.Euler(new Vector3(0f, -lookAtAlisonCamera.transform.eulerAngles.y - 90, 0f));

@@ -9407,6 +9407,7 @@ GameObject:
   - component: {fileID: 1646620906}
   - component: {fileID: 1646620905}
   - component: {fileID: 1646620904}
+  - component: {fileID: 1646620909}
   m_Layer: 5
   m_Name: FadeFromBlack-Long
   m_TagString: LongFade
@@ -9514,6 +9515,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1646620909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646620903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a08770cac56c548831b7762a6d0985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEnd
+  inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
 --- !u!43 &1651943338
 Mesh:
   m_ObjectHideFlags: 0
@@ -10317,6 +10331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a08770cac56c548831b7762a6d0985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RemoveSplashScreen
+  inputReader: {fileID: 11400000, guid: c8b2481fe10d9f244b77ed03bcab0090, type: 2}
 --- !u!1 &1899261926
 GameObject:
   m_ObjectHideFlags: 0

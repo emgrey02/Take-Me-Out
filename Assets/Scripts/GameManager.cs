@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
                 break;
             // echo lake
             case 4:
-                pos = new Vector3(3.8f, 1, -2f);
+                pos = new Vector3(3.8f, .96f, -2f);
                 rot = Quaternion.Euler(0, 0, 0);
                 break;
             // dice roll
