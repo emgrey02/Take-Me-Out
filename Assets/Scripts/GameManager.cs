@@ -16,6 +16,12 @@ public class GameManager : MonoBehaviour
     private VCA vcaMusicController;
     private VCA vcaSFXController;
 
+    // FMOD Base Ambs
+    public GameObject fbAmb;
+    public GameObject sbAmb;
+    public GameObject tbAmb;
+    public GameObject hbAmb;
+
     private SaveManager SaveManager;
     private PlayerMovement PlayerController;
 
@@ -90,6 +96,7 @@ public class GameManager : MonoBehaviour
                         baseObj = Instantiate(basePrefab, new Vector3(27.2f, .05f, .2f), Quaternion.identity);
                         baseObj.name = "First Base";
                         baseObj.GetComponent<Base>().BaseNum = 1;
+                        fbAmb.SetActive(true);
                         break;
                     // from first base exp
                     case 2:
@@ -102,6 +109,8 @@ public class GameManager : MonoBehaviour
                         baseObj = Instantiate(basePrefab, new Vector3(27.2f, .05f, 27.2f), Quaternion.identity);
                         baseObj.name = "Second Base";
                         baseObj.GetComponent<Base>().BaseNum = 2;
+                        fbAmb.SetActive(false);
+                        sbAmb.SetActive(true);
                         break;
                     // from second base exp
                     case 3:
@@ -114,6 +123,8 @@ public class GameManager : MonoBehaviour
                         baseObj = Instantiate(basePrefab, new Vector3(0.2f, .05f, 27.2f), Quaternion.identity);
                         baseObj.name = "Third Base";
                         baseObj.GetComponent<Base>().BaseNum = 3;
+                        sbAmb.SetActive(false);
+                        tbAmb.SetActive(true);
                         break;
                     // from third base exp
                     case 4:
@@ -125,6 +136,8 @@ public class GameManager : MonoBehaviour
                         baseObj = Instantiate(basePrefab, new Vector3(-0.1f, .06f, -.1f), Quaternion.identity);
                         baseObj.name = "Home Base";
                         baseObj.GetComponent<Base>().BaseNum = 4;
+                        tbAmb.SetActive(false);
+                        hbAmb.SetActive(true);
                         // add home base
                         break;
                     // from home base exp

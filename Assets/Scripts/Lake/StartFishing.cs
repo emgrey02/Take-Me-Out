@@ -95,7 +95,8 @@ public class StartFishing : MonoBehaviour
         // FMOD
         // start snapshot
         fishTime.start();
-        musicInstance.start();
+        /* RuntimeManager.StudioSystem.setParameterByName(musicParameter, 0.0f, false);
+        musicInstance.start(); */
 
         // get fishing slider game ui elements
         fishingSliderUI = fishingSliderObj.GetComponent<UIDocument>().rootVisualElement;
@@ -132,6 +133,8 @@ public class StartFishing : MonoBehaviour
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;
         
         isFishing = false;
+        RuntimeManager.StudioSystem.setParameterByName(musicParameter, 0.0f, false);
+        musicInstance.start();
     }
 
     // when camera moves to fishing position, show prompt and move pole up
@@ -341,7 +344,7 @@ public class StartFishing : MonoBehaviour
         {
             RuntimeManager.StudioSystem.setParameterByName(musicParameter, 1f, false);
             musicInstance.release();
-            musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            //musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             StopFishing();
         }
     }
