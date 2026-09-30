@@ -121,7 +121,7 @@ public class FMODOutdoorCrowd2 : MonoBehaviour
     void ApplyFMODParameters()
     {
         eventEmitter.SetParameter(mixParameterName, currDistance);
-        Debug.Log("changed parameter!");
+        //Debug.Log("changed parameter!");
     }
 
     void PerformScan()

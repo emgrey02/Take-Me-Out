@@ -36,10 +36,10 @@ public class FMODClappingHandler : MonoBehaviour
     void Update()
     {
         FMOD.RESULT result = RuntimeManager.StudioSystem.getParameterByName("readyToClap", out float value, out clapping);
-        Debug.Log("clapping: " + clapping + "; fmod result: " + result);
+       // Debug.Log("clapping: " + clapping + "; fmod result: " + result);
         if (clapping == 1.0 && !studioEventEmitter.IsPlaying())
         {
-            Debug.Log("clapping: " + clapping + " & we're in");
+           // Debug.Log("clapping: " + clapping + " & we're in");
             PlayFMODEvent();
         }
     }

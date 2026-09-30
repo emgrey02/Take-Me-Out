@@ -54,8 +54,9 @@ public class BurrenCutsceneTrigger : MonoBehaviour
     {
         if (secondDirector == aDirector)
         {
+            Debug.Log("we're fading?");
             // go back to baseball field
-            //fadeOut.SetActive(true);
+            fadeOut.SetActive(true);
             StartCoroutine(FadeOut());
             //GameManager.Instance.MoveToScene(1);
             

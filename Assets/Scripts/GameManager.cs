@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
                         break;
                     // from first base exp
                     case 2:
+                        fbAmb.SetActive(false);
                         longFade.SetActive(false);
                         shortFade.SetActive(true);
 
@@ -109,7 +110,7 @@ public class GameManager : MonoBehaviour
                         baseObj = Instantiate(basePrefab, new Vector3(27.2f, .05f, 27.2f), Quaternion.identity);
                         baseObj.name = "Second Base";
                         baseObj.GetComponent<Base>().BaseNum = 2;
-                        fbAmb.SetActive(false);
+                        
                         sbAmb.SetActive(true);
                         break;
                     // from second base exp
