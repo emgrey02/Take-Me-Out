@@ -92,6 +92,7 @@ public class MenuController : MonoBehaviour
     void Update()
     {
         // set volumes on slider change, not on save, so that the user can hear the changes in real time
+        // TODO: take this out of update and make it event driven
         GameManager.Instance.SetVolumeData(masterVolSlider.value * 0.01f, musicVolSlider.value * 0.01f, sfxVolSlider.value * 0.01f);
     }
 

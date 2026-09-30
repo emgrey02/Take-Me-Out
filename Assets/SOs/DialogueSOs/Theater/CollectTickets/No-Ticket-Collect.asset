@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   speaker: 010000000100000001000000
   dialogue:
-  - Heyyy hey hey.
+  - Woah, hold your hoses there pal
   - You have to buy a ticket first...
-  - The booth is behind you!
+  - The ticket booth is behind you!
   options: []
   option1: {fileID: 0}
   option2: {fileID: 0}

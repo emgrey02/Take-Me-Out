@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   speaker: 010000000100000001000000
   dialogue:
-  - ...
-  - Wow what a surprise! Tickets!
+  - ...no way...
+  - Oh! What a surprise! Tickets!
   - You can go ahead. Oh, and feel free to get some refreshments at the bar.
   options: []
   option1: {fileID: 0}

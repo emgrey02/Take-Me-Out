@@ -43,9 +43,9 @@ public class WeddingSceneController : MonoBehaviour
             {
                 heartParticles.SetActive(true);
                 firstDollyCamera.SetActive(false);
-                Griffin.SetActive(true);
                 skyCamera.SetActive(true);
-                Griffin.GetComponent<Animator>().SetBool("turn", true);
+                
+                StartCoroutine(ShowGriffin());
                 Alison.GetComponent<Animator>().SetBool("turn", true);
             }
         }
@@ -55,6 +55,13 @@ public class WeddingSceneController : MonoBehaviour
             takeMeOutLogo.SetActive(true);
             StartCoroutine(ShowCredits());
         }
+    }
+
+    IEnumerator ShowGriffin()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Griffin.SetActive(true);
+        Griffin.GetComponent<Animator>().SetBool("turn", true);
     }
 
     IEnumerator ShowCredits()

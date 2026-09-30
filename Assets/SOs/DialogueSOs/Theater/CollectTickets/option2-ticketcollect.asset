@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   speaker: 0100000001000000
   dialogue:
-  - 'Oooooooohh. Nice... '
+  - Oooooooohh. You got me there bud.
   - 'You can head straight to the theater behind me or get some refreshments at the
     bar first. '
   options: []

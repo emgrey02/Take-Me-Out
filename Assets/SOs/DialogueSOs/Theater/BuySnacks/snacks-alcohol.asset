@@ -20,7 +20,7 @@ MonoBehaviour:
   options:
   - No, we're set!
   - Yeah, can we get some popcorn too?
-  - Yeah, can we get some skittles?
+  - Yeah, can we get some peanut M&Ms and gummy bears?
   option1: {fileID: 11400000, guid: b91eb536f33f63049bf62baba28b8fae, type: 2}
   option2: {fileID: 11400000, guid: 5855ec9f389f02046880ed29bf782d74, type: 2}
   option3: {fileID: 11400000, guid: 5176a4388d9fb314ea80fc2321f032a4, type: 2}

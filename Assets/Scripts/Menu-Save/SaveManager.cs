@@ -57,7 +57,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", musicV);
         PlayerPrefs.SetFloat("SFXVolume", sfxV);
         PlayerPrefs.Save();
-        Debug.Log("Volume Data Saved to PlayerPrefs");
+        //Debug.Log("Volume Data Saved to PlayerPrefs");
     }
 
     public List<float> LoadVolume()

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   speaker: 0200000005000000
   dialogue:
-  - Heerreee's your skittles! Anything else?
+  - Here is your candy! Anything else?
   options:
   - No, we're set!
   - Yeah, can we get a medium popcorn?

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   speaker: 010000000100000001000000
   dialogue:
-  - It's.... beautiful. ;,)
-  - Thanks for that.
+  - Wow, I've never seen anything so beautiful.
+  - Uh, hell yea man
   - Please, enjoy the movie! And don't forget to get some food or drink at the bar
     if you'd like.
   options: []

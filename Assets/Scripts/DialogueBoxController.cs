@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FMODUnity;
+using UnityEngine.EventSystems;
 
 public enum Speakers {
     Alison,
@@ -18,7 +19,11 @@ public class DialogueBoxController : MonoBehaviour
 {
     public static DialogueBoxController instance;
 
+    public PanelSettings PanelSettings;
+
     [SerializeField] InputReader inputReader;
+
+    private Focusable currentFocus;
 
     // FMOD
     // events needed for dialogue
@@ -75,11 +80,12 @@ public class DialogueBoxController : MonoBehaviour
         optionsPanel = dialogueBox.Q<VisualElement>("option-container");
 
         options = dialogueBox.Query<Button>(className: "option").ToList();
-
+        
         optionsPanel.visible = false;
         lightning.AddToClassList("hide");
 
         nextButton = dialogueBox.Q<Button>("nextLine");
+
 
     }
 
@@ -110,11 +116,34 @@ public class DialogueBoxController : MonoBehaviour
         speakerName.text = null;
         dialogueText.text = null;
         lightning.AddToClassList("hide");
-        for (int j=0; j < options.Count; j++) {
-            options[j].text = null;
-            options[j].visible = false; 
+        
+        HideOptions();
+    }
+
+    void Update()
+    {
+        currentFocus = GetComponent<UIDocument>().rootVisualElement.focusController.focusedElement;
+        VisualElement currentFocusElement = currentFocus as VisualElement;
+        Button focusedButton;
+        if (currentFocus != null & currentFocus is Button)
+        {
+            focusedButton = currentFocus as Button;
+            Debug.Log(focusedButton.name);
+        } else
+        {
+            Debug.Log(currentFocus);
         }
+    }
+
+    private void HideOptions()
+    {
         optionsPanel.visible = false;
+        for (int j = 0; j < options.Count; j++)
+        {
+            options[j].text = null;
+            options[j].visible = false;
+        }
+        lightning.AddToClassList("hide");
     }
 
     public void StartDialogue(DialogueAsset d)
@@ -188,38 +217,51 @@ public class DialogueBoxController : MonoBehaviour
                 Debug.Log("It's a branch!");
 
                 // time to show reply options
-                nextButton.AddToClassList("hide");
+                nextButton.style.opacity = 0;
+                nextButton.tabIndex = -1;
+                nextButton.SetEnabled(false);
 
                 // show lighting bar
                 lightning.RemoveFromClassList("hide");
 
                 // show answer options
+                optionsPanel.visible = true;
                 for (int j=0; j < options.Count; j++) {
+                    Debug.Log(options[j]);
                     if (d.options.Length > j) {
+                        Debug.Log("showing option");
                         options[j].visible = true;
                         options[j].text = d.options[j];
                     } else {
+                        Debug.Log("hiding option");
                         options[j].visible = false;
                     }
                 }
 
-                // have first option selected
-                // should in not do this?? 
                 options[0].Focus();
+
+                if (currentFocus == null || currentFocus is not Button)
+                {
+                    Debug.Log("currentFocus is null or not button, focusing on first option");
+                    options[0].Focus();
+                }
+
 
             } else {
                 Debug.Log("not a branch");
                 Debug.Log("setting text");
 
-                // hide options
-                optionsPanel.visible = false;
-                for (int j=0; j < options.Count; j++) {
-                    options[j].visible = false; 
-                }
-                lightning.AddToClassList("hide");
-
                 // show next button
-                nextButton.RemoveFromClassList("hide");
+                nextButton.style.opacity = 1;
+                nextButton.tabIndex = 0;
+                nextButton.SetEnabled(true);
+
+                // hide options
+                HideOptions();
+
+                // have next button selected
+                Debug.Log("focusing on next btn");
+                nextButton.Focus();
 
                 // set speaker name
                 speakerName.text = d.speaker[i].ToString();
@@ -238,11 +280,16 @@ public class DialogueBoxController : MonoBehaviour
 
                 dialogueText.text = d.dialogue[i];
 
-                // start typing text
-                //StartCoroutine(TypeText(d.dialogue[i]));
+                if (currentFocus == null || currentFocus is not Button)
+                {
+                    Debug.Log("currentFocus is null or not button, focusing on next btn");
+                    nextButton.Focus();
+                }
 
-                // have next button selected
                 nextButton.Focus();
+
+                //start typing text
+                //StartCoroutine(TypeText(d.dialogue[i]));
 
             }
 
@@ -317,16 +364,8 @@ public class DialogueBoxController : MonoBehaviour
         {
             if (target == options[i])
             {
-                // hide all dialogue box text
-                speakerName.text = null;
-                dialogueText.text = null;
-                optionsPanel.visible = false;
-                lightning.AddToClassList("hide");
-                for (int j = 0; j < options.Count; j++)
-                {
-                    options[j].text = null;
-                    options[j].visible = false;
-                }
+
+                ClearDialogueBox();
 
                 // send to next dialogue based on option
                 switch (i)

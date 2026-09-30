@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   speaker: 030000000300000003000000
   dialogue:
-  - ...
-  - Thanks!
+  - Um... try again.
+  - You're all set!
   - Enjoy the movie!
   options: []
   option1: {fileID: 0}

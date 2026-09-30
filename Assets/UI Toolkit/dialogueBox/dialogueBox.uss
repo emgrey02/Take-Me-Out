@@ -3,10 +3,6 @@
 }
 
 .hide {
-    transition-property: opacity;
-    transition-duration: 0.2s;
-    opacity: 1;
-    transition-timing-function: ease-in-out;
     display: none;
 }
 
@@ -16,7 +12,6 @@
     position: relative;
     bottom: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0);
     margin-top: 0;
     margin-right: 10px;
     margin-bottom: 14px;
@@ -25,9 +20,13 @@
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
-}
-
-.unity-button {
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    transition-property: background-color, all;
+    transition-duration: 0.2s, 0.2s;
 }
 
 
@@ -73,18 +72,6 @@
     transition-duration: 0.5s;
 }
 
-.red {
-    background-color: rgba(204, 63, 63, 0.76);
-    transition-property: background-color;
-    transition-duration: 1s;
-}
-
-.basecolor {
-    background-color: rgba(202, 202, 202, 0.76);
-}
-
-
-
 .option:hover {
     background-color: rgb(255, 234, 133);
     transition-property: background-color;
@@ -105,3 +92,17 @@
     border-bottom-color: rgb(214, 105, 105);
     transition-property: border-color;
 }
+
+.button:focus {
+    background-color: rgb(214, 105, 105);
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+}
+
+
+
+

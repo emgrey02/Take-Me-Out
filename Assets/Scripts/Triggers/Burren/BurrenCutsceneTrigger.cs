@@ -55,14 +55,16 @@ public class BurrenCutsceneTrigger : MonoBehaviour
         if (secondDirector == aDirector)
         {
             // go back to baseball field
-            fadeOut.SetActive(true);
+            //fadeOut.SetActive(true);
             StartCoroutine(FadeOut());
+            //GameManager.Instance.MoveToScene(1);
+            
         }
     }
 
     IEnumerator FadeOut()
     {
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(3f);
         GameManager.Instance.MoveToScene(1);
     }
 
