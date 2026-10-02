@@ -120,20 +120,20 @@ public class DialogueBoxController : MonoBehaviour
         HideOptions();
     }
 
-    void Update()
-    {
-        currentFocus = GetComponent<UIDocument>().rootVisualElement.focusController.focusedElement;
-        VisualElement currentFocusElement = currentFocus as VisualElement;
-        Button focusedButton;
-        if (currentFocus != null & currentFocus is Button)
-        {
-            focusedButton = currentFocus as Button;
-            Debug.Log(focusedButton.name);
-        } else
-        {
-            Debug.Log(currentFocus);
-        }
-    }
+    //void Update()
+    //{
+    //    currentFocus = GetComponent<UIDocument>().rootVisualElement.focusController.focusedElement;
+    //    VisualElement currentFocusElement = currentFocus as VisualElement;
+    //    Button focusedButton;
+    //    if (currentFocus != null & currentFocus is Button)
+    //    {
+    //        focusedButton = currentFocus as Button;
+    //        Debug.Log(focusedButton.name);
+    //    } else
+    //    {
+    //        Debug.Log(currentFocus);
+    //    }
+    //}
 
     private void HideOptions()
     {

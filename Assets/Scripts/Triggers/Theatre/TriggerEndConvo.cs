@@ -43,6 +43,7 @@ public class TriggerEndConvo:MonoBehaviour
         Debug.Log("Setting alison position, disabling Alison Follow component");
         alison.transform.position = new Vector3(-1f, 0f, 6.75f);
         alison.GetComponent<AlisonFollow>().enabled = false;
+        alison.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
         alison.GetComponent<TriggerMeetAlison>().enabled = false;
 
         Debug.Log("triggering cutscene");

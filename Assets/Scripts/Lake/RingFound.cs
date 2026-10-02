@@ -5,6 +5,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class RingFound : MonoBehaviour
@@ -14,6 +15,8 @@ public class RingFound : MonoBehaviour
     public VisualElement promptCtn;
     public Button marryBtn;
     public Button walkBtn;
+
+    public GameObject[] investigatePrompt = new GameObject[3];
 
     public DialogueAsset proposalDialogue;
     //public bool promptIsShowing = false;
@@ -66,6 +69,11 @@ public class RingFound : MonoBehaviour
             // deactivate proposal prompt
             ProposalPromptController.Instance.DeactivateProposalText();
             // trigger proposal timeline
+            foreach (GameObject prompt in investigatePrompt)
+            {
+                prompt.SetActive(false);
+            }
+            inputReader.DisablePlayerControls();
             cameraMove.SetActive(true);
             RuntimeManager.PlayOneShot(marryChoice);
             Camera.main.GetComponent<CinemachineBrain>().enabled = true;
@@ -88,7 +96,12 @@ public class RingFound : MonoBehaviour
         promptCtn.AddToClassList("remove");
 
         RuntimeManager.PlayOneShot(marryChoice);
-       
+        foreach (GameObject prompt in investigatePrompt)
+        {
+            prompt.SetActive(false);
+        }
+
+        inputReader.DisablePlayerControls();
         // trigger proposal timeline
         cameraMove.SetActive(true);
         Camera.main.GetComponent<CinemachineBrain>().enabled = true;

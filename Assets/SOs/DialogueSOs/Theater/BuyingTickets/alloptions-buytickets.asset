@@ -18,8 +18,8 @@ MonoBehaviour:
   options:
   - (Search for a $20 and uncrumple 4 dollar bills in your back pocket. Smile hopefully...)
   - (Hand her your credit card) Let me get those points.
-  - (Use your apple wallet and tap, and when that doesn't work, use your credit card.)
+  - (Use your apple wallet and tap to pay...)
   option1: {fileID: 11400000, guid: 74b4f68e421dc594b991256017583294, type: 2}
   option2: {fileID: 11400000, guid: 74b4f68e421dc594b991256017583294, type: 2}
-  option3: {fileID: 11400000, guid: 74b4f68e421dc594b991256017583294, type: 2}
+  option3: {fileID: 11400000, guid: 4d0e3dde60cfe264fb35d37c7be422b6, type: 2}
   option4: {fileID: 0}

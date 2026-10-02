@@ -113,7 +113,7 @@ public class TriggerEnterTheater : MonoBehaviour
         panelToBlack.SetActive(true);
 
         // movie takes time, keep black screen up for a bit
-        yield return new WaitForSeconds(12);
+        yield return new WaitForSeconds(7);
 
         // set camera back to player view
         Camera.main.GetComponent<CinemachineBrain>().enabled = false;
@@ -137,7 +137,7 @@ public class TriggerEnterTheater : MonoBehaviour
     {
         
         yield return new WaitForSeconds(4);
-        panelToClear.SetActive(false);
+       // panelToClear.SetActive(false);
         inputReader.EnablePlayerControls();
         endConvoTrigger.SetActive(true);
         

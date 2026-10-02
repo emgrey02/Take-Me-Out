@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         // limit fps
-        //QualitySettings.vSyncCount = 0; // disabled vSync
-        //Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0; // disabled vSync
+        Application.targetFrameRate = 60;
 
         // make sure theres only one instance of GameManager
         if (_instance != null && _instance != this)
@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
                 break;
             // somerville theater
             case 3:
-                pos = new Vector3(10f, 1.2f, -1f);
+                pos = new Vector3(10f, .97f, -1f);
                 rot = Quaternion.Euler(0, -68f, 0);
                 break;
             // echo lake

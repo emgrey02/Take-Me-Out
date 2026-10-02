@@ -17,6 +17,9 @@ public class StartFishing : MonoBehaviour
     // director that controls cameraMove timeline
     public PlayableDirector firstDirector;
 
+    // investigate text prompt
+    public GameObject investigatePrompt;
+
     // fishing slider game
     private bool increasing = true;
     public bool sliderWithinBar;
@@ -127,6 +130,8 @@ public class StartFishing : MonoBehaviour
         // make sure proposal prompt is not showing
         Debug.Log("deactivating proposal prompt");
         ProposalPromptController.Instance.DeactivateProposalText();
+        // make sure investigate prompt is not showing
+        investigatePrompt.SetActive(false);
 
         // start cutscene cameras
         cameraMove.SetActive(true);

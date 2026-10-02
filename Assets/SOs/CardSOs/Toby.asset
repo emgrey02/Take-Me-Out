@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Toby
   m_EditorClassIdentifier: Assembly-CSharp::CardObjectSO
   cardName: Toby
-  spawnPoint: {x: 21.05586, y: 0, z: 4.31196}
+  spawnPoint: {x: 23.225857, y: 0, z: 51.98196}
   cardIndex: 1
   cardImage: TMO_card_toby
   materialName: toby

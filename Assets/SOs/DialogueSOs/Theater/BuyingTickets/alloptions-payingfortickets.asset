@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c6c3c4355ec4a4b91e229a8af6a9bb, type: 3}
   m_Name: alloptions-payingfortickets
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  speaker: 030000000300000003000000
+  speaker: 0300000003000000
   dialogue:
-  - Um... try again.
   - You're all set!
   - Enjoy the movie!
   options: []
